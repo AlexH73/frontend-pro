@@ -1,10 +1,10 @@
 # 🚀 Frontend Pro - Учебный модуль
 
-![React](https://img.shields.io/badge/React-18.2-%2361DAFB?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-✓-3178C6?logo=typescript)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-%23F7DF1E?logo=javascript)
-![SPA](https://img.shields.io/badge/SPA-Routing-%230175C2?logo=react-router)
-![License](https://img.shields.io/badge/License-MIT-green)
+[![React](https://img.shields.io/badge/React-18.2-%2361DAFB?logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-✓-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-%23F7DF1E?logo=javascript)](https://www.javascript.com/)
+[![SPA](https://img.shields.io/badge/SPA-Routing-%230175C2?logo=react-router)](https://reactrouter.com/)
+[![License](https://img.shields.io/badge/License-MIT-green)](https://opensource.org/licenses/MIT)
 
 Продвинутый курс по современной фронтенд-разработке с углубленным изучением React, TypeScript, продвинутого JavaScript и создания SPA-приложений.
 
