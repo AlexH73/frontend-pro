@@ -1,0 +1,19 @@
+{
+  "name": "project_01",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "dev": "npx tsc && node dist/index.js"
+  },
+  "keywords": [
+    "ait"
+  ],
+  "author": "AlexH73",
+  "license": "ISC",
+  "description": "Application to understand TS",
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  }
+}
