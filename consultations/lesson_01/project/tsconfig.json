@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "module": "ESNext", // Используйте ESNext или ESModule для поддержки ES-модулей
+    "moduleResolution": "node", // Укажите разрешение модулей
+    "esModuleInterop": true, // Включите совместимость ES и CommonJS
+    "target": "ES6" // Установите целевой стандарт ES6 или выше
+  }
+}
