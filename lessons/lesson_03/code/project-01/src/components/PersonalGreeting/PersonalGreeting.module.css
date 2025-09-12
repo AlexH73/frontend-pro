@@ -1,0 +1,13 @@
+.container {
+  border: 2px solid lightcoral;
+  border-radius: 16px;
+  padding: 24px;
+  width: 600px;
+}
+
+/* используйте только классы 
+или составные селекторы с классами*/
+
+.container h2 {
+  color: pink;
+}

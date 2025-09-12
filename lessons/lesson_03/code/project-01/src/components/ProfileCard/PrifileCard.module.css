@@ -1,0 +1,14 @@
+.container {
+  background-color: lightcoral;
+  padding: 24px;
+  border-radius: 24px;
+  margin: 14px;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.userDescription {
+  font-style: italic;
+}
