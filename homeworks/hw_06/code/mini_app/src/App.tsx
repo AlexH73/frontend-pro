@@ -9,7 +9,13 @@ function App() {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand d-flex align-items-center" to="/">
+            <img
+              src="/logo.svg"
+              alt="JSONPlaceholder Demo"
+              height="30"
+              className="me-2"
+            />
             JSONPlaceholder Demo
           </Link>
           <button
