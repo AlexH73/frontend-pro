@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import Users from "./pages/Users/Users";
 import Comments from "./pages/Comments/Comments";
 import Posts from "./pages/Posts/Posts";
+import Albums from "./pages/Albums/Albums";
 
 function App() {
   return (
@@ -74,6 +75,7 @@ function App() {
         <Route path="/users" element={<Users />} />
         <Route path="/posts" element={<Posts />} />
         <Route path="/comments" element={<Comments />} />
+        <Route path="/albums" element={<Albums />} />
       </Routes>
     </>
   );
