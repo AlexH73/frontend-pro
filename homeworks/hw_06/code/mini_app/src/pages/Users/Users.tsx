@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { v4 } from "uuid";
 import axios from "axios";
 import UserCard from "./UserCard";
+import SEO from "../../components/SEO/SEO";
 
 export interface IUser {
   id: number;
@@ -33,51 +34,58 @@ const Users = () => {
   }, []);
 
   return (
-    <div className="container mt-4">
-      <h1 className="mb-4">Список пользователей</h1>
+    <>
+      <SEO
+        title="Пользователи - JSONPlaceholder Demo"
+        description="Просмотр списка пользователей с JSONPlaceholder API"
+        keywords="JSONPlaceholder, API, демо, React, TypeScript"
+      />
+      <div className="container mt-4">
+        <h1 className="mb-4">Список пользователей</h1>
 
-      <div className="card mb-4">
-        <div className="card-body">
-          <h5 className="card-title">Задача страницы</h5>
-          <p className="card-text">
-            Отображение карточек пользователей с основной контактной
-            информацией. Демонстрация работы с компонентным подходом и передачей
-            данных через props.
-          </p>
-          <h6>Реализация:</h6>
-          <ul>
-            <li>Создание переиспользуемого компонента UserCard</li>
-            <li>Типизация props с TypeScript</li>
-            <li>Обработка состояний загрузки и ошибок</li>
-            <li>Адаптивная верстка с Bootstrap Grid</li>
-          </ul>
+        <div className="card mb-4">
+          <div className="card-body">
+            <h5 className="card-title">Задача страницы</h5>
+            <p className="card-text">
+              Отображение карточек пользователей с основной контактной
+              информацией. Демонстрация работы с компонентным подходом и
+              передачей данных через props.
+            </p>
+            <h6>Реализация:</h6>
+            <ul>
+              <li>Создание переиспользуемого компонента UserCard</li>
+              <li>Типизация props с TypeScript</li>
+              <li>Обработка состояний загрузки и ошибок</li>
+              <li>Адаптивная верстка с Bootstrap Grid</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="row g-3 ">
+          {users.map((user) => (
+            <UserCard key={v4()} user={user} />
+          ))}
+        </div>
+
+        <div className="mt-4">
+          {loading && (
+            <div className="text-center">
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div>
+          {error && (
+            <div className="alert alert-danger" role="alert">
+              Ошибка при загрузке данных: {error}
+            </div>
+          )}
         </div>
       </div>
-
-      <div className="row g-3 ">
-        {users.map((user) => (
-          <UserCard key={v4()} user={user} />
-        ))}
-      </div>
-
-      <div className="mt-4">
-        {loading && (
-          <div className="text-center">
-            <div className="spinner-border text-primary" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        )}
-      </div>
-
-      <div>
-        {error && (
-          <div className="alert alert-danger" role="alert">
-            Ошибка при загрузке данных: {error}
-          </div>
-        )}
-      </div>
-    </div>
+    </>
   );
 };
 

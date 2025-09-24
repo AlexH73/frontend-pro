@@ -5,7 +5,7 @@ const Home = () => {
     <>
       <SEO
         title="Главная - JSONPlaceholder Demo"
-        description="Демонстрационный сайт для работы с JSONPlaceholder API"
+        description="Демонстрационный сайт для работы с JSONPlaceholder API. Просмотр пользователей, постов, комментариев, альбомов, фото и задач."
         keywords="JSONPlaceholder, API, демо, React, TypeScript"
       />
       <div className="container mt-4">
