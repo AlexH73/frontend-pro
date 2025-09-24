@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./pages/Home/Home";
 import Users from "./pages/Users/Users";
 import Comments from "./pages/Comments/Comments";
+import Posts from "./pages/Posts/Posts";
 
 function App() {
   return (
@@ -71,6 +72,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/posts" element={<Posts />} />
         <Route path="/comments" element={<Comments />} />
       </Routes>
     </>
