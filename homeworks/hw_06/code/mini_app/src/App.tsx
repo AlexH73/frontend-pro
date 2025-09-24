@@ -6,6 +6,7 @@ import Comments from "./pages/Comments/Comments";
 import Posts from "./pages/Posts/Posts";
 import Albums from "./pages/Albums/Albums";
 import Photos from "./pages/Photos/Photos";
+import Todos from "./pages/Todos/Todos";
 
 function App() {
   return (
@@ -78,6 +79,7 @@ function App() {
         <Route path="/comments" element={<Comments />} />
         <Route path="/albums" element={<Albums />} />
         <Route path="/photos" element={<Photos />} />
+        <Route path="/todos" element={<Todos />} />
       </Routes>
     </>
   );

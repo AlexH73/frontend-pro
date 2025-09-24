@@ -82,7 +82,7 @@ const Photos = () => {
         )}
 
         <div className="row g-3">
-          {photos.map(({albumId, id, title, url, thumbnailUrl}) => (
+          {photos.map(({title, thumbnailUrl}) => (
             <div className="col-6 col-md-4 col-lg-3" key={v4()}>
               <div className="card h-100 shadow-sm">
                 <img
