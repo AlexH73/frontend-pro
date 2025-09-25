@@ -12,6 +12,10 @@ export interface IPhoto {
   thumbnailUrl: string;
 }
 
+function getRandomImage() {
+  return `https://picsum.photos/200?random=${Math.floor(Math.random() * 1000)}`;
+}
+
 const Photos = () => {
   const [photos, setPhotos] = useState<IPhoto[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -82,7 +86,7 @@ const Photos = () => {
         )}
 
         <div className="row g-3">
-          {photos.map(({title, thumbnailUrl}) => (
+          {photos.map(({ title, thumbnailUrl }) => (
             <div className="col-6 col-md-4 col-lg-3" key={v4()}>
               <div className="card h-100 shadow-sm">
                 <img
@@ -90,6 +94,10 @@ const Photos = () => {
                   className="card-img-top"
                   alt={title}
                   loading="lazy"
+                  onError={(e) => {
+                    const target = e.currentTarget as HTMLImageElement;
+                    target.src = getRandomImage();
+                  }}
                 />
                 <div className="card-body">
                   <p className="card-text small">{title}</p>
