@@ -1,0 +1,67 @@
+.main-content {
+  min-height: calc(100vh - 160px);
+}
+
+.navbar-brand {
+  font-weight: 600;
+}
+
+.theme-toggle {
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  margin-left: 1rem;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.footer {
+  border-top: 1px solid var(--border-color);
+}
+
+/* Стили для карточек с иконками */
+.feature-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.feature-card .card-body {
+  padding: 2rem;
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+/* Стили для навигации */
+.nav-link {
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--primary-color) !important;
+}
+
+/* Стили для спиннера загрузки */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+/* Стили для изображений */
+.thumbnail {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.thumbnail:hover {
+  transform: scale(1.05);
+}

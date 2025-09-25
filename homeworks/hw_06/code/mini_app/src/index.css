@@ -1,0 +1,102 @@
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+}
+
+/* Светлая тема (по умолчанию) */
+body.light-theme {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --border-color: #dee2e6;
+  --card-bg: #ffffff;
+  --navbar-bg: #343a40;
+  --footer-bg: #343a40;
+}
+
+/* Темная тема */
+body.dark-theme {
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --text-primary: #e9ecef;
+  --text-secondary: #adb5bd;
+  --border-color: #444;
+  --card-bg: #1e1e1e;
+  --navbar-bg: #0d1117;
+  --footer-bg: #0d1117;
+  
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body.dark-theme .card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+body.dark-theme .card-body {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+}
+
+body.dark-theme .card-title {
+  color: var(--text-primary);
+}
+
+body.dark-theme .card-text {
+  color: var(--text-secondary);
+}
+
+body.dark-theme .navbar-dark {
+  background-color: var(--navbar-bg) !important;
+}
+
+body.dark-theme .footer {
+  background-color: var(--footer-bg) !important;
+}
+
+body.dark-theme .jumbotron {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary);
+}
+
+body.dark-theme .table {
+  color: var(--text-primary);
+}
+
+body.dark-theme .text-muted {
+  color: var(--text-secondary) !important;
+}
+
+/* Анимации */
+.theme-toggle {
+  transition: all 0.3s ease;
+}
+
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1rem;
+  }
+  
+  .theme-toggle {
+    margin-left: auto;
+    margin-right: 1rem;
+  }
+}
