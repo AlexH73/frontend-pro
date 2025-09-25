@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaSun, FaMoon } from "react-icons/fa";
+import style from "./ThemeToggle.module.css"
 
 const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(() => {
@@ -25,7 +26,11 @@ const ThemeToggle = () => {
       onClick={() => setIsDark(!isDark)}
       title={isDark ? "Switch to light theme" : "Switch to dark theme"}
     >
-      {isDark ? <FaSun size={18} /> : <FaMoon size={18} />}
+      {isDark ? (
+        <FaSun size={18} className={style.icon_sun} />
+      ) : (
+        <FaMoon size={18} className={style.icon_moon} />
+      )}
     </button>
   );
 };
