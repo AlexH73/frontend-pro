@@ -17,6 +17,7 @@ import Albums from "./pages/Albums/Albums";
 import Photos from "./pages/Photos/Photos";
 import Todos from "./pages/Todos/Todos";
 import ThemeToggle from "./components/ThemeToggle/ThemeToggle";
+import Footer from "./components/Footer/Footer";
 function App() {
   return (
     <>
@@ -124,6 +125,8 @@ function App() {
           <Route path="/todos" element={<Todos />} />
         </Routes>
       </main>
+
+      <Footer />
     </>
   );
 }
