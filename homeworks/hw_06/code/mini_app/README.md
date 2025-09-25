@@ -1,73 +1,202 @@
-# React + TypeScript + Vite
+# JSONPlaceholder Demo - Mini App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-18.2.0-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0.0-blue)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.0-purple)
+![Vite](https://img.shields.io/badge/Vite-4.4.0-yellow)
 
-Currently, two official plugins are available:
+Демонстрационное приложение для работы с JSONPlaceholder API. SPA с современным интерфейсом, темной темой и адаптивным дизайном.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**🌐 Live Demo:** [https://mini-app-pearl-nu.vercel.app/](https://mini-app-pearl-nu.vercel.app/)
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+## ✨ Особенности
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 📱 **Полностью адаптивный дизайн** - работает на всех устройствах
+- 🌙 **Темная/светлая тема** - переключатель тем в реальном времени
+- ⚡ **Быстрая загрузка** - построено на Vite для оптимальной производительности
+- 🔍 **SEO-оптимизация** - динамические meta-теги для каждой страницы
+- 🎨 **Современный UI** - Bootstrap 5 + кастомные стили
+- 📊 **6 типов данных** - полная демонстрация JSONPlaceholder API
+- 🔧 **TypeScript** - полная типизация для надежности кода
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Быстрый старт
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Предварительные требования
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 16.0.0 или выше
+- npm 7.0 или выше
+
+### Установка и запуск
+
+1. **Клонирование репозитория**
+```bash
+git clone <repository-url>
+cd mini_app
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. **Установка зависимостей**
+```bash
+npm install
 ```
+
+3. **Запуск в режиме разработки**
+```bash
+npm run dev
+```
+Приложение будет доступно по адресу: `http://localhost:5173`
+
+4. **Сборка для production**
+```bash
+npm run build
+```
+
+5. **Просмотр собранной версии**
+```bash
+npm run preview
+```
+
+## 🏗️ Технологический стек
+
+### Основные технологии
+- **React 18.2.0** - UI библиотека
+- **TypeScript 5.0.0** - типизация JavaScript
+- **Vite 4.4.0** - сборщик и dev-сервер
+
+### UI и стилизация
+- **Bootstrap 5.3.0** - CSS фреймворк
+- **React Bootstrap 2.8.0** - компоненты Bootstrap для React
+- **React Icons 4.11.0** - иконки Font Awesome
+
+### Маршрутизация и состояние
+- **React Router DOM 6.15.0** - клиентская маршрутизация
+- **Axios 1.5.0** - HTTP клиент для API запросов
+
+### Утилиты
+- **UUID 9.0.1** - генерация уникальных идентификаторов
+
+## 📁 Структура проекта
+
+```
+src/
+├── components/          # Переиспользуемые компоненты
+│   ├── SEO/            # SEO-компонент для meta-тегов
+│   ├── GitHubLink/     # Ссылки на исходный код
+│   ├── ThemeToggle/    # Переключатель темы
+│   └── Footer/         # Футер приложения
+├── pages/              # Страницы приложения
+│   ├── Home/           # Главная страница
+│   ├── Users/          # Пользователи
+│   ├── Posts/          # Посты
+│   ├── Comments/       # Комментарии
+│   ├── Albums/         # Альбомы
+│   ├── Photos/         # Фотографии
+│   └── Todos/          # Задачи
+├── hooks/              # Кастомные React хуки
+├── types/              # TypeScript типы
+└── utils/              # Вспомогательные функции
+```
+
+## 🌐 Доступные страницы
+
+### 🏠 Главная (`/`)
+- Обзор всех доступных данных
+- Навигационные карточки
+- Описание проекта и технологий
+
+### 👥 Пользователи (`/users`)
+- Список всех пользователей
+- Контактная информация
+- Данные компании и адреса
+
+### 📝 Посты (`/posts`)
+- Посты пользователей
+- Полный текст и заголовки
+- Связь с авторами
+
+### 💬 Комментарии (`/comments`)
+- Комментарии к постам
+- Email авторов комментариев
+- Связь с постами
+
+### 📸 Альбомы (`/albums`)
+- Фотоальбомы пользователей
+- Названия и описания
+- Навигация к фотографиям
+
+### 🖼️ Фотографии (`/photos`)
+- Фотографии из альбомов
+- Миниатюры и полноразмерные изображения
+- Фильтрация по альбомам
+
+### ✅ Задачи (`/todos`)
+- Список задач пользователей
+- Статус выполнения (выполнено/не выполнено)
+- Фильтрация по статусу
+
+## 🔧 Настройка и кастомизация
+
+### Кастомизация темы
+Цвета и стили можно изменить в `src/App.css`:
+```css
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  /* Добавьте свои цвета */
+}
+```
+
+## 📊 API endpoints
+
+Приложение использует следующие endpoints JSONPlaceholder:
+
+| Ресурс | Endpoint | Описание |
+|--------|----------|----------|
+| Users | `/users` | Информация о пользователях |
+| Posts | `/posts` | Посты пользователей |
+| Comments | `/comments` | Комментарии к постам |
+| Albums | `/albums` | Альбомы фотографий |
+| Photos | `/photos` | Фотографии |
+| Todos | `/todos` | Задачи пользователей |
+
+## 🤝 Вклад в проект
+
+1. Форкните репозиторий
+2. Создайте ветку для фичи (`git checkout -b feature/amazing-feature`)
+3. Закоммитьте изменения (`git commit -m 'Add amazing feature'`)
+4. Запушьте ветку (`git push origin feature/amazing-feature`)
+5. Откройте Pull Request
+
+## 📝 Планы по развитию
+
+- [ ] Добавить поиск и фильтрацию
+- [ ] Реализовать пагинацию
+- [ ] Добавить детальные страницы для каждого элемента
+- [ ] Интегрировать графики и статистику
+- [ ] Добавить PWA функциональность
+- [ ] Реализовать мультиязычность
+
+## 🐛 Отчет об ошибках
+
+Нашли баг? Пожалуйста, создайте [issue](https://github.com/your-username/mini_app/issues) с подробным описанием.
+
+## 📄 Лицензия
+
+Этот проект распространяется под MIT License. Смотрите файл `LICENSE` для подробностей.
+
+## 🙏 Благодарности
+
+- [JSONPlaceholder](https://jsonplaceholder.typicode.com) за бесплатный API
+- [Bootstrap](https://getbootstrap.com) за CSS фреймворк
+- [React](https://reactjs.org) за прекрасную библиотеку
+- [Vite](https://vitejs.dev) за быстрый инструмент сборки
+
+---
+
+<div align="center">
+
+**⭐ Не забудьте поставить звезду репозиторию, если проект вам понравился!**
+
+</div>
