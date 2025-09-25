@@ -26,79 +26,56 @@ function App() {
         bg="dark"
         variant="dark"
         expand="lg"
-        className="navbar navbar-expand-lg navbar-dark bg-dark"
+        sticky="top"
+        className="navbar-shadow"
       >
-        <Container>
-          <Navbar.Brand as={Link} to="/">
+        <Container fluid="md">
+          <Navbar.Brand as={Link} to="/" className="brand-container">
             <img
               src="/logo.svg"
               alt="JSONPlaceholder Demo"
               height="30"
               className="me-2"
             />
-            JSONPlaceholder Demo
+            <span className="brand-text d-none d-xl-inline">
+              JSONPlaceholder Demo
+            </span>
+            <span className="brand-text d-xl-none">JPDemo</span>
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link as={Link} to="/">
-                  <FaHome className="me-1" />
-                  Главная
-                </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  className="nav-link d-flex align-items-center"
-                  to="/users"
-                >
-                  <FaUsers className="me-1" />
-                  Пользователи
-                </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  className="nav-link d-flex align-items-center"
-                  to="/posts"
-                >
-                  <FaFileAlt className="me-1" />
-                  Посты
-                </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  className="nav-link d-flex align-items-center"
-                  to="/comments"
-                >
-                  <FaComments className="me-1" />
-                  Комментарии
-                </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  className="nav-link d-flex align-items-center"
-                  to="/albums"
-                >
-                  <FaImages className="me-1" />
-                  Альбомы
-                </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  className="nav-link d-flex align-items-center"
-                  to="/photos"
-                >
-                  <FaPhotoVideo className="me-1" />
-                  Фото
-                </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  className="nav-link d-flex align-items-center"
-                  to="/todos"
-                >
-                  <FaCheckSquare className="me-1" />
-                  Задачи
-                </Nav.Link>
-
-                <ThemeToggle />
-              </Nav>
-            </Navbar.Collapse>
+            <Nav className="mx-auto">
+              <Nav.Link as={Link} to="/" className="nav-link-custom">
+                <FaHome className="me-1" />
+                Главная
+              </Nav.Link>
+              <Nav.Link as={Link} to="/users" className="nav-link-custom">
+                <FaUsers className="me-1" />
+                Пользователи
+              </Nav.Link>
+              <Nav.Link as={Link} to="/posts" className="nav-link-custom">
+                <FaFileAlt className="me-1" />
+                Посты
+              </Nav.Link>
+              <Nav.Link as={Link} to="/comments" className="nav-link-custom">
+                <FaComments className="me-1" />
+                Комментарии
+              </Nav.Link>
+              <Nav.Link as={Link} to="/albums" className="nav-link-custom">
+                <FaImages className="me-1" />
+                Альбомы
+              </Nav.Link>
+              <Nav.Link as={Link} to="/photos" className="nav-link-custom">
+                <FaPhotoVideo className="me-1" />
+                Фото
+              </Nav.Link>
+              <Nav.Link as={Link} to="/todos" className="nav-link-custom">
+                <FaCheckSquare className="me-1" />
+                Задачи
+              </Nav.Link>
+            </Nav>
+            <ThemeToggle />
           </Navbar.Collapse>
         </Container>
       </Navbar>

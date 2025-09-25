@@ -56,32 +56,31 @@ const Users = () => {
           <FaUsers size={32} className="text-primary me-3" />
           <h1 className="mb-0">Список пользователей</h1>
         </div>
-
         <div className="card mb-4 border-0 shadow-sm">
-          <div className="card-body">
-            <div className="d-flex justify-content-between align-items-start">
-              <div>
-                <h5 className="card-title">Задача страницы</h5>
-                <p className="card-text">
-                  Отображение карточек пользователей с основной контактной
-                  информацией. Демонстрация работы с компонентным подходом и
-                  передачей данных через props.
-                </p>
-                <h6>Реализация:</h6>
-                <ul>
-                  <li>Создание переиспользуемого компонента UserCard</li>
-                  <li>Типизация props с TypeScript</li>
-                  <li>Обработка состояний загрузки и ошибок</li>
-                  <li>Адаптивная верстка с Bootstrap Grid</li>
-                </ul>
-              </div>
+          <div className="card-body d-flex flex-column h-100">
+            <div className="flex-grow-1">
+              <h5 className="card-title">Задача страницы</h5>
+              <p className="card-text">
+                Отображение карточек пользователей с основной контактной
+                информацией. Демонстрация работы с компонентным подходом и
+                передачей данных через props.
+              </p>
+              <h6>Реализация:</h6>
+              <ul>
+                <li>Создание переиспользуемого компонента UserCard</li>
+                <li>Типизация props с TypeScript</li>
+                <li>Обработка состояний загрузки и ошибок</li>
+                <li>Адаптивная верстка с Bootstrap Grid</li>
+              </ul>
+            </div>
+            <div className="mt-auto text-end">
               <GitHubLink filePath="/pages/Users/Users.tsx" />
             </div>
           </div>
         </div>
 
         {loading && (
-          <div className="loading-spinner">
+          <div className="text-center">
             <div className="spinner-border text-primary" role="status">
               <span className="visually-hidden">Loading...</span>
             </div>
