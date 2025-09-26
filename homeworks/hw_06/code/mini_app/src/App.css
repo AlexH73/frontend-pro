@@ -220,17 +220,6 @@ body.light-theme {
   color: #000000;
 }
 
-.dark-mode {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  min-height: 100vh;
-}
-
-.light-mode {
-  background-color: #ffffff;
-  color: #000000;
-  min-height: 100vh;
-}
 
 /* Мобильная навигация */
 @media (max-width: 991.98px) {

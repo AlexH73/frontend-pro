@@ -49,6 +49,12 @@
   margin-left: 3px;
 }
 
+.theme_text:hover {
+  color: var(--primary-color);
+}
+
+
+
 /* Адаптивность для мобильных */
 @media (max-width: 767.98px) {
   .theme_toggle_btn {
