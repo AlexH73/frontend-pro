@@ -184,3 +184,60 @@
 .thumbnail:hover {
   transform: scale(1.05);
 }
+
+/* Стики-навбар с эффектом скролла */
+.navbar-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  transition: all 0.3s ease;
+}
+
+.navbar-sticky.scrolled {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.dark-mode .navbar-sticky.scrolled {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Контейнер для переключателя темы */
+.theme-toggle-container {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+/* Темные и светлые темы для body */
+body.dark-theme {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+body.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.dark-mode {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+.light-mode {
+  background-color: #ffffff;
+  color: #000000;
+  min-height: 100vh;
+}
+
+/* Мобильная навигация */
+@media (max-width: 991.98px) {
+  .theme-toggle-container {
+    margin-left: 0;
+    margin-top: 1rem;
+    justify-content: center;
+    width: 100%;
+  }
+}

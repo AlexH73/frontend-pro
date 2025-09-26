@@ -19,15 +19,33 @@ import Photos from "./pages/Photos/Photos";
 import Todos from "./pages/Todos/Todos";
 import ThemeToggle from "./components/ThemeToggle/ThemeToggle";
 import Footer from "./components/Footer/Footer";
+import { useScrollEffect } from "./hooks/useScrollEffect";
+import { useState, useEffect } from "react";
+
 function App() {
+  const scrolled = useScrollEffect();
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    return saved ? JSON.parse(saved) : false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("theme", JSON.stringify(isDark));
+    document.body.classList.toggle("dark-theme", isDark);
+    document.body.classList.toggle("light-theme", !isDark);
+  }, [isDark]);
+
+  const navbarVariant = isDark ? "light" : "dark";
+  const navbarBg = isDark ? "light" : "dark";
+
   return (
-    <>
+    <div className={isDark ? "dark-mode" : "light-mode"}>
       <Navbar
-        bg="dark"
-        variant="dark"
+        bg={navbarBg}
+        variant={navbarVariant}
         expand="lg"
         sticky="top"
-        className="navbar-shadow"
+        className={`navbar-sticky ${scrolled ? "scrolled" : ""}`}
       >
         <Container fluid="md">
           <Navbar.Brand as={Link} to="/" className="brand-container">
@@ -35,7 +53,7 @@ function App() {
               src="/logo.svg"
               alt="JSONPlaceholder Demo"
               height="30"
-              className="me-2"
+              className="me-2 brand-logo"
             />
             <span className="brand-text d-none d-xl-inline">
               JSONPlaceholder Demo
@@ -75,7 +93,11 @@ function App() {
                 Задачи
               </Nav.Link>
             </Nav>
-            <ThemeToggle />
+
+            {/* Переключатель темы в правом углу */}
+            <div className="theme-toggle-container">
+              <ThemeToggle isDark={isDark} setIsDark={setIsDark} />
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -93,7 +115,7 @@ function App() {
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

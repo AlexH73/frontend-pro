@@ -1,36 +1,37 @@
-import { useState, useEffect } from "react";
 import { FaSun, FaMoon } from "react-icons/fa";
-import style from "./ThemeToggle.module.css"
+import s from "./ThemeToggle.module.css";
 
-const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem("theme");
-    return saved ? JSON.parse(saved) : false;
-  });
+interface ThemeToggleProps {
+  isDark: boolean;
+  setIsDark: (value: boolean) => void;
+}
 
-  useEffect(() => {
-    localStorage.setItem("theme", JSON.stringify(isDark));
-
-    if (isDark) {
-      document.body.classList.add("dark-theme");
-      document.body.classList.remove("light-theme");
-    } else {
-      document.body.classList.add("light-theme");
-      document.body.classList.remove("dark-theme");
-    }
-  }, [isDark]);
+const ThemeToggle = ({ isDark, setIsDark }: ThemeToggleProps) => {
+  const toggleTheme = () => {
+    setIsDark(!isDark);
+  };
 
   return (
     <button
-      className="btn btn-outline-light theme-toggle"
-      onClick={() => setIsDark(!isDark)}
-      title={isDark ? "Switch to light theme" : "Switch to dark theme"}
+      className={`${s.theme_toggle_btn} ${isDark ? s.dark : s.light}`}
+      onClick={toggleTheme}
+      title={
+        isDark ? "Переключить на светлую тему" : "Переключить на темную тему"
+      }
+      aria-label={
+        isDark ? "Переключить на светлую тему" : "Переключить на темную тему"
+      }
     >
       {isDark ? (
-        <FaSun size={18} className={style.icon_sun} />
+        <FaMoon className={s.theme_icon} />
       ) : (
-        <FaMoon size={18} className={style.icon_moon} />
+        <FaSun className={s.theme_icon} />
       )}
+      <span
+        className={`${s.theme_text} ${s.ms_2} ${s.d_none} ${s.d_md_inline}`}
+      >
+        {isDark ? "Тёмная" : "Светлая"}
+      </span>
     </button>
   );
 };
