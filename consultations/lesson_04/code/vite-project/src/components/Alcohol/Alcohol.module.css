@@ -1,0 +1,12 @@
+.container {
+  background-color: lightgoldenrodyellow;
+  display: flex;
+  justify-content: center;
+}
+h1{
+  width: 100%;
+}
+.btnContainer{
+  display: flex;
+  justify-content: center;
+}
