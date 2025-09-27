@@ -230,3 +230,47 @@ body.light-theme {
     width: 100%;
   }
 }
+
+/* Дополнительные стили для иконок и контейнеров */
+.icon-container {
+  transition: transform 0.3s ease;
+}
+
+.icon-container:hover {
+  transform: scale(1.05);
+}
+
+.feature-list {
+  margin-top: 1rem;
+}
+
+.feature-list li {
+  transition: color 0.3s ease;
+}
+
+.feature-list li:hover {
+  color: #007bff;
+}
+
+/* Улучшенные стили для карточек */
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Анимация появления элементов */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

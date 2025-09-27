@@ -1,20 +1,213 @@
-.btn-view-profile {
-  display: block;
-  width: 100%;
-  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-  color: white;
+.user-card {
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  font-weight: 600;
+  border-radius: 15px;
+  overflow: hidden;
   transition: all 0.3s ease;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
 }
 
-.btn-view-profile:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+.user-card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  border: none;
+  padding: 1.5rem;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.avatar-icon {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.user-name {
+  font-weight: 700;
+  margin: 0;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.username-badge {
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px);
+}
+
+.user-id {
+  font-size: 0.8rem;
+}
+
+.user-card-body {
+  padding: 1.5rem;
+}
+
+.contact-section {
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0;
+}
+
+.contact-item:last-child {
+  margin-bottom: 0;
+}
+
+.contact-icon {
+  font-size: 1rem;
+  margin-right: 0.8rem;
+  min-width: 20px;
+}
+
+.contact-text {
+  font-size: 0.9rem;
+  color: #495057;
+  word-break: break-word;
+}
+
+.address-section,
+.company-section {
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}
+
+.address-text,
+.company-text {
+  color: #495057;
+  line-height: 1.4;
+}
+
+.user-card-footer {
+  background: transparent;
+  border-top: 1px solid #e9ecef;
+  padding: 1rem 1.5rem;
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.profile-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+/* Стили для иконок в описании страницы */
+.icon-container {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0;
+}
+
+/* Анимации */
+.user-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .user-card-header {
+    padding: 1rem;
+  }
+  
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .avatar-icon {
+    font-size: 1rem;
+  }
+  
+  .user-name {
+    font-size: 1rem;
+  }
+  
+  .user-card-body {
+    padding: 1rem;
+  }
+  
+  .contact-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  
+  .contact-icon {
+    align-self: flex-start;
+  }
+}
+
+/* Темная тема */
+.dark-theme .user-card {
+  background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+}
+
+.dark-theme .contact-text,
+.dark-theme .address-text,
+.dark-theme .company-text {
+  color: #e2e8f0;
+}
+
+.dark-theme .contact-section {
+  border-bottom-color: #4a5568;
+}
+
+.dark-theme .user-card-footer {
+  border-top-color: #4a5568;
+}
+
+.dark-theme .section-title {
+  color: #a0aec0;
 }
