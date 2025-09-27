@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { v4 } from "uuid";
 import axios from "axios";
 import SEO from "../../components/SEO/SEO";
+import { FaComment } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export interface IComment {
   postId: number;
@@ -77,12 +79,28 @@ const Comments = () => {
               <div className="card h-100 shadow-sm">
                 <div className="card-body">
                   <h5 className="card-title">{name}</h5>
-                  <h6 className="card-subtitle mb-2 text-muted">{email}</h6>
-                  <p className="card-text">{body}</p>
+                  <h6 className="card-subtitle mb-2 text-muted">
+                    {email}
+                  </h6>
+                  <p className="card-text">
+                    {body.substring(0, 100)}...
+                  </p>
+
+                  {/* Добавляем ссылку на детальную страницу */}
+                  <div className="mt-3">
+                    <Link
+                      to={`/comments/${id}`}
+                      className="btn btn-outline-primary btn-sm"
+                    >
+                      <FaComment className="me-1" />
+                      Читать полностью
+                    </Link>
+                  </div>
                 </div>
-                <div className="card-footer flex-row justify-content-between">
-                  <small className="text-muted">Post ID: {postId}</small>
-                  <small className="text-muted ms-5">ID: {id}</small>
+                <div className="card-footer">
+                  <small className="text-muted">
+                    Post ID: {postId}
+                  </small>
                 </div>
               </div>
             </div>

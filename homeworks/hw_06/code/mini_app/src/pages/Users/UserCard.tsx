@@ -1,6 +1,8 @@
 import type { FC } from "react";
 import { v4 } from "uuid";
 import type { IUser } from "./Users";
+import { Link } from "react-router-dom";
+import "./UserCard.css";
 
 interface UserCardProps {
   user: IUser;
@@ -28,7 +30,13 @@ const UserCard: FC<UserCardProps> = ({ user }) => {
           )}
         </div>
         <div className="card-footer">
-          <small className="text-muted">User ID: {user.id}</small>
+          <Link
+            to={`/users/${user.id}`}
+            className="btn-view-profile"
+            aria-label={`Посмотреть профиль пользователя ${name}`}
+          >
+            Посмотреть профиль
+          </Link>
         </div>
       </div>
     </div>

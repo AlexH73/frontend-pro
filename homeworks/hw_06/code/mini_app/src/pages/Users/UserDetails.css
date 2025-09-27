@@ -1,0 +1,163 @@
+.user-profile-card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.user-profile-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #007bff, #00b894);
+}
+
+.user-avatar-large {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  color: white;
+  border: 4px solid #f8f9fa;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info {
+  text-align: left;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-item a {
+  color: #495057;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: #007bff;
+}
+
+.address-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  padding: 0.3rem 0;
+}
+
+.address-item:last-child {
+  margin-bottom: 0;
+}
+
+.company-info {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+/* Анимации */
+.user-profile-card {
+  animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Темная тема */
+.dark-theme .user-profile-card {
+  background: #2d3748;
+  color: #e2e8f0;
+}
+
+.dark-theme .contact-item a {
+  color: #e2e8f0;
+}
+
+.dark-theme .contact-item a:hover {
+  color: #63b3ed;
+}
+
+.dark-theme .contact-item {
+  border-bottom-color: #4a5568;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .user-avatar-large {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .user-avatar-large svg {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .contact-info {
+    text-align: center;
+  }
+  
+  .contact-item {
+    justify-content: center;
+  }
+}
+
+/* Хлебные крошки кастомные */
+.breadcrumb {
+  background-color: transparent;
+  padding: 0;
+}
+
+.breadcrumb-item a {
+  text-decoration: none;
+  color: #6c757d;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+  color: #007bff;
+}
+
+/* Карточки с иконками в заголовке */
+.card-header {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+/* Сетка карточек */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
