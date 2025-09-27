@@ -5,6 +5,7 @@ interface SEOProps {
   description?: string;
   keywords?: string;
   author?: string;
+  canonicalUrl?: string;
 }
 
 const SEO = ({ title, description, keywords, author }: SEOProps) => {

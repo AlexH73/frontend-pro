@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { v4 } from "uuid";
 import axios from "axios";
 import SEO from "../../components/SEO/SEO";
-// import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 export interface IPost {
   userId: number;
@@ -73,16 +74,25 @@ const Posts = () => {
 
         <div className="row g-3">
           {posts.map(({ userId, id, title, body }) => (
-            <div className="col-12 col-md-6 col-lg-4" key={v4()}>
-              <div className="card h-100 shadow-sm">
-                <div className="card-body">
-                  <h5 className="card-title">{title}</h5>
-                  <p className="card-text">{body}</p>
+            <div className="card h-100 shadow-sm">
+              <div className="card-body d-flex flex-column">
+                <h5 className="card-title">{title}</h5>
+                <p className="card-text flex-grow-1">
+                  {body.substring(0, 100)}...
+                </p>
+
+                <div className="mt-auto">
+                  <Link
+                    to={`/posts/${id}`}
+                    className="btn btn-outline-primary btn-sm"
+                  >
+                    <FaExternalLinkAlt className="me-1" />
+                    Читать полностью
+                  </Link>
                 </div>
-                <div className="card-footer">
-                  <small className="text-muted">User ID: {userId}</small>
-                  <small className="text-muted ms-5">ID: {id}</small>
-                </div>
+              </div>
+              <div className="card-footer">
+                <small className="text-muted">User ID: {userId}</small>
               </div>
             </div>
           ))}

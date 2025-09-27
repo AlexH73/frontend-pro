@@ -21,6 +21,9 @@ import ThemeToggle from "./components/ThemeToggle/ThemeToggle";
 import Footer from "./components/Footer/Footer";
 import { useScrollEffect } from "./hooks/useScrollEffect";
 import { useState, useEffect } from "react";
+import UserDetails from "./pages/Users/UserDetails";
+import CommentDetails from "./pages/Comments/CommentDetails";
+import PostDetails from "./pages/Posts/PostDetails";
 
 function App() {
   const scrolled = useScrollEffect();
@@ -106,8 +109,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/users/:id" element={<UserDetails />} />
           <Route path="/posts" element={<Posts />} />
+          <Route path="/posts/:id" element={<PostDetails />} />
           <Route path="/comments" element={<Comments />} />
+          <Route path="/comments/:id" element={<CommentDetails />} />
           <Route path="/albums" element={<Albums />} />
           <Route path="/photos" element={<Photos />} />
           <Route path="/todos" element={<Todos />} />
