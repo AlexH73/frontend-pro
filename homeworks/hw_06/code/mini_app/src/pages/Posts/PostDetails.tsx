@@ -122,20 +122,22 @@ const PostDetails = () => {
         </Breadcrumb>
 
         {/* Заголовок страницы */}
-        <div className="d-flex justify-content-between align-items-center mb-4">
-          <div>
+        <div className="d-flex justify-content-between align-items-start mb-4 row">
+          <div className="col-auto me-auto">
             <Button
               variant="outline-secondary"
               size="sm"
               onClick={() => navigate("/posts")}
               className="mb-3"
             >
-              <FaArrowLeft className="me-2" />
+              <FaArrowLeft className="me-0" />
               Назад к списку
             </Button>
-            <h1 className="mb-0">Детали поста</h1>
+            <h1 className="mb-3">Детали поста</h1>
           </div>
-          <GitHubLink filePath="/pages/Posts/PostDetails.tsx" />
+          <div className="mb-2  col-auto">
+            <GitHubLink filePath="/pages/Posts/PostDetails.tsx" />
+          </div>
         </div>
 
         <Row>
@@ -159,7 +161,7 @@ const PostDetails = () => {
                       </Badge>
                     </div>
                   </div>
-                  <Badge bg="light" text="dark" className="fs-6">
+                  <Badge className="fs-6 position-absolute top-0 end-0 bg-secondary">
                     # {post.id}
                   </Badge>
                 </div>

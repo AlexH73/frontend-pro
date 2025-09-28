@@ -77,9 +77,9 @@ const Users = () => {
 
         {/* Карточка с описанием страницы */}
         <Card className="mb-4 border-0 shadow-sm">
-          <Card.Header className="bg-light border-0">
+          <Card.Header className="bg-success border-0">
             <div className="d-flex align-items-center">
-              <FaInfoCircle className="text-primary me-2" />
+              <FaInfoCircle className="text-warning me-2" />
               <h5 className="mb-0">Информация о странице</h5>
             </div>
           </Card.Header>
@@ -115,9 +115,7 @@ const Users = () => {
                 </div>
               </Col>
               <Col md={4} className="text-end">
-                <GitHubLink
-                  filePath="/pages/Users/Users.tsx"
-                />
+                <GitHubLink filePath="/pages/Users/Users.tsx" />
               </Col>
             </Row>
           </Card.Body>

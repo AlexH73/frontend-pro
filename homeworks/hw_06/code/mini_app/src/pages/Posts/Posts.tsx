@@ -72,9 +72,9 @@ const Posts = () => {
 
         {/* Карточка с описанием страницы */}
         <Card className="mb-4 border-0 shadow-sm">
-          <Card.Header className="bg-light border-0">
+          <Card.Header className="bg-success border-0">
             <div className="d-flex align-items-center">
-              <FaInfoCircle className="text-primary me-2" />
+              <FaInfoCircle className="text-warning me-2" />
               <h5 className="mb-0">Информация о странице</h5>
             </div>
           </Card.Header>
@@ -109,9 +109,7 @@ const Posts = () => {
                 </div>
               </Col>
               <Col md={4} className="text-end">
-                <GitHubLink
-                  filePath="/pages/Posts/Posts.tsx"
-                />
+                <GitHubLink filePath="/pages/Posts/Posts.tsx" />
               </Col>
             </Row>
           </Card.Body>
@@ -181,6 +179,9 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
             <FaUser className="me-1" />
             User {post.userId}
           </Badge>
+          <Badge className="post-id position-absolute top-0 end-0 bg-secondary">
+            #{post.id}
+          </Badge>
         </div>
       </Card.Header>
 
@@ -201,14 +202,11 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
       <Card.Footer className="post-card-footer">
         <Link
           to={`/posts/${post.id}`}
-          className="btn btn-outline-primary w-100 btn-sm"
+          className="btn btn-outline-primary btn-sm"
         >
           <FaExternalLinkAlt className="me-1" />
           Читать полностью
         </Link>
-        <Badge bg="light" text="dark" className="post-id">
-          #{post.id}
-        </Badge>
       </Card.Footer>
     </Card>
   );

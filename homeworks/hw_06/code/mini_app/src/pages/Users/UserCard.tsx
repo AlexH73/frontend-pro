@@ -34,6 +34,9 @@ const UserCard: FC<UserCardProps> = ({ user }) => {
                 @{user.username}
               </Badge>
             </div>
+            <Badge className="user-id position-absolute top-0 end-0 bg-secondary">
+              #{user.id}
+            </Badge>
           </div>
         </Card.Header>
 
@@ -82,14 +85,11 @@ const UserCard: FC<UserCardProps> = ({ user }) => {
         <Card.Footer className="user-card-footer">
           <Link
             to={`/users/${user.id}`}
-            className="btn btn-primary w-100 profile-btn"
+            className="btn btn-outline-primary btn-sm"
           >
             <FaExternalLinkAlt className="me-2" />
             Подробный профиль
           </Link>
-          <Badge bg="light" text="dark" className="user-id mt-1">
-            #{user.id}
-          </Badge>
         </Card.Footer>
       </Card>
     </div>

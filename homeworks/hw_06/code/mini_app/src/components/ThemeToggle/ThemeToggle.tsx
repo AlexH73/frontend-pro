@@ -13,7 +13,7 @@ const ThemeToggle = ({ isDark, setIsDark }: ThemeToggleProps) => {
 
   return (
     <button
-      className={`${s.theme_toggle_btn} ${isDark ? s.dark : s.light}`}
+      className={`${s.theme_toggle_btn} ${isDark ? s.light : s.dark}`}
       onClick={toggleTheme}
       title={
         isDark ? "Переключить на светлую тему" : "Переключить на темную тему"
@@ -27,11 +27,11 @@ const ThemeToggle = ({ isDark, setIsDark }: ThemeToggleProps) => {
       ) : (
         <FaSun className={s.theme_icon} />
       )}
-      <span
+      {/* <span
         className={`${s.theme_text} ${s.ms_2} ${s.d_none} ${s.d_md_inline}`}
       >
         {isDark ? "Тёмная" : "Светлая"}
-      </span>
+      </span> */}
     </button>
   );
 };
