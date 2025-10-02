@@ -3,7 +3,7 @@ import { v4 } from "uuid";
 import axios from "axios";
 import GitHubLink from "../../components/GitHubLink/GitHubLink";
 import { FaUsers, FaInfoCircle, FaUserCheck } from "react-icons/fa";
-import UserCard from "./UserCard";
+import UserCard from "../../components/UserCard/UserCard";
 import SEO from "../../components/SEO/SEO";
 import {
   Container,

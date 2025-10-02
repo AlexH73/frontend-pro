@@ -1,0 +1,188 @@
+.card {
+  border: none;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.header {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.avatarIcon {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.name {
+  font-weight: 700;
+  margin: 0;
+  color: white;
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+.username {
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.userId {
+  font-size: 0.8rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.contactSection {
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0;
+  transition: background-color var(--transition-fast);
+  border-radius: var(--border-radius-sm);
+}
+
+.contactItem:hover {
+  background-color: #f8f9fa;
+}
+
+.contactIcon {
+  font-size: 1rem;
+  margin-right: 0.8rem;
+  min-width: 20px;
+  flex-shrink: 0;
+}
+
+.contactText {
+  font-size: 0.9rem;
+  color: #495057;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.section {
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}
+
+.sectionText {
+  color: #495057;
+  line-height: 1.4;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.footer {
+  background: transparent;
+  border-top: 1px solid #e9ecef;
+  padding: 1rem 1.5rem;
+}
+
+/* Темная тема */
+.dark .card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, #4a5568 100%);
+}
+
+.dark .contactItem:hover {
+  background-color: #4a5568;
+}
+
+.dark .contactText,
+.dark .sectionText {
+  color: var(--text-primary);
+}
+
+.dark .contactSection {
+  border-bottom-color: var(--border-color);
+}
+
+.dark .footer {
+  border-top-color: var(--border-color);
+}
+
+.dark .sectionTitle {
+  color: var(--text-secondary);
+}
+
+/* Анимации */
+.fadeIn {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .avatarIcon {
+    font-size: 1rem;
+  }
+  
+  .name {
+    font-size: 1rem;
+  }
+  
+  .contactItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  
+  .contactIcon {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  .userId {
+    position: static;
+    margin-top: 0.5rem;
+  }
+}

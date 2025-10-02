@@ -1,16 +1,16 @@
 import type { FC } from "react";
 import { v4 } from "uuid";
-import type { IUser } from "./Users";
+import type { IUser } from "../../pages/Users/Users";
 import { Link } from "react-router-dom";
 import { Card, Badge } from "react-bootstrap";
-import { 
-  FaUser, 
-  FaEnvelope, 
-  FaPhone, 
-  FaGlobe, 
-  FaMapMarkerAlt, 
+import {
+  FaUser,
+  FaEnvelope,
+  FaPhone,
+  FaGlobe,
+  FaMapMarkerAlt,
   FaBuilding,
-  FaExternalLinkAlt
+  FaExternalLinkAlt,
 } from "react-icons/fa";
 import "./UserCard.css";
 
