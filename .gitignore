@@ -60,4 +60,5 @@ Thumbs.db
 
 # Временные файлы
 .tmp/
-temp/*.mp4
+temp/
+*.mp4
