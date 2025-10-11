@@ -1,0 +1,9 @@
+.cityClass {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.imageClass {
+    width: 100%;
+}
