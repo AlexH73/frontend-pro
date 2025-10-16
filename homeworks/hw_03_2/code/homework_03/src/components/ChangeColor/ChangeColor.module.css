@@ -1,0 +1,47 @@
+.taskColor {
+  padding: 20px;
+  text-align: center;
+}
+
+.btnGroup {
+  margin: 20px 0;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.colorBtn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.colorBtn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.colorBtn.red {
+  background-color: #ff6b6b;
+}
+
+.colorBtn.green {
+  background-color: #51cf66;
+}
+
+.colorBtn.blue {
+  background-color: #339af0;
+}
+
+.colorContainer {
+  padding: 40px;
+  border-radius: 12px;
+  margin: 20px auto;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}

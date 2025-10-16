@@ -1,0 +1,14 @@
+.feedbackBlock {
+  padding: 20px;
+  text-align: center;
+}
+
+.feedbackBlock h2 {
+  color: #343a40;
+  margin-bottom: 8px;
+}
+
+.feedbackBlock p {
+  color: #6c757d;
+  margin-bottom: 24px;
+}

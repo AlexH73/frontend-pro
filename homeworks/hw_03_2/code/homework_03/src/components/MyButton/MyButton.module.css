@@ -1,0 +1,44 @@
+.myButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 4px;
+}
+
+.primary {
+  background-color: #339af0;
+  color: white;
+}
+
+.primary:hover {
+  background-color: #228be6;
+  transform: translateY(-1px);
+}
+
+.secondary {
+  background-color: #495057;
+  color: white;
+}
+
+.secondary:hover {
+  background-color: #343a40;
+  transform: translateY(-1px);
+}
+
+.danger {
+  background-color: #fa5252;
+  color: white;
+}
+
+.danger:hover {
+  background-color: #e03131;
+  transform: translateY(-1px);
+}
+
+.myButton:active {
+  transform: translateY(0);
+}
