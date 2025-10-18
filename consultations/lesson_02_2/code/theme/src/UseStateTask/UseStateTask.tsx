@@ -1,4 +1,3 @@
-
 import { type JSX } from 'react'
 import style from "./UseStateTask.module.css"
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';

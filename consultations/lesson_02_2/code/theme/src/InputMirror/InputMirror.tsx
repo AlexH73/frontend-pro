@@ -4,7 +4,9 @@ import style from './InputMirror.module.css';
 export default function InputMirror(): JSX.Element {
   const [text, setText] = useState<string>('');
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setText(event.target.value);
   };
   return (

@@ -3,7 +3,7 @@ import style from './ThemeSwitcher.module.css';
 
 export const ThemeSwitcher = (): JSX.Element => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const toggleTheme = () => {
+  const toggleTheme = (): void => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
 
