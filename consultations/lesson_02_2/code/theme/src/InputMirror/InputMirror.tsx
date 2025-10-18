@@ -20,7 +20,10 @@ export default function InputMirror(): JSX.Element {
         className={style.inputField}
       />
       <p className={style.mirrorText}>
-        Вы ввели: <span className={style.highlight}>{text}</span>
+        Вы ввели:{' '}
+        <span className={style.highlight}>
+          {text ? text : 'ничего не введено'}
+        </span>
       </p>
       <p className={style.charCount}>Количество символов: {text.length}</p>
     </div>
