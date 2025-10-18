@@ -1,0 +1,56 @@
+/* CSS переменные для светлой темы */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --accent-color: #007bff;
+  --button-bg: #007bff;
+  --button-text: #ffffff;
+  --button-hover: #0056b3;
+  --button-border: #007bff;
+  --input-bg: #ffffff;
+  --input-border: #ced4da;
+  --input-focus: #007bff;
+  --card-bg: #ffffff;
+  --border-color: #dee2e6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --highlight-bg: #e7f3ff;
+}
+
+/* CSS переменные для темной темы */
+[data-theme="dark"] {
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --text-primary: #e9ecef;
+  --text-secondary: #adb5bd;
+  --accent-color: #4dabf7;
+  --button-bg: #1971c2;
+  --button-text: #ffffff;
+  --button-hover: #1864ab;
+  --button-border: #1971c2;
+  --input-bg: #2d2d2d;
+  --input-border: #495057;
+  --input-focus: #4dabf7;
+  --card-bg: #1e1e1e;
+  --border-color: #495057;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --highlight-bg: #1a3c5c;
+}
+
+/* Базовые стили */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}

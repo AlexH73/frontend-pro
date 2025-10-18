@@ -1,0 +1,46 @@
+.inputMirror {
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 20px 0;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+.inputField {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 2px solid var(--input-border);
+  border-radius: 6px;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: var(--input-focus);
+}
+
+.mirrorText {
+  font-size: 18px;
+  margin: 16px 0;
+  color: var(--text-primary);
+}
+
+.highlight {
+  font-weight: bold;
+  color: var(--accent-color);
+  background-color: var(--highlight-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.charCount {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
