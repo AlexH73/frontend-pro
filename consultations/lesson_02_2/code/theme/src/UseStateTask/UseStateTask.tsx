@@ -2,7 +2,7 @@
 import { type JSX } from 'react'
 import style from "./UseStateTask.module.css"
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
-import InputMirror from '../assets/InputMirror/InputMirror';
+import InputMirror from '../InputMirror/InputMirror';
 
 export default function UseStateTask(): JSX.Element {
   return (
