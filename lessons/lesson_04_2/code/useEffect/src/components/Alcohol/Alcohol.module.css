@@ -1,0 +1,14 @@
+.container {
+  background-color: lightgoldenrodyellow;
+  display: flex;
+  justify-content: center;
+}
+h2 {
+  width: 100%;
+}
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.container img {width: 50%;}
