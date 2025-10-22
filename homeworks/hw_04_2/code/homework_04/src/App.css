@@ -40,3 +40,22 @@
 .read-the-docs {
   color: #888;
 }
+
+.container {
+  max-width: 1200px;
+}
+
+.sectionHeader {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sectionHeader h1 {
+  font-weight: 600;
+}
+
+.sectionHeader p {
+  opacity: 0.9;
+}

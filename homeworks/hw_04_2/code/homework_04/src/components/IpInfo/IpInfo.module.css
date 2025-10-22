@@ -1,0 +1,44 @@
+.card {
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.infoItem {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.label {
+  font-weight: 600;
+  color: #495057;
+}
+
+.value {
+  color: #6c757d;
+}
+
+.mapLink {
+  transition: color 0.2s ease;
+}
+
+.mapLink:hover {
+  color: #0d6efd !important;
+}
+
+@media (max-width: 768px) {
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+}
