@@ -1,0 +1,170 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
+/* NAV MENU */
+
+header {
+  display: flex;
+  background-color: #FFE44D;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  /* По вертикали | По горизонтали */
+  font-size: 20px;
+}
+
+ul {
+  display: flex;
+  gap: 40px;
+}
+
+header a {
+  text-decoration: none;
+  color: black;
+}
+
+ul li {
+  list-style: none;
+}
+
+.burger_icon {
+  border: 1px solid black;
+  font-size: 20px;
+  padding: 3px 10px;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 800px){
+
+  header {
+    position: relative;
+  }
+
+  .burger_icon {
+    display: block;
+  }
+
+  ul {
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #FFE44D;
+    gap: 20px;
+    width: 120px;
+    transform: translateX(100%);
+    transition: 0.5s;
+  }
+
+  ul.nav_active {
+    transform: translateX(0);
+  }
+
+  ul li {
+    border-bottom: 1px solid black;
+    padding: 15px;
+  }
+}
+
+
+/* FORM */
+
+.registration_form {
+  width: 420px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.registration_form > h3 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.registration_form > input {
+  border: 1px solid #CFD8DC;
+  padding: 14px 16px;
+  border-radius: 12px;
+  margin: 4px 0;
+}
+
+.registration_form > input:focus{
+  outline: none;
+  border-color: #FFE44D;
+} 
+
+.registration_form > p {
+  color: #7B8E98;
+  font-size: 12px;
+  margin: 20px 0;
+}
+
+.registration_form > button {
+  background-color: #FFE44D;
+  border: 1px solid transparent;
+  border-radius: 55px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 4px 0 8px 0;
+  cursor: pointer;
+}
+
+.registration_form > div {
+  background-color: white;
+  border: 1px solid #CFD8DC;
+  border-radius: 55px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* MODAL WINDOW */
+
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  visibility: hidden;
+}
+
+.popup.modal_active {
+  visibility: visible;
+}
+
+.popup_body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.popup_content {
+  background-color: white;
+  border-radius: 20px;
+  position: relative;
+}
+
+.cross_icon {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  cursor: pointer;
+}

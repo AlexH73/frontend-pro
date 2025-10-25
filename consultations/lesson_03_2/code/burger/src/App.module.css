@@ -1,0 +1,5 @@
+.app {
+   font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  padding-top: 80px; /* компенсирует высоту хедера */
+}

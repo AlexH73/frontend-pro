@@ -1,0 +1,67 @@
+.header {
+  position: fixed;      /* фиксируем вверху */
+  top: 0;
+  left: 0;
+  right: 0;             /* растянет по всей ширине окна */
+  width: 100%;
+  box-sizing: border-box; /* чтобы padding не ломал ширину */
+  display: flex;
+  background-color: #ffe44d;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  font-size: 20px;
+  z-index: 1000;        /* чтобы не перекрывался другими элементами */
+}
+
+
+.logo {
+  text-decoration: none;
+  color: black;
+}
+
+.navMenu {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  transition: transform 0.5s;
+}
+
+.navMenu li a {
+  text-decoration: none;
+  color: black;
+}
+
+.burgerIcon {
+  border: 1px solid black;
+  font-size: 22px;
+  padding: 3px 10px;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .burgerIcon {
+    display: block;
+  }
+
+  .navMenu {
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffe44d;
+    gap: 20px;
+    width: 140px;
+    transform: translateX(100%);
+  }
+
+  .active {
+    transform: translateX(0);
+  }
+
+  .navMenu li {
+    border-bottom: 1px solid black;
+    padding: 15px;
+  }
+}
