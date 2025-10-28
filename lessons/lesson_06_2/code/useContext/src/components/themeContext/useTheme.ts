@@ -1,6 +1,6 @@
 import ThemeContext from './ThemeContext';
 import type { ThemeContextType } from './ThemeContext';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 // 1️⃣ Импорт зависимостей
 // useContext — это хук React, который позволяет получать доступ к данным, хранящимся в контексте.
