@@ -1,0 +1,36 @@
+.productCard {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.productCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.imageContainer {
+  height: 200px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+}
+
+.productImage {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease-in-out;
+}
+
+.productCard:hover .productImage {
+  transform: scale(1.05);
+}
+
+.image {
+  max-height: '500px';
+  object-fit: 'contain';
+}

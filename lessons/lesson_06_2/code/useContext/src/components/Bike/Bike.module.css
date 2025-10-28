@@ -1,0 +1,19 @@
+.image {
+  width: 100%;
+}
+
+.fig {
+  position: relative;
+}
+
+.desc {
+  display: block;
+  position: absolute;
+  border: 0;
+  background: #ffe4c482;
+  width: -moz-available;
+  bottom: 5px;
+  height: auto;
+  text-align: initial;
+  padding: 20px;
+}
