@@ -1,123 +1,97 @@
-import { type JSX } from 'react';
+import { type JSX, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useTheme } from '../themeContext/useTheme'; 
 import styles from './NavBar.module.css';
 
 export default function NavBar(): JSX.Element {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme(); // Используем хук темы
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
-    <nav className={`navbar navbar-expand-lg navbar-dark ${styles.navigation}`}>
+    <nav
+      className={`navbar navbar-expand-lg navbar-dark ${styles.navigation} ${
+        theme === 'dark' ? styles.dark : ''
+      }`}
+    >
       <div className='container'>
         {/* Brand/Logo */}
-        <NavLink to='home' className='navbar-brand fw-bold'>
-          <span className={styles.brand}>MyReact</span>
+        <NavLink to='home' className='navbar-brand fw-bold' onClick={closeMenu}>
+          <span className={styles.brand}>MyStore</span>
         </NavLink>
 
         {/* Burger button */}
         <button
-          className='navbar-toggler'
+          className={`navbar-toggler ${isMenuOpen ? '' : 'collapsed'}`}
           type='button'
-          data-bs-toggle='collapse'
-          data-bs-target='#navbarNav'
+          onClick={toggleMenu}
           aria-controls='navbarNav'
-          aria-expanded='false'
+          aria-expanded={isMenuOpen}
           aria-label='Toggle navigation'
         >
           <span className='navbar-toggler-icon'></span>
         </button>
 
         {/* Navigation items */}
-        <div className='collapse navbar-collapse' id='navbarNav'>
-          <ul className='navbar-nav ms-auto'>
-            <li className='nav-item'>
-              <NavLink
-                to='home'
-                className={({ isActive }) =>
-                  `nav-link ${styles.link} ${isActive ? styles.active : ''}`
-                }
-              >
-                Home
-              </NavLink>
-            </li>
-            <li className='nav-item'>
-              <NavLink
-                to='alcohol'
-                className={({ isActive }) =>
-                  `nav-link ${styles.link} ${isActive ? styles.active : ''}`
-                }
-              >
-                Alcohol
-              </NavLink>
-            </li>
-            <li className='nav-item'>
-              <NavLink
-                to='carshop'
-                className={({ isActive }) =>
-                  `nav-link ${styles.link} ${isActive ? styles.active : ''}`
-                }
-              >
-                Car Shop
-              </NavLink>
-            </li>
-            <li className='nav-item'>
-              <NavLink
-                to='counter'
-                className={({ isActive }) =>
-                  `nav-link ${styles.link} ${isActive ? styles.active : ''}`
-                }
-              >
-                Counter
-              </NavLink>
-            </li>
-            <li className='nav-item'>
-              <NavLink
-                to='playground'
-                className={({ isActive }) =>
-                  `nav-link ${styles.link} ${isActive ? styles.active : ''}`
-                }
-              >
-                Playground
-              </NavLink>
-            </li>
-            <li className='nav-item'>
-              <NavLink
-                to='userspage'
-                className={({ isActive }) =>
-                  `nav-link ${styles.link} ${isActive ? styles.active : ''}`
-                }
-              >
-                Users Page
-              </NavLink>
-            </li>
-            <li className='nav-item'>
-              <NavLink
-                to='randomdog'
-                className={({ isActive }) =>
-                  `nav-link ${styles.link} ${isActive ? styles.active : ''}`
-                }
-              >
-                Random Dog
-              </NavLink>
-            </li>
-            <li className='nav-item'>
-              <NavLink
-                to='sandwich'
-                className={({ isActive }) =>
-                  `nav-link ${styles.link} ${isActive ? styles.active : ''}`
-                }
-              >
-                Sandwich
-              </NavLink>
-            </li>
-            <li className='nav-item'>
-              <NavLink
-                to='products'
-                className={({ isActive }) =>
-                  `nav-link ${styles.link} ${isActive ? styles.active : ''}`
-                }
-              >
-                Products
-              </NavLink>
-            </li>
+        <div
+          className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`}
+          id='navbarNav'
+        >
+          <ul className='navbar-nav me-auto'>
+            {[
+              { to: 'home', label: 'Home' },
+              { to: 'alcohol', label: 'Alcohol' },
+              { to: 'carshop', label: 'Car Shop' },
+              { to: 'counter', label: 'Counter' },
+              { to: 'playground', label: 'Playground' },
+              { to: 'userspage', label: 'Users Page' },
+              { to: 'randomdog', label: 'Random Dog' },
+              { to: 'sandwich', label: 'Sandwich' },
+              { to: 'products', label: 'Products' },
+            ].map((item) => (
+              <li key={item.to} className='nav-item'>
+                <NavLink
+                  to={item.to}
+                  className={({ isActive }) =>
+                    `nav-link ${styles.link} ${isActive ? styles.active : ''}`
+                  }
+                  onClick={closeMenu}
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
           </ul>
+
+          {/* Theme Toggle Switch */}
+          <div className='d-flex align-items-center'>
+            <div className={`form-check form-switch ${styles.themeSwitch}`}>
+              <input
+                className='form-check-input'
+                type='checkbox'
+                id='themeSwitch'
+                checked={theme === 'dark'}
+                onChange={toggleTheme}
+              />
+              <label className='form-check-label' htmlFor='themeSwitch'>
+                <i
+                  className={`bi ${
+                    theme === 'dark' ? 'bi-moon-fill' : 'bi-sun-fill'
+                  } ${styles.themeIcon}`}
+                ></i>
+                <span className={styles.themeText}>
+                  {theme === 'dark' ? 'Dark' : 'Light'}
+                </span>
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </nav>

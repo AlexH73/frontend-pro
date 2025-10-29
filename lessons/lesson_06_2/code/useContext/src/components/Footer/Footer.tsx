@@ -1,12 +1,16 @@
 import { type JSX } from 'react';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../themeContext/useTheme';
 import styles from './Footer.module.css';
 
 export default function Footer(): JSX.Element {
   const currentYear = new Date().getFullYear();
+  const { theme } = useTheme();
 
   return (
-    <footer className={styles.footer}>
+    <footer
+      className={`${styles.footer} ${theme === 'dark' ? styles.dark : ''}`}
+    >
       <div className='container'>
         <div className='row'>
           {/* Company Info */}

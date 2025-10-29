@@ -1,0 +1,41 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main {
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+  .main {
+    padding: 0.5rem 0;
+  }
+  
+  .container {
+    padding: 0 0.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .main {
+    padding: 0.25rem 0;
+  }
+  
+  .container {
+    padding: 0 0.5rem;
+  }
+}
