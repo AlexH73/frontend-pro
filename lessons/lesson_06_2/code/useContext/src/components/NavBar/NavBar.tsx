@@ -24,7 +24,7 @@ export default function NavBar(): JSX.Element {
       <div className='container'>
         {/* Brand/Logo */}
         <NavLink to='home' className='navbar-brand fw-bold' onClick={closeMenu}>
-          <span className={styles.brand}>MyStore</span>
+          <span className={styles.brand}>MyReact</span>
         </NavLink>
 
         {/* Burger button */}
