@@ -1,5 +1,6 @@
 import { useState, type JSX } from 'react';
 import style from './Counter.module.css';
+import image from "../../../../../../../assets/images/Finance_Wallpapers.jpg"
 
 export const Counter = (): JSX.Element => {
   const [counter, setCounter] = useState<number>(0);
@@ -32,7 +33,7 @@ export const Counter = (): JSX.Element => {
     <div>
       <h2>Добавление денег</h2>
       <img
-        src='https://www.zastavki.com/pictures/originals/2020Finance_Wallpapers___Money_Lot_of_euro_bills_close_up_145693_.jpg'
+        src={image}
         alt='Деньги'
       />
       <div className={`${style.container} ${style.counterClass}`}>
