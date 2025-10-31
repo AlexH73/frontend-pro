@@ -117,6 +117,7 @@ export default function FeedbackForm(): JSX.Element {
           <div className='mb-3'>
             <label className='form-label'>Оценка *</label>
             <div className={styles.ratingContainer}>
+              <span className={styles.ratingLabels}>Плохо</span>
               {[1, 2, 3, 4, 5].map((star) => (
                 <button
                   key={star}
@@ -132,10 +133,7 @@ export default function FeedbackForm(): JSX.Element {
                   ★
                 </button>
               ))}
-            </div>
-            <div className={styles.ratingLabels}>
-              <span>Плохо</span>
-              <span>Отлично</span>
+              <span className={styles.ratingLabels}>Отлично</span>
             </div>
             <ErrorMessage
               name='rating'
