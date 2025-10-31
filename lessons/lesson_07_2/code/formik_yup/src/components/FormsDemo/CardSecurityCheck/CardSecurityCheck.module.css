@@ -1,0 +1,315 @@
+.securityCard {
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  background: var(--card-bg);
+  transition: all 0.3s ease;
+}
+
+.securityCard:hover {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Стили для картинки/иконки */
+.securityImage {
+  margin-bottom: 1rem;
+}
+.securityCard {
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  background: var(--card-bg);
+  transition: all 0.3s ease;
+}
+
+.securityCard:hover {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.securityCard.dark {
+  background: var(--card-bg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.securityCard.dark:hover {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+.securityImage {
+  margin-bottom: 1rem;
+}
+
+.shieldIcon {
+  font-size: 4rem;
+  display: inline-block;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.title {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.label {
+  color: var(--text-primary);
+}
+
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+  margin: 1.5rem 0;
+}
+
+.cardNumberGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.cardNumberField {
+  position: relative;
+}
+
+.cardNumberField input {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.input {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--primary-color, #0d6efd);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.validField {
+  border-color: #198754 !important;
+  background-color: rgba(25, 135, 84, 0.05) !important;
+}
+
+.securityCard.dark .validField {
+  border-color: #198754 !important;
+  background-color: rgba(25, 135, 84, 0.15) !important;
+}
+
+.cvcInput {
+  width: 120px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.securityCard.dark .error {
+  color: #f8d7da;
+}
+
+.button {
+  transition: all 0.3s ease;
+}
+
+.warning {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.warningText {
+  color: var(--text-secondary);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .securityCard {
+    margin: 0 -1rem;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+  
+  .securityCard:hover {
+    box-shadow: none;
+  }
+  
+  .securityCard.dark {
+    box-shadow: none;
+  }
+  
+  .cardNumberGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  
+  .shieldIcon {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .cardNumberGrid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .shieldIcon {
+    font-size: 2.5rem;
+  }
+  
+  .cvcInput {
+    width: 100px;
+  }
+}
+.shieldIcon {
+  font-size: 4rem;
+  display: inline-block;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.title {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+  margin: 1.5rem 0;
+}
+
+/* Сетка для номеров карты - теперь 3 поля */
+.cardNumberGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.cardNumberField {
+  position: relative;
+}
+
+.cardNumberField input {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Стиль для валидных полей */
+.validField {
+  border-color: #198754 !important;
+  background-color: rgba(25, 135, 84, 0.05) !important;
+}
+
+/* Стиль для CVC поля */
+.cvcInput {
+  width: 120px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.validField {
+  border-color: #198754 !important;
+  background-color: rgba(25, 135, 84, 0.05) !important;
+}
+
+/* Анимация появления статуса */
+.alert {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .securityCard {
+    margin: 0 -1rem;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+  
+  .securityCard:hover {
+    box-shadow: none;
+  }
+  
+  .cardNumberGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  
+  .shieldIcon {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .cardNumberGrid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .shieldIcon {
+    font-size: 2.5rem;
+  }
+}
