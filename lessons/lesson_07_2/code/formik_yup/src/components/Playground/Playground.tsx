@@ -48,8 +48,6 @@ export default function Playground(): JSX.Element {
       <button type='button' onClick={handleAddBird}>
         New bird
       </button>
-
-      <ContactForm />
     </div>
   );
 }
