@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
 import Car from '../Car/Car';
 import Bike from '../Bike/Bike';
+import image from "../../../../../../../assets/images/HarleyDavidson.png"
 
 export default function CarShop(): JSX.Element {
   return (
@@ -17,9 +18,7 @@ export default function CarShop(): JSX.Element {
         gears={5}
         brand={'Harley Davidson'}
         price={14_000}
-        image={
-          '../../../../../../../assets/images/HarleyDavidson.png'
-        }
+        image={image}
       />
     </div>
   );
