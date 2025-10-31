@@ -18,7 +18,7 @@ export default function CarShop(): JSX.Element {
         brand={'Harley Davidson'}
         price={14_000}
         image={
-          'https://sportishka.com/uploads/posts/2022-04/1650967338_37-sportishka-com-p-chopperi-kharlei-devidson-modelnii-ryad-kr-39.jpg'
+          '../../../../../../../assets/images/HarleyDavidson.png'
         }
       />
     </div>
