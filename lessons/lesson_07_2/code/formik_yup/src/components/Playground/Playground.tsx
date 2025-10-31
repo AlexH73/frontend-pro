@@ -1,5 +1,4 @@
 import { useEffect, useState, type JSX } from 'react';
-import ContactForm from '../FormsDemo/ContactForm/ContactForm';
 
 export default function Playground(): JSX.Element {
   const [numberOfDogs, setNumberOfDogs] = useState<number>(0);
