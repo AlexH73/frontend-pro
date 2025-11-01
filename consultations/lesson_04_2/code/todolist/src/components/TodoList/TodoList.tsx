@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFormik } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import styles from './TodoList.module.css';
 import { type Todo, type FormValues } from './types/types';
@@ -7,6 +7,7 @@ import { type Todo, type FormValues } from './types/types';
 const TodoList: React.FC = () => {
   const [todos, setTodos] = React.useState<Todo[]>([]);
 
+  // Шаг 4.1: Создание схемы валидации
   const validationSchema = yup.object({
     text: yup
       .string()
@@ -16,22 +17,20 @@ const TodoList: React.FC = () => {
       .required('Введите задачу'),
   });
 
-  const formik = useFormik<FormValues>({
-    initialValues: {
-      text: '',
-    },
-    validationSchema,
-    onSubmit: (values, { resetForm }) => {
-      const newTodo: Todo = {
-        id: Date.now(),
-        text: values.text.trim(),
-        completed: false,
-      };
+  // Шаг 5.2: Логика обработки отправки формы
+  const handleSubmit = (
+    values: FormValues,
+    { resetForm }: { resetForm: () => void }
+  ) => {
+    const newTodo: Todo = {
+      id: Date.now(),
+      text: values.text.trim(),
+      completed: false,
+    };
 
-      setTodos((prevTodos) => [...prevTodos, newTodo]);
-      resetForm();
-    },
-  });
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
+    resetForm();
+  };
 
   const toggleTodo = (id: number) => {
     setTodos((prevTodos) =>
@@ -45,10 +44,13 @@ const TodoList: React.FC = () => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
+  const initialValues: FormValues = {
+    text: '',
+  };
+
   return (
     <div className='container-fluid mt-4'>
       <div className='row justify-content-center'>
-        {/* Блок на всю ширину с ограничением максимальной ширины */}
         <div className='col-12 col-xl-10 col-xxl-8'>
           {/* Заголовок */}
           <div className='text-center mb-4'>
@@ -58,43 +60,49 @@ const TodoList: React.FC = () => {
             <p className='text-muted'>Организуйте свои задачи эффективно</p>
           </div>
 
-          {/* Форма */}
-          <div className='card shadow-sm mb-4'>
-            <div className='card-body'>
-              <form onSubmit={formik.handleSubmit}>
-                <div className='mb-3'>
-                  <div className='input-group input-group-lg'>
-                    <input
-                      type='text'
-                      name='text'
-                      className={`form-control ${
-                        formik.touched.text && formik.errors.text
-                          ? 'is-invalid'
-                          : ''
-                      }`}
-                      placeholder='Введите новую задачу...'
-                      value={formik.values.text}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                    />
-                    <button
-                      type='submit'
-                      className='btn btn-primary px-4'
-                      disabled={!formik.isValid || !formik.dirty}
-                    >
-                      Добавить
-                    </button>
-                  </div>
+          {/* Formik компонент */}
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            {({ isSubmitting, isValid, dirty, touched, errors }) => (
+              <Form>
+                <div className='card shadow-sm mb-4'>
+                  <div className='card-body'>
+                    <div className='mb-3'>
+                      <div className='input-group input-group-lg'>
+                        <Field
+                          type='text'
+                          name='text'
+                          className={`form-control ${
+                            touched.text && errors.text ? 'is-invalid' : ''
+                          }`}
+                          placeholder='Введите новую задачу...'
+                        />
+                        <button
+                          type='submit'
+                          className='btn btn-primary px-4'
+                          disabled={!isValid || !dirty || isSubmitting}
+                        >
+                          Добавить
+                        </button>
+                      </div>
 
-                  {formik.touched.text && formik.errors.text && (
-                    <div className='invalid-feedback d-block mt-2'>
-                      {formik.errors.text}
+                      {/* Компонент ErrorMessage для отображения ошибок */}
+                      <ErrorMessage name='text'>
+                        {(msg) => (
+                          <div className='invalid-feedback d-block mt-2'>
+                            {msg}
+                          </div>
+                        )}
+                      </ErrorMessage>
                     </div>
-                  )}
+                  </div>
                 </div>
-              </form>
-            </div>
-          </div>
+              </Form>
+            )}
+          </Formik>
 
           {/* Статистика */}
           {todos.length > 0 && (
