@@ -35,13 +35,14 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  font-size: 1.2rem;
+  font-size: 0.7rem;
   font-weight: bold;
 }
 
 .deleteBtn:hover {
   opacity: 1;
   transform: scale(1.1);
+  font-size: 0.5rem;
 }
 
 /* Адаптивность для мобильных устройств */

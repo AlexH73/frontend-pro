@@ -183,7 +183,7 @@ const TodoList: React.FC = () => {
                         title='Удалить задачу'
                         aria-label={`Удалить задачу: ${todo.text}`}
                       >
-                        ×
+                        ❌
                       </button>
                     </li>
                   ))}
