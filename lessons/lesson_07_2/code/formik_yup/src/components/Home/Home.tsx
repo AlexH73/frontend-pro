@@ -78,7 +78,7 @@ const projects = [
     progress: 100,
     route: '/todo',
     icon: '✅',
-    lastUpdate: '2024-01-25',
+    lastUpdate: '2025-11-02',
   },
 ];
 
