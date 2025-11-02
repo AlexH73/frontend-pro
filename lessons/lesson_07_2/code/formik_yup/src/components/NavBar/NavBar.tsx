@@ -29,6 +29,7 @@ export default function NavBar(): JSX.Element {
     { to: 'randomdog', label: '🐕‍🦺 Random Dog' },
     { to: 'sandwich', label: '🥪 Sandwich' },
     { to: 'forms-demo', label: '📋 Forms Demo' },
+    { to: 'todo', label: '✅ Todo List' },
   ];
 
   return (

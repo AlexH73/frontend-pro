@@ -1,0 +1,111 @@
+.todoText {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.todoTextCompleted {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.todoItem {
+  transition: all 0.2s ease;
+  padding: 1rem 1.25rem;
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.todoItem:hover {
+  background-color: var(--bg-secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.emptyState {
+  padding: 3rem;
+  opacity: 0.6;
+  color: var(--text-secondary);
+}
+
+.deleteBtn {
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 1px solid var(--border-color);
+}
+
+.deleteBtn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  font-size: 0.5rem;
+  background-color: var(--bg-secondary);
+}
+.input {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--primary-color, #0d6efd);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+.form-control {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.form-control:focus {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--primary-color, #0d6efd);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.alert-info {
+  background-color: rgba(13, 110, 253, 0.1);
+  border-color: rgba(13, 110, 253, 0.2);
+  color: var(--text-primary);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .todoItem {
+    padding: 0.75rem 1rem;
+  }
+
+  .todoText {
+    font-size: 1rem;
+  }
+
+  .deleteBtn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.6rem;
+  }
+}
