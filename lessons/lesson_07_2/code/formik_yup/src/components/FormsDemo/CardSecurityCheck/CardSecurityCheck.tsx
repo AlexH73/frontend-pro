@@ -2,7 +2,7 @@ import { type JSX } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from '../../themeContext/useTheme';
+import { useTheme } from '../../../hooks/themeContext/useTheme';
 import styles from './CardSecurityCheck.module.css';
 import image from '../../../../../../../../assets/images/CardSecurityCheck.jpg';
 

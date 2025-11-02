@@ -1,6 +1,6 @@
 import { type JSX } from 'react';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../themeContext/useTheme';
+import { useTheme } from '../../hooks/themeContext/useTheme';
 import styles from './Footer.module.css';
 
 export default function Footer(): JSX.Element {

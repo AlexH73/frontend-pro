@@ -1,6 +1,6 @@
 import { type JSX, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useTheme } from '../themeContext/useTheme';
+import { useTheme } from '../../hooks/themeContext/useTheme';
 import styles from './NavBar.module.css';
 
 export default function NavBar(): JSX.Element {
@@ -30,6 +30,7 @@ export default function NavBar(): JSX.Element {
     { to: 'sandwich', label: '🥪 Sandwich' },
     { to: 'forms-demo', label: '📋 Forms Demo' },
     { to: 'todo', label: '✅ Todo List' },
+    { to: 'products-manager', label: '🛠️ Products Manager' },
   ];
 
   return (

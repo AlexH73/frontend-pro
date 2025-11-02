@@ -1,24 +1,29 @@
 import { type JSX } from 'react';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../themeContext/useTheme';
+import { useTheme } from '../../hooks/themeContext/useTheme';
 import styles from './Home.module.css';
 
 // Автоматически обновляемые данные о проектах
 const projects = [
   {
-    id: 4,
-    name: 'Интернет-магазин',
-    description: 'Полнофункциональный магазин с товарами',
-    technologies: [
-      'React - ReactRouterDom',
-      'TypeScript',
-      'Bootstrap',
-      'CSS Modules',
-    ],
+    id: 8,
+    name: 'Менеджер продуктов',
+    description: 'Полный CRUD интерфейс для управления продуктами',
+    technologies: ['React', 'TypeScript', 'useApi', 'Bootstrap'],
     progress: 100,
-    route: '/products',
-    icon: '🛍️',
-    lastUpdate: '2025-10-28',
+    route: '/products-manager',
+    icon: '🛠️',
+    lastUpdate: '2025-11-03',
+  },
+  {
+    id: 7,
+    name: 'Умный список задач',
+    description: 'Интерактивный Todo List с валидацией и статистикой',
+    technologies: ['React', 'TypeScript', 'Formik', 'Yup', 'Bootstrap'],
+    progress: 100,
+    route: '/todo',
+    icon: '✅',
+    lastUpdate: '2025-11-02',
   },
   {
     id: 6,
@@ -41,14 +46,19 @@ const projects = [
     lastUpdate: '2025-10-28',
   },
   {
-    id: 1,
-    name: 'Автомобильный каталог',
-    description: 'Каталог автомобилей с фильтрацией и поиском',
-    technologies: ['React - Props', 'TypeScript', 'Bootstrap'],
-    progress: 85,
-    route: '/carshop',
-    icon: '🚗',
-    lastUpdate: '2025-10-14',
+    id: 4,
+    name: 'Интернет-магазин',
+    description: 'Полнофункциональный магазин с товарами',
+    technologies: [
+      'React - ReactRouterDom',
+      'TypeScript',
+      'Bootstrap',
+      'CSS Modules',
+    ],
+    progress: 100,
+    route: '/products',
+    icon: '🛍️',
+    lastUpdate: '2025-10-28',
   },
   {
     id: 3,
@@ -71,14 +81,14 @@ const projects = [
     lastUpdate: '2025-10-21',
   },
   {
-    id: 7,
-    name: 'Умный список задач',
-    description: 'Интерактивный Todo List с валидацией и статистикой',
-    technologies: ['React', 'TypeScript', 'Formik', 'Yup', 'Bootstrap'],
-    progress: 100,
-    route: '/todo',
-    icon: '✅',
-    lastUpdate: '2025-11-02',
+    id: 1,
+    name: 'Автомобильный каталог',
+    description: 'Каталог автомобилей с фильтрацией и поиском',
+    technologies: ['React - Props', 'TypeScript', 'Bootstrap'],
+    progress: 85,
+    route: '/carshop',
+    icon: '🚗',
+    lastUpdate: '2025-10-14',
   },
 ];
 

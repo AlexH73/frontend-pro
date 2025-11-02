@@ -1,32 +1,15 @@
-import { useEffect, useState, type JSX } from 'react';
+import { useEffect, type JSX } from 'react';
 import type Product from './types/Product';
 import { Link } from 'react-router-dom';
 import style from './ProductsPage.module.css';
+import { useApi } from '../../hooks/useApi/useApi';
 
 export default function ProductsPage(): JSX.Element {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>('');
+    const { data: products, loading, error, get } = useApi<Product[]>();
 
-  async function loadProducts(): Promise<void> {
-    try {
-      setLoading(true);
-      const res = await fetch('https://fakestoreapi.com/products');
-      if (!res.ok) {
-        throw new Error(`Failed to load products: ${res.status}`);
-      }
-      const arr = await res.json();
-      setProducts(arr);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error occurred');
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    loadProducts();
-  }, []);
+    useEffect(() => {
+      get('https://fakestoreapi.com/products');
+    }, []);
 
   if (loading) {
     return (
@@ -44,8 +27,11 @@ export default function ProductsPage(): JSX.Element {
   if (error) {
     return (
       <div className='alert alert-danger m-3' role='alert'>
-        Error loading products: {error}
-        <button onClick={loadProducts} className='btn btn-secondary ms-3'>
+        Error loading products: {error.message}
+        <button
+          onClick={() => get('https://fakestoreapi.com/products')}
+          className='btn btn-secondary ms-3'
+        >
           Try Again
         </button>
       </div>
@@ -56,7 +42,7 @@ export default function ProductsPage(): JSX.Element {
     <div className='container mt-4'>
       <h1 className='h2 mb-4'>Our Products</h1>
       <div className='row'>
-        {products.map((product) => (
+        {products?.map((product) => (
           <div className='col-lg-4 col-md-6 mb-4' key={product.id}>
             <div className={`card h-100 ${style.productCard}`}>
               <div className={style.imageContainer}>

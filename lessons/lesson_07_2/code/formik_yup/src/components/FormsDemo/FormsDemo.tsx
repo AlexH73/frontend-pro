@@ -1,5 +1,5 @@
 import { type JSX } from 'react';
-import { useTheme } from '../themeContext/useTheme';
+import { useTheme } from '../../hooks/themeContext/useTheme';
 import CardSecurityCheck from './CardSecurityCheck/CardSecurityCheck';
 import ContactForm from './ContactForm/ContactForm';
 import LoginForm from './LoginForm/LoginForm';
@@ -41,7 +41,7 @@ export default function FormsDemo(): JSX.Element {
             </div>
           </div>
         </div>
-        
+
         {/* Форма проверки карты */}
         <div className='col-lg-6 mb-4'>
           <div

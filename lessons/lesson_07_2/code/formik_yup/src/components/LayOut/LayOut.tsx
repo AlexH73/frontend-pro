@@ -2,7 +2,7 @@ import { useEffect, type JSX } from 'react';
 import NavBar from '../NavBar/NavBar';
 import { Outlet } from 'react-router-dom';
 import Footer from '../Footer/Footer';
-import { useTheme } from '../themeContext/useTheme';
+import { useTheme } from '../../hooks/themeContext/useTheme';
 import styles from './LayOut.module.css';
 
 export default function LayOut(): JSX.Element {

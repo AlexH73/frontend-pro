@@ -15,6 +15,7 @@ import ProductPage from './components/ProductsPage/ProductPage';
 import ProductsPage from './components/ProductsPage/ProductsPage';
 import FormsDemo from './components/FormsDemo/FormsDemo';
 import TodoList from './components/TodoList/TodoList';
+import ProductsManager from './components/ProductsPage/ProductsManager';
 
 function App(): JSX.Element {
   return (
@@ -32,6 +33,7 @@ function App(): JSX.Element {
         <Route path='sandwich' element={<Sandwich />} />
         <Route path='products' element={<ProductsPage />} />
         <Route path='/products/:productId' element={<ProductPage />} />
+        <Route path='products-manager' element={<ProductsManager />} />
         <Route path='forms-demo' element={<FormsDemo />} />
         <Route path='todo' element={<TodoList />} />
       </Route>

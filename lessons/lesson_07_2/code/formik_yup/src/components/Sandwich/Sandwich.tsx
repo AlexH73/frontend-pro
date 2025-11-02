@@ -1,6 +1,6 @@
 import { useState, type JSX } from 'react';
 import style from './Sandwich.module.css';
-import { useTheme } from '../themeContext/useTheme';
+import { useTheme } from '../../hooks/themeContext/useTheme';
 
 export default function Sandwich(): JSX.Element {
   const [sandwich, setSandwich] = useState<string>('Sandwich: ');
