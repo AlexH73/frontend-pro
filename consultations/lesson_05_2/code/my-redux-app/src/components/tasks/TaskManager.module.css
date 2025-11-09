@@ -1,0 +1,89 @@
+.container {
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.headerPaper {
+  padding: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+  background: linear-gradient(45deg, #2c3e50, #34495e) !important;
+  color: white !important;
+  border-radius: 16px !important;
+}
+
+.mainTitle {
+  font-weight: 700 !important;
+  margin-bottom: 10px !important;
+  color: white;
+}
+
+.subtitle {
+  opacity: 0.8;
+  color: #ecf0f1 !important;
+}
+
+.contentWrapper {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+
+.sidebarContainer {
+  flex: 0 0 33.333%;
+  max-width: 33.333%;
+}
+
+.sidebar {
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+  border-radius: 16px !important;
+  overflow: hidden;
+  background: white;
+}
+
+.mainContent {
+  flex: 0 0 66.667%;
+  max-width: 66.667%;
+}
+
+.content {
+  border-radius: 16px !important;
+  overflow: hidden;
+  min-height: 500px;
+  background: white;
+  margin-right: 22px
+}
+
+/* Для мобильных устройств */
+@media (max-width: 900px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .headerPaper {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .mainTitle {
+    font-size: 2rem !important;
+  }
+  
+  .contentWrapper {
+    flex-direction: column;
+  }
+  
+  .sidebarContainer,
+  .mainContent {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .sidebar {
+    position: static;
+    margin-bottom: 20px;
+  }
+}
