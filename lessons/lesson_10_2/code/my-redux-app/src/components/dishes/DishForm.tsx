@@ -51,7 +51,7 @@ export default function DishForm(): JSX.Element {
     <div>
       <h1>Форма создания меню</h1>
       <form onSubmit={handleSubmit}>
-        {error && <div style={{ colors: 'red' }}>{error}</div>}
+        {error && <div style={{ color: 'red' }}>{error}</div>}
         <input
           type='text'
           placeholder='title'
