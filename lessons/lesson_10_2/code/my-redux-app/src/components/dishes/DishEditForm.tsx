@@ -9,9 +9,12 @@ import {
   Close as CloseIcon,
   Photo as PhotoIcon,
   Save as SaveIcon,
+  KeyboardArrowUp as UpIcon,
+  KeyboardArrowDown as DownIcon,
 } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import type Dish from './types/Dish';
+import styles from './DishEditForm.module.css';
 
 export default function DishEditForm(props: { dish: Dish }): JSX.Element {
   const { dish } = props;
@@ -53,6 +56,21 @@ export default function DishEditForm(props: { dish: Dish }): JSX.Element {
     setImage(dish.image);
     setError('');
   }
+
+  const handlePriceIncrement = () => {
+    setPrice((prev) => {
+      const newPrice = Math.round((prev + 0.01) * 100) / 100;
+      return newPrice;
+    });
+  };
+
+  const handlePriceDecrement = () => {
+    setPrice((prev) => {
+      if (prev <= 0.01) return 0;
+      const newPrice = Math.round((prev - 0.01) * 100) / 100;
+      return newPrice;
+    });
+  };
 
   const dispatch = useDispatch();
   function handleSubmit(e: FormEvent<HTMLFormElement>): void {
@@ -151,41 +169,64 @@ export default function DishEditForm(props: { dish: Dish }): JSX.Element {
               </div>
 
               {/* Категория и цена */}
-              <div className='grid grid-cols-3 gap-4'>
-                <div className='col-span-2'>
+              <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+                <div className='md:col-span-2'>
                   <label className='block text-sm font-medium text-gray-700 mb-2 flex items-center'>
                     <CategoryIcon className='text-gray-400 mr-2 text-lg' />
                     Категория
                   </label>
-                  <select
-                    name='category'
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors'
-                  >
-                    <option value='' disabled>
-                      Выберите категорию
-                    </option>
-                    <option value='main'>Основное блюдо</option>
-                    <option value='dessert'>Десерт</option>
-                    <option value='snack'>Закуска</option>
-                  </select>
+                  <div className={styles.selectContainer}>
+                    <select
+                      name='category'
+                      value={category}
+                      onChange={(e) => setCategory(e.target.value)}
+                      className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors cursor-pointer appearance-none'
+                    >
+                      <option value='' disabled>
+                        Выберите категорию
+                      </option>
+                      <option value='main'>🍝 Основное блюдо</option>
+                      <option value='dessert'>🍰 Десерт</option>
+                      <option value='snack'>🥗 Закуска</option>
+                    </select>
+                    <DownIcon className={styles.selectArrow} />
+                  </div>
                 </div>
 
                 <div>
                   <label className='block text-sm font-medium text-gray-700 mb-2 flex items-center'>
                     <EuroIcon className='text-gray-400 mr-2 text-lg' />
-                    Цена (€)
+                    Цена
                   </label>
-                  <input
-                    type='number'
-                    value={price}
-                    onChange={(e) => setPrice(Number(e.target.value))}
-                    className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors'
-                    min='0'
-                    step='0.01'
-                    placeholder='0.00'
-                  />
+                  <div className={styles.numberInput}>
+                    <input
+                      type='number'
+                      value={price}
+                      onChange={(e) => setPrice(Number(e.target.value))}
+                      className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${styles.numberInput}`}
+                      min='0'
+                      step='0.01'
+                      placeholder='0.00'
+                    />
+                    <div className={styles.numberButtons}>
+                      <button
+                        type='button'
+                        className={styles.numberButton}
+                        onClick={handlePriceIncrement}
+                        aria-label='Увеличить цену'
+                      >
+                        <UpIcon className={styles.numberIcon} />
+                      </button>
+                      <button
+                        type='button'
+                        className={styles.numberButton}
+                        onClick={handlePriceDecrement}
+                        aria-label='Уменьшить цену'
+                      >
+                        <DownIcon className={styles.numberIcon} />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
 

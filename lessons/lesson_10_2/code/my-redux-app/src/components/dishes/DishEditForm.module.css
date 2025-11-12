@@ -1,0 +1,101 @@
+.formCard {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Стилизация number input с кастомными стрелками */
+.numberInput {
+  position: relative;
+}
+
+.numberInput input {
+  padding-right: 3rem !important;
+  -moz-appearance: textfield;
+}
+
+.numberInput::-webkit-outer-spin-button,
+.numberInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.numberButtons {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  bottom: 1px;
+  width: 2rem;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #d1d5db;
+  background: #f9fafb;
+  border-radius: 0 0.5rem 0.5rem 0;
+  overflow: hidden;
+}
+
+.numberButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0;
+}
+
+.numberButton:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.numberButton:active {
+  background: #d1d5db;
+}
+
+.numberButton:first-child {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.numberIcon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* Убираем стандартные стрелки */
+.numberInput::-webkit-outer-spin-button,
+.numberInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.numberInput[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Стилизация select с кастомной стрелкой */
+.selectContainer {
+  position: relative;
+}
+
+.selectContainer select {
+  padding-right: 2.5rem !important;
+  background-image: none !important;
+}
+
+.selectArrow {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #6b7280;
+  transition: color 0.2s;
+}
+
+.selectContainer:focus-within .selectArrow {
+  color: #3b82f6;
+}
