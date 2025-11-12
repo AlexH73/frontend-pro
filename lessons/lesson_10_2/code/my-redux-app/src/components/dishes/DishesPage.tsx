@@ -2,7 +2,6 @@ import type { JSX } from 'react';
 import { Restaurant as RestaurantIcon } from '@mui/icons-material';
 import DishForm from './DishForm';
 import DishesList from './DishesList';
-import styles from './DishesPage.module.css';
 
 export default function DishesPage(): JSX.Element {
   return (
