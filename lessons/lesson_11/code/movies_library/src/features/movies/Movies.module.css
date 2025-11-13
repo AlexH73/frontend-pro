@@ -7,10 +7,6 @@
   transition: all 0.3s ease;
 }
 
-.movieCard:hover {
-  transform: translateY(-2px);
-}
-
 .error {
   background-color: #fee2e2;
   border: 1px solid #fecaca;
@@ -18,4 +14,28 @@
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
   font-size: 0.875rem;
+}
+
+/* Стилизация select с кастомной стрелкой */
+.selectContainer {
+  position: relative;
+}
+
+.selectContainer select {
+  padding-right: 2.5rem !important;
+  background-image: none !important;
+}
+
+.selectArrow {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #6b7280;
+  transition: color 0.2s;
+}
+
+.selectContainer:focus-within .selectArrow {
+  color: #3b82f6;
 }

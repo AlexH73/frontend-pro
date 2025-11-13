@@ -1,6 +1,7 @@
 import { useState, type FormEvent, type JSX } from 'react';
 import { useDispatch } from 'react-redux';
 import EditIcon from '@mui/icons-material/Edit';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import type Movie from '../../types/Movie';
 import styles from './Movies.module.css';
 
@@ -99,26 +100,29 @@ export default function MovieFullEdit({
                   <label className='block text-sm font-medium text-gray-700 mb-2'>
                     Жанр
                   </label>
-                  <select
-                    name='genre'
-                    value={formData.genre}
-                    onChange={handleChange}
-                    className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 transition duration-200'
-                  >
-                    <option value='' disabled>
-                      Выберите жанр
-                    </option>
-                    <option value='Action'>Боевик</option>
-                    <option value='Comedy'>Комедия</option>
-                    <option value='Drama'>Драма</option>
-                    <option value='Sci-Fi'>Фантастика</option>
-                    <option value='Horror'>Ужасы</option>
-                    <option value='Romance'>Романтика</option>
-                    <option value='Thriller'>Триллер</option>
-                    <option value='Fantasy'>Фэнтези</option>
-                    <option value='Animation'>Анимация</option>
-                    <option value='Documentary'>Документальный</option>
-                  </select>
+                  <div className={styles.selectContainer}>
+                    <select
+                      name='genre'
+                      value={formData.genre}
+                      onChange={handleChange}
+                      className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 transition duration-200 appearance-none cursor-pointer'
+                    >
+                      <option value='' disabled>
+                        Выберите жанр
+                      </option>
+                      <option value='Action'>Боевик</option>
+                      <option value='Comedy'>Комедия</option>
+                      <option value='Drama'>Драма</option>
+                      <option value='Sci-Fi'>Фантастика</option>
+                      <option value='Horror'>Ужасы</option>
+                      <option value='Romance'>Романтика</option>
+                      <option value='Thriller'>Триллер</option>
+                      <option value='Fantasy'>Фэнтези</option>
+                      <option value='Animation'>Анимация</option>
+                      <option value='Documentary'>Документальный</option>
+                    </select>
+                    <ArrowDropDownIcon className={styles.selectArrow} />
+                  </div>
                 </div>
 
                 <div>
