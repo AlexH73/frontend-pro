@@ -112,6 +112,7 @@ export default function DishesList(): JSX.Element {
                 </div>
 
                 <div className='flex justify-between items-center'>
+
                   <div className='flex space-x-2'>
                     <DishEditForm dish={dish} />
                     <button
