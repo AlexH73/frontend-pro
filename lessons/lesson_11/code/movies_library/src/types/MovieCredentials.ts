@@ -3,4 +3,6 @@ export default interface MovieCredentials {
   genre: string;
   country: string;
   releaseDate: string;
+  poster: string;
+  description: string;
 }
