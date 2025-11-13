@@ -43,7 +43,7 @@ export default function DishesList(): JSX.Element {
   return (
     <div className='bg-white rounded-2xl shadow-lg border border-gray-100 p-6'>
       {/* Заголовок списка */}
-      <div className='flex justify-between items-center mb-8'>
+      <div className='flex justify-between items-center mb-8 flex-wrap'>
         <div className='flex items-center'>
           <div className='w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3'>
             <RestaurantIcon className='text-white' />
@@ -96,6 +96,11 @@ export default function DishesList(): JSX.Element {
                     {getCategoryLabel(dish.category)}
                   </span>
                 </div>
+                <div className='absolute bottom-4 left-4 bg-black/50 text-white px-3 py-1.5 rounded-xl backdrop-blur-sm'>
+                  <span className='text-2xl font-bold text-white-600'>
+                    {dish.price} €
+                  </span>
+                </div>
               </div>
 
               {/* Информация о блюде */}
@@ -107,10 +112,6 @@ export default function DishesList(): JSX.Element {
                 </div>
 
                 <div className='flex justify-between items-center'>
-                  <span className='text-2xl font-bold text-blue-600'>
-                    {dish.price} €
-                  </span>
-
                   <div className='flex space-x-2'>
                     <DishEditForm dish={dish} />
                     <button
