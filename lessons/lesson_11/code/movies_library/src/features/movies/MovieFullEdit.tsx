@@ -65,10 +65,10 @@ export default function MovieFullEdit({
     <div className='inline'>
       <button
         onClick={handleToggle}
-        className='text-blue-600 hover:text-blue-800 transition duration-200 flex items-center space-x-1'
+        className='p-2 bg-blue-400 hover:bg-blue-300 text-white rounded-full shadow-lg transition duration-200 transform hover:scale-110'
         title='Редактировать фильм'
       >
-        <EditIcon fontSize='small' />
+        <EditIcon className='text-sm' />
       </button>
       {toggle && (
         <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4'>

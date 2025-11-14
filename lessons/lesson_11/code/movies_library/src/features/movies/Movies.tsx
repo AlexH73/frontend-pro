@@ -12,7 +12,8 @@ import selectMovies from './selectors';
 import type Movie from '../../types/Movie';
 import styles from './Movies.module.css';
 import MovieFullEdit from './MovieFullEdit';
-import image from "../../assets/placeholder-poster.jpg"
+import no_image from "../../assets/placeholder-poster.jpg"
+import MovieEdit from './MovieEdit';
 
 export default function Movies(): JSX.Element {
   const movies = useSelector(selectMovies);
@@ -60,16 +61,20 @@ export default function Movies(): JSX.Element {
                   alt={movie.title}
                   className='w-full h-full object-cover group-hover:scale-105 transition duration-300'
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = `${image}`;
+                    (e.target as HTMLImageElement).src = `${no_image}`;
                   }}
                 />
                 <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300' />
 
                 {/* Кнопки действий поверх постера */}
+                <div className='absolute top-15 right-3 flex space-x-2 opacity-0 group-hover:opacity-100 transition duration-300'>
+                  <MovieFullEdit movie={movie} />
+                </div>
                 <div className='absolute top-3 right-3 flex space-x-2 opacity-0 group-hover:opacity-100 transition duration-300'>
                   <button
                     onClick={() => handleDelete(movie.id)}
                     className='p-2 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg transition duration-200 transform hover:scale-110'
+                    title='Удалить фильм'
                   >
                     <DeleteIcon className='text-sm' />
                   </button>
@@ -82,7 +87,7 @@ export default function Movies(): JSX.Element {
                   <h3 className='text-xl font-bold text-gray-800 line-clamp-2 flex-1 mr-2'>
                     {movie.title}
                   </h3>
-                  <MovieFullEdit movie={movie} />
+                  <MovieEdit movie={movie} />
                 </div>
 
                 <p className='text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed'>

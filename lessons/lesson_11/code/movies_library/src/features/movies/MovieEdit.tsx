@@ -36,9 +36,9 @@ export default function MovieEdit({ movie }: { movie: Movie }): JSX.Element {
       <button
         onClick={handleToggle}
         className='text-blue-600 hover:text-blue-800 transition duration-200 flex items-center space-x-1'
+        title='Редактировать заголовок'
       >
         <EditIcon fontSize='small' />
-        <span className='text-sm'>Редактировать</span>
       </button>
       {toggle && (
         <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
@@ -52,7 +52,7 @@ export default function MovieEdit({ movie }: { movie: Movie }): JSX.Element {
                 type='text'
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
-                className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-gray-500'
+                className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-gray-500 text-gray-900'
                 placeholder='Новое название'
                 autoFocus
               />
