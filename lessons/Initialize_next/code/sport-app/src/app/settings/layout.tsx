@@ -7,7 +7,7 @@ export default function SettingsLayout({
 }>) {
   return (
     <>
-      <nav className='flex justify-start gap-8'>
+      <nav className='flex justify-start gap-8 px-50'>
         <Link href={'/settings/user'}>User settings</Link>
         <Link href={'/settings/organization'}>User organization</Link>
       </nav>
