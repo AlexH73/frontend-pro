@@ -1,5 +1,4 @@
 import { User } from '@/types';
-import { revalidateTag } from 'next/cache';
 
 // by default - server component
 const UsersServerVersion = async () => {
@@ -32,11 +31,11 @@ const UsersServerVersion = async () => {
   //   console.log(users); // выведет на сервере
 
   return (
-    <div>
+    <ul className='px-28 py-20'>
       {users.map((user: User) => (
         <li key={user.id}>{user.name}</li>
       ))}
-    </div>
+    </ul>
   );
 };
 

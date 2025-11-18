@@ -22,6 +22,12 @@ export default function NavBar(): JSX.Element {
       <Link href={'/users/server-version'} className='hover:text-amber-300'>
         Users server
       </Link>
+      <Link href={'/products/client-version'} className='hover:text-amber-300'>
+        Products client
+      </Link>
+      <Link href={'/products/server-version'} className='hover:text-amber-300'>
+        Products server
+      </Link>
     </nav>
   );
 }
