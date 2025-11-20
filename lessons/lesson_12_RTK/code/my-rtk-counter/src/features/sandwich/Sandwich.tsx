@@ -57,7 +57,7 @@ export default function Sandwich() {
               Add Salat 🥬
             </button>
             <button
-              onClick={() => handleAdd('Bacon')}
+              onClick={() => handleAdd('Bacon 🥓')}
               className={`${buttonClasses} bg-red-500 hover:bg-red-600 text-white`}
             >
               Add Bacon 🥓
