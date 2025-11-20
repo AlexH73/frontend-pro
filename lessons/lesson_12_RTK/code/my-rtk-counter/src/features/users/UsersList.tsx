@@ -35,8 +35,6 @@ export const UsersList = () => {
   // “Ты используешь переменную в эффекте?
   // Значит, добавь её в массив зависимостей”.
 
-
-
   if (loading) {
     return (
       <div className='flex justify-center items-center mt-16'>
@@ -66,52 +64,57 @@ export const UsersList = () => {
   }
 
   return (
-    <div className="p-6">
+    <div className='p-6'>
       {users.length === 0 ? (
-        <div className="text-center py-12">
-          <div className="text-6xl mb-4">👥</div>
-          <h3 className="text-xl font-bold text-gray-700 mb-2">Нет пользователей</h3>
-          <p className="text-gray-500">Список пользователей пуст</p>
+        <div className='text-center py-12'>
+          <div className='text-6xl mb-4'>👥</div>
+          <h3 className='text-xl font-bold text-gray-700 mb-2'>
+            Нет пользователей
+          </h3>
+          <p className='text-gray-500'>Список пользователей пуст</p>
         </div>
       ) : (
-    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6'>
-      {users.map((user) => (
-        <div
-          key={user.id}
-          className='bg-white border border-gray-200 p-5 rounded-xl shadow-sm hover:shadow-lg transition-all duration-250 hover:-translate-y-1 flex flex-col'
-        >
-          <h2 className='text-xl font-bold mb-3 text-gray-800'>
-            {user.name.firstname} {user.name.lastname}
-          </h2>
-          <div className='space-y-2 flex-grow'>
-            <p className='text-gray-600 text-sm'>
-              <span className='font-semibold text-gray-800'>Email:</span>{' '}
-              {user.email}
-            </p>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6'>
+          {users.map((user) => (
+            <div
+              key={user.id}
+              className='bg-white border border-gray-200 p-5 rounded-xl shadow-sm hover:shadow-lg transition-all duration-250 hover:-translate-y-1 flex flex-col'
+            >
+              <h2 className='text-xl font-bold mb-3 text-gray-800'>
+                {user.name.firstname} {user.name.lastname}
+              </h2>
+              <div className='space-y-2 flex-grow'>
+                <p className='text-gray-600 text-sm'>
+                  <span className='font-semibold text-gray-800'>Email:</span>{' '}
+                  {user.email}
+                </p>
 
-            <p className='text-gray-600 text-sm'>
-              <span className='font-semibold text-gray-800'>Username:</span>{' '}
-              {user.username}
-            </p>
+                <p className='text-gray-600 text-sm'>
+                  <span className='font-semibold text-gray-800'>Username:</span>{' '}
+                  {user.username}
+                </p>
 
-            <p className='text-gray-600 text-sm'>
-              <span className='font-semibold text-gray-800'>Phone:</span>{' '}
-              {user.phone}
-            </p>
-          </div>
-          <div className='mt-4 pt-3 border-t border-gray-100'>
-            <span className='font-semibold text-gray-800 text-sm'>
-              Address:
-            </span>
-            <div className='text-gray-600 text-sm mt-1'>
-              <p>
-                {user.address.city}, {user.address.street} {user.address.number}
-              </p>
-              <p>ZIP: {user.address.zipcode}</p>
+                <p className='text-gray-600 text-sm'>
+                  <span className='font-semibold text-gray-800'>Phone:</span>{' '}
+                  {user.phone}
+                </p>
+              </div>
+              <div className='mt-4 pt-3 border-t border-gray-100'>
+                <span className='font-semibold text-gray-800 text-sm'>
+                  Address:
+                </span>
+                <div className='text-gray-600 text-sm mt-1'>
+                  <p>
+                    {user.address.city}, {user.address.street}{' '}
+                    {user.address.number}
+                  </p>
+                  <p>ZIP: {user.address.zipcode}</p>
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 };

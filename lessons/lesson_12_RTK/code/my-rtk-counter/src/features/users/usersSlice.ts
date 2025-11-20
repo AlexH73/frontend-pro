@@ -30,13 +30,21 @@ const initialState: UserState = {
   error: null,
 };
 
-export const fetchUsers = createAsyncThunk<User[]>(
+export const fetchUsers = createAsyncThunk<User[], void, { rejectValue: string }>(
   'users/fetchUsers',
-  async () => {
+  async (_, { rejectWithValue }) => {
+  try {
     // Искусственная задержка для тестирования спиннера
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    //await new Promise((resolve) => setTimeout(resolve, 2000));
     const res = await fetch('https://fakestoreapi.com/users');
+
+    if (!res.ok) {
+      return rejectWithValue('Ошибка сервера: ' + res.status);
+    }
     return await res.json();
+  } catch (err) {
+    return rejectWithValue('Ошибка сети: ' + (err as Error).message);
+  }
   }
 );
 
@@ -106,9 +114,9 @@ const usersSlice = createSlice({
         state.loading = false;
         state.list = action.payload;
       })
-      .addCase(fetchUsers.rejected, (state) => {
+      .addCase(fetchUsers.rejected, (state, action) => {
         state.loading = false;
-        state.error = 'Ошибка загрузки пользователей';
+        state.error = action.payload ?? 'Ошибка загрузки пользователей';
       });
   },
 });
