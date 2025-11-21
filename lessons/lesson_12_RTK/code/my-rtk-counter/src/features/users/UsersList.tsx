@@ -65,6 +65,7 @@ export const UsersList = () => {
 
   return (
     <div className='p-6'>
+      <h2 className='text-left ml-10 text-3xl font-bold text-gray-800'>Users</h2>
       {users.length === 0 ? (
         <div className='text-center py-12'>
           <div className='text-6xl mb-4'>👥</div>
