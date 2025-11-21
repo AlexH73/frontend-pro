@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CircularProgress } from '@mui/material';
 import {
-  RemoveRedEye as ViewIcon,
-  Delete as DeleteIcon,
   ExpandMore as ExpandMoreIcon,
 } from '@mui/icons-material';
 
@@ -36,7 +34,7 @@ export const UsersList = () => {
   const showAll = () => {
     setDisplayLimit(users.length);
   };
-  
+
   // Тогда почему React  не знает что dispatch — это стабильная функция
   //   и она не пересоздаётся и не меняется между рендерами. ?
 
