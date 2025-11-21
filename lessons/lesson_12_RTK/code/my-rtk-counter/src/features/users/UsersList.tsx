@@ -1,6 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CircularProgress } from '@mui/material';
+import {
+  RemoveRedEye as ViewIcon,
+  Delete as DeleteIcon,
+  ExpandMore as ExpandMoreIcon,
+} from '@mui/icons-material';
 
 import {
   fetchUsers,
@@ -16,9 +21,22 @@ export const UsersList = () => {
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
+  // Состояние для ограничения количества карточек
+  const [displayLimit, setDisplayLimit] = useState(4);
+  const usersToShow = users.slice(0, displayLimit);
+
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
+
+  const loadMore = () => {
+    setDisplayLimit((prev) => prev + 4);
+  };
+
+  const showAll = () => {
+    setDisplayLimit(users.length);
+  };
+  
   // Тогда почему React  не знает что dispatch — это стабильная функция
   //   и она не пересоздаётся и не меняется между рендерами. ?
 
@@ -65,7 +83,34 @@ export const UsersList = () => {
 
   return (
     <div className='p-6'>
-      <h2 className='text-left ml-10 text-3xl font-bold text-gray-800'>Users</h2>
+      <div className='flex justify-between items-center mb-6'>
+        <div>
+          <h2 className='text-3xl font-bold text-gray-800'>Users</h2>
+          <p className='text-gray-600 mt-1'>
+            Showing {usersToShow.length} of {users.length} users
+          </p>
+        </div>
+        <div className='flex gap-2'>
+          {displayLimit < users.length && (
+            <>
+              <button
+                onClick={loadMore}
+                className='bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2'
+              >
+                Load More
+                <ExpandMoreIcon className='w-4 h-4' />
+              </button>
+              <button
+                onClick={showAll}
+                className='bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors'
+              >
+                Show All
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+
       {users.length === 0 ? (
         <div className='text-center py-12'>
           <div className='text-6xl mb-4'>👥</div>
@@ -76,7 +121,7 @@ export const UsersList = () => {
         </div>
       ) : (
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6'>
-          {users.map((user) => (
+          {usersToShow.map((user) => (
             <div
               key={user.id}
               className='bg-white border border-gray-200 p-5 rounded-xl shadow-sm hover:shadow-lg transition-all duration-250 hover:-translate-y-1 flex flex-col'
@@ -114,6 +159,19 @@ export const UsersList = () => {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Кнопка загрузки еще внизу */}
+      {displayLimit < users.length && (
+        <div className='flex justify-center mt-8'>
+          <button
+            onClick={loadMore}
+            className='bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2'
+          >
+            Load More Users
+            <ExpandMoreIcon className='w-5 h-5' />
+          </button>
         </div>
       )}
     </div>
