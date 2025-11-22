@@ -12,7 +12,7 @@ import {
   getProductRating,
   type Product,
 } from './productsSlice';
-import { addToCart, selectCartItemCount } from '../cart/cartSlice';
+import { addToCart } from '../cart/cartSlice';
 import { type AppDispatch } from '../../app/store';
 import { CircularProgress, Rating } from '@mui/material';
 import {
@@ -21,11 +21,11 @@ import {
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
   AddShoppingCart as CartIcon,
-  ShoppingCartOutlined as ShoppingCart,
+//   ShoppingCartOutlined as ShoppingCart,
 } from '@mui/icons-material';
 import ViewProductModal from './ViewProductModal';
 import PlaceholderImage from '../../../../../../../assets/images/placeholder.jpg';
-import Cart from '../cart/Cart';
+// import Cart from '../cart/Cart';
 
 export default function ProductsList() {
   const dispatch = useDispatch<AppDispatch>();
@@ -33,13 +33,13 @@ export default function ProductsList() {
   const loading = useSelector(selectProductsLoading);
   const error = useSelector(selectProductsError);
   const viewingProduct = useSelector(selectViewingProduct);
-  const cartItemCount = useSelector(selectCartItemCount);
+//   const cartItemCount = useSelector(selectCartItemCount);
 
   // Состояние для пагинации
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
   // Состояние для корзины
-  const [isCartOpen, setIsCartOpen] = useState(false);
+//   const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Вычисляем индексы для текущей страницы
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -48,8 +48,8 @@ export default function ProductsList() {
   const totalPages = Math.ceil(products.length / itemsPerPage);
 
   // Функции для открытия/закрытия корзины
-  const openCart = () => setIsCartOpen(true);
-  const closeCart = () => setIsCartOpen(false);
+//   const openCart = () => setIsCartOpen(true);
+//   const closeCart = () => setIsCartOpen(false);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -169,7 +169,7 @@ export default function ProductsList() {
           </div>
 
           {/* Кнопка корзины */}
-          <button
+          {/* <button
             onClick={openCart}
             className='relative bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition-colors'
           >
@@ -179,7 +179,7 @@ export default function ProductsList() {
                 {cartItemCount}
               </span>
             )}
-          </button>
+          </button> */}
         </div>
       </div>
       {products.length === 0 ? (
@@ -328,7 +328,7 @@ export default function ProductsList() {
         />
       )}
       {/* Modal for viewing cart */}
-      {isCartOpen && <Cart isOpen={isCartOpen} onClose={closeCart} />}
+      {/* {isCartOpen && <Cart isOpen={isCartOpen} onClose={closeCart} />} */}
     </div>
   );
 }
