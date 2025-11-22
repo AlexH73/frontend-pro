@@ -12,6 +12,7 @@ import {
   getProductRating,
   type Product,
 } from './productsSlice';
+import { addToCart, selectCartItemCount } from '../cart/cartSlice';
 import { type AppDispatch } from '../../app/store';
 import { CircularProgress, Rating } from '@mui/material';
 import {
@@ -19,9 +20,12 @@ import {
   Delete as DeleteIcon,
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
+  AddShoppingCart as CartIcon,
+  ShoppingCartOutlined as ShoppingCart,
 } from '@mui/icons-material';
 import ViewProductModal from './ViewProductModal';
 import PlaceholderImage from '../../../../../../../assets/images/placeholder.jpg';
+import Cart from '../cart/Cart';
 
 export default function ProductsList() {
   const dispatch = useDispatch<AppDispatch>();
@@ -29,16 +33,23 @@ export default function ProductsList() {
   const loading = useSelector(selectProductsLoading);
   const error = useSelector(selectProductsError);
   const viewingProduct = useSelector(selectViewingProduct);
+  const cartItemCount = useSelector(selectCartItemCount);
 
   // Состояние для пагинации
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(4);
+  // Состояние для корзины
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Вычисляем индексы для текущей страницы
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(products.length / itemsPerPage);
+
+  // Функции для открытия/закрытия корзины
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -60,6 +71,17 @@ export default function ProductsList() {
 
   const handleView = (product: Product) => {
     dispatch(setViewingProduct(product));
+  };
+
+  const handleAddToCart = (product: Product) => {
+    dispatch(
+      addToCart({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        image: product.image,
+      })
+    );
   };
 
   const handleRetry = () => {
@@ -145,9 +167,21 @@ export default function ProductsList() {
               <option value='20'>20</option>
             </select>
           </div>
+
+          {/* Кнопка корзины */}
+          <button
+            onClick={openCart}
+            className='relative bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition-colors'
+          >
+            <ShoppingCart className='w-6 h-6' />
+            {cartItemCount > 0 && (
+              <span className='absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center'>
+                {cartItemCount}
+              </span>
+            )}
+          </button>
         </div>
       </div>
-
       {products.length === 0 ? (
         <div className='text-center py-12'>
           <div className='text-6xl mb-4'>📦</div>
@@ -227,6 +261,15 @@ export default function ProductsList() {
                         />
                         <span>({rating.count})</span>
                       </div>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleAddToCart(product);
+                        }}
+                        className='bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2 text-sm'
+                      >
+                        <CartIcon className='w-4 h-4' />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -276,14 +319,16 @@ export default function ProductsList() {
           )}
         </>
       )}
-
       {/* Modal for viewing single product */}
       {viewingProduct && (
         <ViewProductModal
           product={viewingProduct}
           onClose={() => dispatch(setViewingProduct(null))}
+          onAddToCart={handleAddToCart}
         />
       )}
+      {/* Modal for viewing cart */}
+      {isCartOpen && <Cart isOpen={isCartOpen} onClose={closeCart} />}
     </div>
   );
 }

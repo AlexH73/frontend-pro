@@ -33,7 +33,7 @@ export const fetchProducts = createAsyncThunk<Product[]>(
   async () => {
     const response = await fetch('https://fakestoreapi.com/products');
     if (!response.ok) {
-      throw new Error('Failed to fetch products');
+      throw new Error(`Failed to fetch products, error: ${response.status}`);
     }
     return await response.json();
   }
@@ -50,7 +50,7 @@ export const deleteProduct = createAsyncThunk<number, number>(
       }
     );
     if (!response.ok) {
-      throw new Error('Failed to delete product');
+      throw new Error(`Failed to delete products, error: ${response.status}`);
     }
     return productId;
   }

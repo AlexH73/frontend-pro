@@ -1,6 +1,9 @@
 import { Rating } from '@mui/material';
-import { Close as CloseIcon } from '@mui/icons-material';
-import { getProductRating } from './productsSlice';
+import {
+  Close as CloseIcon,
+  AddShoppingCart as CartIcon,
+} from '@mui/icons-material';
+import { getProductRating, type Product } from './productsSlice';
 import PlaceholderImage from '../../../../../../../assets/images/placeholder.jpg';
 
 interface ViewProductModalProps {
@@ -17,13 +20,19 @@ interface ViewProductModalProps {
     };
   };
   onClose: () => void;
+  onAddToCart: (product: Product) => void;
 }
 
 export default function ViewProductModal({
   product,
   onClose,
+  onAddToCart,
 }: ViewProductModalProps) {
   const rating = getProductRating(product);
+
+  const handleAddToCart = () => {
+    onAddToCart(product);
+  };
 
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50'>
@@ -136,6 +145,13 @@ export default function ViewProductModal({
               </div>
 
               <div className='flex gap-4 pt-4'>
+                <button
+                  onClick={handleAddToCart}
+                  className='bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2 flex-1 justify-center'
+                >
+                  <CartIcon className='w-5 h-5' />
+                  Add to Cart
+                </button>
                 <button
                   onClick={onClose}
                   className='bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors flex-1'
