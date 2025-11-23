@@ -1,0 +1,10 @@
+<svg width="170" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Иконка -->
+  <rect width="40" height="40" rx="8" fill="#764ABC"/>
+  <circle cx="20" cy="15" r="4" fill="white"/>
+  <path d="M12 25L20 30L28 25" stroke="white" stroke-width="2" fill="none"/>
+  <path d="M12 30L20 35L28 30" stroke="white" stroke-width="2" fill="none"/>
+  
+  <!-- Текст -->
+  <text x="50" y="30" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="oklch(62.3% 0.214 259.815)">RTK-App</text>
+</svg>

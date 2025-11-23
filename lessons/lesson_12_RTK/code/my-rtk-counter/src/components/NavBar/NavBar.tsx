@@ -7,6 +7,8 @@ import {
   Menu as MenuIcon,
   Close as CloseIcon,
 } from '@mui/icons-material';
+import logo from "../../assets/logo.svg"
+import { Tooltip } from '@mui/material';
 
 export default function NavBar() {
   const location = useLocation();
@@ -73,13 +75,13 @@ export default function NavBar() {
   }, [location]);
 
   return (
-    <nav className='bg-white shadow-lg border-b border-gray-200 relative'>
+    <nav className='bg-white shadow-lg border-b border-gray-200 sticky top-0 z-50'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex justify-between items-center h-16'>
           {/* Logo */}
           <div className='flex-shrink-0 flex items-center'>
-            <Link to='/' className='text-2xl font-bold text-blue-600'>
-              RTK-App
+            <Link to='/' className='flex items-center gap-2'>
+              <img src={logo} alt='RTK-App' className='h-9 text-blue-500' />
             </Link>
           </div>
 
@@ -102,17 +104,19 @@ export default function NavBar() {
 
           {/* Cart Icon */}
           <div className='flex items-center space-x-4'>
-            <Link
-              to='/cart'
-              className='relative p-2 text-gray-700 hover:text-blue-600 transition-colors'
-            >
-              <CartIcon className='w-6 h-6' />
-              {cartItemCount > 0 && (
-                <span className='absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center'>
-                  {cartItemCount}
-                </span>
-              )}
-            </Link>
+            <Tooltip title='Go to cart' arrow>
+              <Link
+                to='/cart'
+                className='relative p-2 text-gray-700 hover:text-blue-600 transition-colors'
+              >
+                <CartIcon className='w-6 h-6' />
+                {cartItemCount > 0 && (
+                  <span className='absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center'>
+                    {cartItemCount}
+                  </span>
+                )}
+              </Link>
+            </Tooltip>
 
             {/* Mobile menu button */}
             <div className='md:hidden'>

@@ -14,14 +14,14 @@ import {
 } from './productsSlice';
 import { addToCart } from '../cart/cartSlice';
 import { type AppDispatch } from '../../app/store';
-import { CircularProgress, Rating } from '@mui/material';
+import { CircularProgress, Rating, Tooltip } from '@mui/material';
 import {
   RemoveRedEye as ViewIcon,
   Delete as DeleteIcon,
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
   AddShoppingCart as CartIcon,
-//   ShoppingCartOutlined as ShoppingCart,
+  //   ShoppingCartOutlined as ShoppingCart,
 } from '@mui/icons-material';
 import ViewProductModal from './ViewProductModal';
 import PlaceholderImage from '../../../../../../../assets/images/placeholder.jpg';
@@ -33,13 +33,13 @@ export default function ProductsList() {
   const loading = useSelector(selectProductsLoading);
   const error = useSelector(selectProductsError);
   const viewingProduct = useSelector(selectViewingProduct);
-//   const cartItemCount = useSelector(selectCartItemCount);
+  //   const cartItemCount = useSelector(selectCartItemCount);
 
   // Состояние для пагинации
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   // Состояние для корзины
-//   const [isCartOpen, setIsCartOpen] = useState(false);
+  //   const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Вычисляем индексы для текущей страницы
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -48,8 +48,8 @@ export default function ProductsList() {
   const totalPages = Math.ceil(products.length / itemsPerPage);
 
   // Функции для открытия/закрытия корзины
-//   const openCart = () => setIsCartOpen(true);
-//   const closeCart = () => setIsCartOpen(false);
+  //   const openCart = () => setIsCartOpen(true);
+  //   const closeCart = () => setIsCartOpen(false);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -136,7 +136,7 @@ export default function ProductsList() {
 
   return (
     <div className='p-6'>
-      <div className='flex justify-between items-center mb-6'>
+      <div className='flex justify-between items-center mb-6 bg-radial-[at_25%_25%] from-white to-zinc-200 to-75% p-6'>
         <div>
           <h2 className='text-3xl font-bold text-gray-800'>Products</h2>
           <p className='text-gray-600 mt-1'>
@@ -197,8 +197,7 @@ export default function ProductsList() {
               return (
                 <div
                   key={product.id}
-                  className='bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer'
-                  onClick={() => handleView(product)}
+                  className='bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group'
                 >
                   <div className='relative'>
                     <img
@@ -209,27 +208,31 @@ export default function ProductsList() {
                         e.currentTarget.src = `${PlaceholderImage}`;
                       }}
                     />
-                    <div className='absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity'>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleView(product);
-                        }}
-                        className='bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full shadow-lg transition-colors'
-                        title='View product'
-                      >
-                        <ViewIcon className='w-4 h-4' />
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleDelete(product.id);
-                        }}
-                        className='bg-red-500 hover:bg-red-600 text-white p-2 rounded-full shadow-lg transition-colors'
-                        title='Delete product'
-                      >
-                        <DeleteIcon className='w-4 h-4' />
-                      </button>
+                    <div className='absolute top-3 right-2 flex gap-3 lg:opacity-0 group-hover:opacity-100 transition-opacity'>
+                      <Tooltip title='View product' arrow>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleView(product);
+                          }}
+                          className='bg-blue-500 hover:bg-blue-600 text-white p-1 rounded-full shadow-lg transition-colors cursor-pointer'
+                          title='View product'
+                        >
+                          <ViewIcon className='w-2 h-2' />
+                        </button>
+                      </Tooltip>
+                      <Tooltip title='Delete product' arrow>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDelete(product.id);
+                          }}
+                          className='bg-red-500 hover:bg-red-600 text-white p-1 rounded-full shadow-lg transition-colors cursor-pointer'
+                          title='Delete product'
+                        >
+                          <DeleteIcon className='w-2 h-2' />
+                        </button>
+                      </Tooltip>
                     </div>
                   </div>
 
@@ -261,15 +264,17 @@ export default function ProductsList() {
                         />
                         <span>({rating.count})</span>
                       </div>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleAddToCart(product);
-                        }}
-                        className='bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2 text-sm'
-                      >
-                        <CartIcon className='w-4 h-4' />
-                      </button>
+                      <Tooltip title='Add to cart' arrow>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleAddToCart(product);
+                          }}
+                          className='bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded-lg font-semibold transition-colors flex items-center gap-2 text-sm cursor-pointer'
+                        >
+                          <CartIcon className='w-4 h-4' />
+                        </button>
+                      </Tooltip>
                     </div>
                   </div>
                 </div>

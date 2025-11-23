@@ -1,3 +1,5 @@
+import logo from '../../assets/logo.svg';
+
 export default function Footer() {
   return (
     <footer className='bg-gray-800 text-white'>
@@ -5,10 +7,15 @@ export default function Footer() {
         <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
           {/* Company Info */}
           <div>
-            <h3 className='text-lg font-semibold mb-4'>RTK-App</h3>
+            <img
+              src={logo}
+              alt='RTK-App'
+              className='h-6 mb-4 filter'
+            />
             <p className='text-gray-400'>
-              Your one-stop shop for all your needs. Quality products, great
-              prices, and excellent service.
+              A modern React application demonstrating Redux Toolkit
+              capabilities. Built with TypeScript, Tailwind CSS, and
+              Material-UI.
             </p>
           </div>
 
