@@ -95,7 +95,7 @@ export default function CartPage() {
                 {cartItems.map((item) => (
                   <div
                     key={item.id}
-                    className='flex items-center gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200'
+                    className='flex max-lg:flex-wrap items-center gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200'
                   >
                     <img
                       src={item.image}
@@ -106,7 +106,7 @@ export default function CartPage() {
                       }}
                     />
 
-                    <div className='flex-1 min-w-0'>
+                    <div className='flex-1 min-w-10'>
                       <h3 className='font-semibold text-gray-800 text-lg truncate'>
                         {item.title}
                       </h3>
@@ -147,7 +147,7 @@ export default function CartPage() {
 
                     <button
                       onClick={() => handleRemoveItem(item.id)}
-                      className='p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors'
+                      className='align-end p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors'
                       title='Remove from cart'
                     >
                       <DeleteIcon className='w-6 h-6' />
@@ -178,14 +178,14 @@ export default function CartPage() {
                     className='px-6 py-3 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition-colors flex items-center gap-2'
                   >
                     <DeleteIcon className='w-5 h-5' />
-                    Clear Cart
+                    <span className='max-md:hidden'>Clear Cart</span>
                   </button>
                   <button
                     onClick={handleCheckout}
                     className='px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors'
                   >
                     <ShoppingCartCheckout className='w-5 h-5' />
-                    Proceed to Checkout
+                    <span className='max-md:hidden'>Proceed to Checkout</span>
                   </button>
                 </div>
               </div>
