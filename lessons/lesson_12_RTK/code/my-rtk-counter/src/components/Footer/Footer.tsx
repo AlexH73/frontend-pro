@@ -1,8 +1,17 @@
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../features/theme/themeSlice';
 import logo from '../../assets/logo.svg';
 
 export default function Footer() {
+  const theme = useSelector(selectTheme);
+
   return (
-    <footer className='bg-gray-800 text-white'>
+    <footer
+      className={`
+      transition-colors duration-300
+      ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-800 text-white'}
+    `}
+    >
       <div className='max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8'>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
           {/* Company Info */}
@@ -10,7 +19,9 @@ export default function Footer() {
             <img
               src={logo}
               alt='RTK-App'
-              className='h-6 mb-4 filter'
+              className={`h-6 mb-4 ${
+                theme === 'dark' ? 'filter brightness-80 invert-20' : ''
+              }`}
             />
             <p className='text-gray-400'>
               A modern React application demonstrating Redux Toolkit

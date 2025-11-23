@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectCartItemCount } from '../../features/cart/cartSlice';
+import { selectTheme } from '../../features/theme/themeSlice';
 import {
   ShoppingCart as CartIcon,
   Menu as MenuIcon,
@@ -9,10 +10,12 @@ import {
 } from '@mui/icons-material';
 import logo from "../../assets/logo.svg"
 import { Tooltip } from '@mui/material';
+import ThemeToggle from '../../features/theme/ThemeToggle';
 
 export default function NavBar() {
   const location = useLocation();
   const cartItemCount = useSelector(selectCartItemCount);
+  const theme = useSelector(selectTheme);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -75,7 +78,13 @@ export default function NavBar() {
   }, [location]);
 
   return (
-    <nav className='bg-white shadow-lg border-b border-gray-200 sticky top-0 z-50'>
+    <nav
+      className={`transition-colors duration-300 ${
+        theme === 'dark'
+          ? 'bg-gray-800 border-gray-700 text-white'
+          : 'bg-white border-gray-200 text-gray-900'
+      } shadow-lg border-b sticky top-0 z-50`}
+    >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex justify-between items-center h-16'>
           {/* Logo */}
@@ -93,7 +102,11 @@ export default function NavBar() {
                 to={item.href}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   item.current
-                    ? 'text-blue-600 bg-blue-50'
+                    ? theme === 'dark'
+                      ? 'text-blue-400 bg-blue-900 bg-opacity-50'
+                      : 'text-blue-600 bg-blue-50'
+                    : theme === 'dark'
+                    ? 'text-gray-300 hover:text-blue-400 hover:bg-gray-700'
                     : 'text-gray-700 hover:text-blue-600 hover:bg-gray-100'
                 }`}
               >
@@ -102,12 +115,21 @@ export default function NavBar() {
             ))}
           </div>
 
-          {/* Cart Icon */}
+          {/* Right side icons */}
           <div className='flex items-center space-x-4'>
+            {/* Theme Toggle */}
+            <ThemeToggle />
+
+            {/* Cart Icon */}
             <Tooltip title='Go to cart' arrow>
               <Link
                 to='/cart'
-                className='relative p-2 text-gray-700 hover:text-blue-600 transition-colors'
+                className={`relative p-2 rounded-md transition-colors
+                  ${
+                    theme === 'dark'
+                      ? 'text-gray-300 hover:text-blue-400 hover:bg-gray-700'
+                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-100'
+                  } focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50`}
               >
                 <CartIcon className='w-6 h-6' />
                 {cartItemCount > 0 && (
@@ -120,20 +142,28 @@ export default function NavBar() {
 
             {/* Mobile menu button */}
             <div className='md:hidden'>
-              <button
-                ref={menuButtonRef}
-                type='button'
-                onClick={toggleMobileMenu}
-                className='bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors'
-                aria-expanded='false'
-              >
-                <span className='sr-only'>Open main menu</span>
-                {isMobileMenuOpen ? (
-                  <CloseIcon className='block h-6 w-6' />
-                ) : (
-                  <MenuIcon className='block h-6 w-6' />
-                )}
-              </button>
+              <Tooltip title='Open menu' arrow>
+                <button
+                  ref={menuButtonRef}
+                  type='button'
+                  onClick={toggleMobileMenu}
+                  className={`inline-flex items-center justify-center p-2 rounded-md transition-colors
+                  ${
+                    theme === 'dark'
+                      ? 'text-gray-300 hover:text-blue-400 hover:bg-gray-700'
+                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-100'
+                  }
+                  focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50`}
+                  aria-expanded='false'
+                >
+                  <span className='sr-only'>Open main menu</span>
+                  {isMobileMenuOpen ? (
+                    <CloseIcon className='block h-6 w-6' />
+                  ) : (
+                    <MenuIcon className='block h-6 w-6' />
+                  )}
+                </button>
+              </Tooltip>
             </div>
           </div>
         </div>
@@ -143,9 +173,17 @@ export default function NavBar() {
       {isMobileMenuOpen && (
         <div
           ref={mobileMenuRef}
-          className='md:hidden absolute top-16 left-0 right-0 z-50 bg-white shadow-lg border-b border-gray-200'
+          className={`md:hidden absolute top-16 left-0 right-0 z-50 shadow-lg border-b transition-colors duration-300 ${
+            theme === 'dark'
+              ? 'bg-gray-800 border-gray-700'
+              : 'bg-white border-gray-200'
+          }`}
         >
-          <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white'>
+          <div
+            className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 transition-colors duration-300 ${
+              theme === 'dark' ? 'bg-gray-800' : 'bg-white'
+            }`}
+          >
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -153,7 +191,11 @@ export default function NavBar() {
                 onClick={closeMobileMenu}
                 className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                   item.current
-                    ? 'text-blue-600 bg-blue-100'
+                    ? theme === 'dark'
+                      ? 'text-blue-400 bg-blue-900 bg-opacity-50'
+                      : 'text-blue-600 bg-blue-100'
+                    : theme === 'dark'
+                    ? 'text-gray-300 hover:text-blue-400 hover:bg-gray-700'
                     : 'text-gray-700 hover:text-blue-600 hover:bg-gray-100'
                 }`}
               >

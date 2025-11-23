@@ -3,6 +3,38 @@
 body {
   background-color: rgba(128, 128, 128, 0.24);
   background-image: url("./assets/bg.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: background-color 0.3s ease, background-image 0.3s ease;
+}
+
+html.dark body {
+  background-color: rgba(17, 16, 16, 0.233);
+  background-image: url("./assets/bg-dark.svg");
+}
+
+/* Гарантируем плавные переходы для темы */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Стили для скроллбара в темной теме */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #6B7280;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
 }
 
 /* :root {
