@@ -47,18 +47,18 @@ export default function CartPage() {
     <div className='min-h-screen bg-gray-50 py-8'>
       <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Header */}
-        <div className='flex items-center justify-between mb-8'>
-          <div className='flex items-center gap-4'>
+        <div className='mb-8  bg-radial-[at_25%_25%] from-white to-zinc-200 to-75% p-6'>
+          <div className='flex max-md:flex-col items-center justify-between gap-4'>
             <Link
               to='/products'
               className='flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors'
             >
-              <ArrowBackIcon className='w-5 h-5' />
+              <ArrowBackIcon className='w-5 h-5 max-sm:text-xs' />
               Back to Products
             </Link>
             <div className='flex items-center gap-3'>
               <ShoppingCartIcon className='w-8 h-8 text-blue-500' />
-              <h1 className='text-3xl font-bold text-gray-900'>
+              <h1 className='text-3xl max-lg:text-xl max-sm:text-xs font-bold text-gray-900'>
                 Shopping Cart
               </h1>
               {totalQuantity > 0 && (
