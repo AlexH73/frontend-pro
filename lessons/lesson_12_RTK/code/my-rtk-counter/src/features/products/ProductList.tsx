@@ -25,6 +25,7 @@ import {
 } from '@mui/icons-material';
 import ViewProductModal from './ViewProductModal';
 import PlaceholderImage from '../../../../../../../assets/images/placeholder.jpg';
+import { selectTheme } from '../../features/theme/themeSlice';
 // import Cart from '../cart/Cart';
 
 export default function ProductsList() {
@@ -34,6 +35,9 @@ export default function ProductsList() {
   const error = useSelector(selectProductsError);
   const viewingProduct = useSelector(selectViewingProduct);
   //   const cartItemCount = useSelector(selectCartItemCount);
+
+  // Состояние для темы
+  const theme = useSelector(selectTheme);
 
   // Состояние для пагинации
   const [currentPage, setCurrentPage] = useState(1);
@@ -107,9 +111,19 @@ export default function ProductsList() {
 
   if (loading) {
     return (
-      <div className='flex flex-col items-center justify-center min-h-96'>
+      <div
+        className={`flex flex-col items-center justify-center min-h-96 transition-colors duration-300 ${
+          theme === 'dark' ? 'bg-gray-900' : 'bg-white'
+        }`}
+      >
         <CircularProgress size='4rem' />
-        <p className='mt-4 text-gray-600 text-lg'>Loading products...</p>
+        <p
+          className={`mt-4 text-lg ${
+            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+          }`}
+        >
+          Loading products...
+        </p>
       </div>
     );
   }
@@ -117,12 +131,28 @@ export default function ProductsList() {
   if (error) {
     return (
       <div className='max-w-2xl mx-auto mt-8 p-6'>
-        <div className='bg-red-50 border border-red-200 rounded-xl p-6 text-center'>
+        <div
+          className={`rounded-xl p-6 text-center transition-colors duration-300 ${
+            theme === 'dark'
+              ? 'bg-red-900 border-red-700'
+              : 'bg-red-50 border-red-200'
+          } border`}
+        >
           <div className='text-red-600 text-6xl mb-4'>⚠️</div>
-          <h3 className='text-xl font-bold text-red-800 mb-2'>
+          <h3
+            className={`text-xl font-bold mb-2 ${
+              theme === 'dark' ? 'text-red-300' : 'text-red-800'
+            }`}
+          >
             Error Loading Products
           </h3>
-          <p className='text-red-600 mb-4'>{error}</p>
+          <p
+            className={`mb-4 ${
+              theme === 'dark' ? 'text-red-400' : 'text-red-600'
+            }`}
+          >
+            {error}
+          </p>
           <button
             onClick={handleRetry}
             className='bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors'
@@ -135,11 +165,31 @@ export default function ProductsList() {
   }
 
   return (
-    <div className='p-6'>
-      <div className='flex justify-between items-center mb-6 bg-radial-[at_25%_25%] from-white to-zinc-200 to-75% p-6'>
+    <div
+      className={`p-6 min-h-screen transition-colors duration-300 ${
+        theme === 'dark' ? 'bg-gray-900' : 'bg-white'
+      }`}
+    >
+      <div
+        className={`flex justify-between items-center mb-6 p-6 rounded-lg transition-colors duration-300 ${
+          theme === 'dark'
+            ? 'bg-gradient-to-br from-gray-800 to-gray-700'
+            : 'bg-gradient-to-br from-white to-zinc-200'
+        }`}
+      >
         <div>
-          <h2 className='text-3xl font-bold text-gray-800'>Products</h2>
-          <p className='text-gray-600 mt-1'>
+          <h2
+            className={`text-3xl font-bold transition-colors duration-300 ${
+              theme === 'dark' ? 'text-white' : 'text-gray-800'
+            }`}
+          >
+            Products
+          </h2>
+          <p
+            className={`mt-1 transition-colors duration-300 ${
+              theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+            }`}
+          >
             Page {currentPage} of {totalPages} • Showing{' '}
             {currentProducts.length} of {products.length} products
           </p>
@@ -148,7 +198,12 @@ export default function ProductsList() {
         {/* Селектор количества элементов на странице */}
         <div className='flex items-center gap-4'>
           <div className='flex items-center gap-2'>
-            <label htmlFor='itemsPerPage' className='text-sm text-gray-600'>
+            <label
+              htmlFor='itemsPerPage'
+              className={`text-sm transition-colors duration-300 ${
+                theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+              }`}
+            >
               Items per page:
             </label>
             <select
@@ -158,7 +213,11 @@ export default function ProductsList() {
                 setItemsPerPage(Number(e.target.value));
                 setCurrentPage(1); // Сбрасываем на первую страницу при изменении количества
               }}
-              className='border border-gray-300 rounded-lg px-3 py-1 text-sm'
+              className={`rounded-lg px-3 py-1 text-sm border transition-colors duration-300 ${
+                theme === 'dark'
+                  ? 'bg-gray-700 border-gray-600 text-white'
+                  : 'bg-white border-gray-300 text-gray-900'
+              }`}
             >
               <option value='4'>4</option>
               <option value='8'>8</option>
@@ -185,8 +244,16 @@ export default function ProductsList() {
       {products.length === 0 ? (
         <div className='text-center py-12'>
           <div className='text-6xl mb-4'>📦</div>
-          <h3 className='text-xl font-bold text-gray-700 mb-2'>No Products</h3>
-          <p className='text-gray-500'>No products available</p>
+          <h3
+            className={`text-xl font-bold mb-2 transition-colors duration-300 ${
+              theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+            }`}
+          >
+            No Products
+          </h3>
+          <p className={theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}>
+            No products available
+          </p>
         </div>
       ) : (
         <>
@@ -197,13 +264,17 @@ export default function ProductsList() {
               return (
                 <div
                   key={product.id}
-                  className='bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group'
+                  className={`rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group border ${
+                    theme === 'dark'
+                      ? 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                      : 'bg-white border-gray-200 hover:border-gray-300'
+                  }`}
                 >
                   <div className='relative'>
                     <img
                       src={product.image}
                       alt={product.title}
-                      className='w-full h-48 object-contain p-4 bg-white'
+                      className='w-full h-48 object-contain p-4'
                       onError={(e) => {
                         e.currentTarget.src = `${PlaceholderImage}`;
                       }}
@@ -238,24 +309,42 @@ export default function ProductsList() {
 
                   <div className='p-4 flex-grow flex flex-col'>
                     <div className='flex-grow'>
-                      <h3 className='font-semibold text-gray-800 text-lg mb-2 line-clamp-2'>
+                      <h3
+                        className={`font-semibold text-lg mb-2 line-clamp-2 transition-colors duration-300 ${
+                          theme === 'dark' ? 'text-white' : 'text-gray-800'
+                        }`}
+                      >
                         {product.title}
                       </h3>
-                      <p className='text-gray-600 text-sm mb-3 line-clamp-2'>
+                      <p
+                        className={`text-sm mb-3 line-clamp-2 transition-colors duration-300 ${
+                          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                        }`}
+                      >
                         {product.description}
                       </p>
                       <div className='flex items-center justify-between mb-3'>
                         <span className='text-2xl font-bold text-green-600'>
                           ${product.price}
                         </span>
-                        <span className='bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded capitalize'>
+                        <span
+                          className={`text-xs font-medium px-2.5 py-0.5 rounded capitalize transition-colors duration-300 ${
+                            theme === 'dark'
+                              ? 'bg-blue-900 text-blue-200'
+                              : 'bg-blue-100 text-blue-800'
+                          }`}
+                        >
                           {product.category}
                         </span>
                       </div>
                     </div>
 
                     <div className='flex items-center justify-between text-sm text-gray-500'>
-                      <div className='flex items-center gap-1'>
+                      <div
+                        className={`flex items-center gap-1 transition-colors duration-300 ${
+                          theme === 'dark' ? 'text-gray-300' : 'text-gray-500'
+                        }`}
+                      >
                         <Rating
                           value={rating.rate}
                           precision={0.1}
@@ -288,7 +377,11 @@ export default function ProductsList() {
               <button
                 onClick={prevPage}
                 disabled={currentPage === 1}
-                className='flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors'
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed ${
+                  theme === 'dark'
+                    ? 'border-gray-600 hover:bg-gray-700 text-white'
+                    : 'border-gray-300 hover:bg-gray-50 text-gray-700'
+                }`}
               >
                 <ChevronLeftIcon className='w-4 h-4' />
                 Previous
@@ -300,9 +393,11 @@ export default function ProductsList() {
                     <button
                       key={page}
                       onClick={() => goToPage(page)}
-                      className={`w-8 h-8 rounded-lg transition-colors ${
+                      className={`w-8 h-8 rounded-lg transition-colors duration-300 ${
                         currentPage === page
                           ? 'bg-blue-500 text-white'
+                          : theme === 'dark'
+                          ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       }`}
                     >
@@ -315,7 +410,11 @@ export default function ProductsList() {
               <button
                 onClick={nextPage}
                 disabled={currentPage === totalPages}
-                className='flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors'
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed ${
+                  theme === "dark"
+                    ? 'border-gray-600 hover:bg-gray-700 text-white'
+                    : 'border-gray-300 hover:bg-gray-50 text-gray-700'
+                }`}
               >
                 Next
                 <ChevronRightIcon className='w-4 h-4' />
