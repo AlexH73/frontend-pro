@@ -2,6 +2,7 @@
 import { Navigate } from 'react-router-dom'
 import { useAppSelector } from '../../app/hooks'
 import { selectUser } from '../../features/auth/selectors'
+import type { JSX } from 'react'
 
 interface Props {
 	outlet: JSX.Element
