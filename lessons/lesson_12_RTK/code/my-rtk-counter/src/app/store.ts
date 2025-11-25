@@ -5,6 +5,8 @@ import usersReducer from '../features/users/usersSlice';
 import productsReducer from '../features/products/productsSlice';
 import cartReducer from '../features/cart/cartSlice';
 import themeReducer from '../features/theme/themeSlice';
+import authSlice from '../features/auth/authSlice';
+import postsSlice from '../features/posts/postsSlice';
 
 // -> Импортируем configureStore - простой способ создать store.
 export const store = configureStore({
@@ -15,6 +17,8 @@ export const store = configureStore({
     products: productsReducer,
     cart: cartReducer,
     theme: themeReducer,
+    auth: authSlice,
+    posts: postsSlice,
   },
 });
 

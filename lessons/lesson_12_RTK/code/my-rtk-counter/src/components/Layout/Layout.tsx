@@ -3,6 +3,7 @@ import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import { selectTheme } from '../../features/theme/themeSlice';
 import { useSelector } from 'react-redux';
+import Header from '../Header/Header';
 
 interface LayoutProps {
   children: JSX.Element;
@@ -27,6 +28,7 @@ export default function Layout({ children }: LayoutProps) {
         theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'
       }`}
     >
+      <Header />
       <NavBar />
       <main className='flex-1'>{children}</main>
       <Footer />

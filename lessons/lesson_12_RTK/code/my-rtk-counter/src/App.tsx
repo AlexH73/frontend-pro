@@ -8,6 +8,8 @@ import Sandwich from './features/sandwich/Sandwich';
 import Counter from './features/counter/Counter';
 import CartPage from './features/cart/CartPage';
 import './App.css';
+import LoginPage from './features/auth/LoginPage';
+import ProfilePage from './features/auth/ProfilePage';
 
 function App(): JSX.Element {
   return (
@@ -19,6 +21,8 @@ function App(): JSX.Element {
         <Route path='/sandwich' element={<Sandwich />} />
         <Route path='/counter' element={<Counter />} />
         <Route path='/cart' element={<CartPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/profile' element={<ProfilePage />} />
         {/* 404 Route */}
         <Route
           path='*'
