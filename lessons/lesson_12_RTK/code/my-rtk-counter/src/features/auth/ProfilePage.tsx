@@ -71,7 +71,13 @@ export default function ProfilePage(): JSX.Element {
               : 'bg-gradient-to-r from-blue-600 to-indigo-600'
           }`}
         >
-          <div className='absolute inset-0 bg-black bg-opacity-20'></div>
+          <div
+            className={`absolute inset-0 bg-opacity-20 ${
+              theme === 'dark'
+                ? 'bg-gradient-to-l from-black to-black-200'
+                : 'bg-gradient-to-l from-gray-600 to-gray-200'
+            }`}
+          ></div>
           <div className='relative p-8 md:p-12'>
             <div className='flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8'>
               {/* Avatar */}
@@ -92,14 +98,14 @@ export default function ProfilePage(): JSX.Element {
               <div className='text-center md:text-left flex-1'>
                 <h1
                   className={`text-4xl md:text-5xl font-bold mb-2 transition-colors duration-300 ${
-                    theme === 'dark' ? 'text-white' : 'text-white'
+                    theme === 'dark' ? 'text-white' : 'text-gray-600'
                   }`}
                 >
                   {user.firstName} {user.lastName}
                 </h1>
                 <p
                   className={`text-xl mb-4 transition-colors duration-300 ${
-                    theme === 'dark' ? 'text-blue-200' : 'text-blue-100'
+                    theme === 'dark' ? 'text-blue-200' : 'text-blue-800'
                   }`}
                 >
                   @{user.username}
@@ -109,7 +115,7 @@ export default function ProfilePage(): JSX.Element {
                     className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300 ${
                       theme === 'dark'
                         ? 'bg-blue-900 bg-opacity-50 text-blue-200'
-                        : 'bg-white bg-opacity-20 text-white'
+                        : 'bg-blue-400 bg-opacity-20 text-white'
                     }`}
                   >
                     <EmailIcon className='w-4 h-4 mr-1' />
@@ -119,7 +125,7 @@ export default function ProfilePage(): JSX.Element {
                     className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300 ${
                       theme === 'dark'
                         ? 'bg-green-900 bg-opacity-50 text-green-200'
-                        : 'bg-white bg-opacity-20 text-white'
+                        : 'bg-green-500 bg-opacity-20 text-white'
                     }`}
                   >
                     {getGenderIcon()}
