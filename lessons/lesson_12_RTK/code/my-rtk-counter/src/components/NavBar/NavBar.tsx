@@ -20,6 +20,7 @@ export default function NavBar() {
       current: location.pathname === '/products',
     },
     { name: 'Users', href: '/users', current: location.pathname === '/users' },
+    { name: 'Forum', href: '/posts', current: location.pathname === '/posts' },
     {
       name: 'Sandwich',
       href: '/sandwich',

@@ -5,6 +5,8 @@ import Layout from './components/Layout/Layout';
 import { CircularProgress } from '@mui/material';
 import { selectTheme } from './features/theme/themeSlice';
 import './App.css';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import PostsList from './features/posts/PostsList';
 
 const Home = lazy(() => import('./pages/Home/Home'));
 const ProductsList = lazy(() => import('./features/products/ProductList'));
@@ -37,6 +39,10 @@ function App(): JSX.Element {
         <Route path='/' element={<Home />} />
         <Route path='/products' element={<ProductsList />} />
         <Route path='/users' element={<UsersList />} />
+        <Route
+          path='posts'
+          element={<ProtectedRoute outlet={<PostsList />} />}
+        />
         <Route path='/sandwich' element={<Sandwich />} />
         <Route path='/counter' element={<Counter />} />
         <Route path='/cart' element={<CartPage />} />
