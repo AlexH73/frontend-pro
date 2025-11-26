@@ -6,7 +6,6 @@ import { selectTheme } from '../theme/themeSlice';
 import {
   TextField,
   Button,
-  Box,
   Dialog,
   DialogActions,
   DialogContent,

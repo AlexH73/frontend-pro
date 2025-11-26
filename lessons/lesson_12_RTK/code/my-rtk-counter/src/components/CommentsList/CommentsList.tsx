@@ -13,7 +13,7 @@ const mockComments = [
 export default function CommentsList(props: { postId: number }): JSX.Element {
   const theme = useSelector(selectTheme);
   const { postId } = props;
-  const [comments, setComments] = useState<Comment[]>([]);
+  const [, setComments] = useState<Comment[]>([]);
 
   async function loadComments(): Promise<void> {
     const res = await fetch(`https://dummyjson.com/comments/post/${postId}`);
