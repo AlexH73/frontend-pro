@@ -7,4 +7,6 @@ export default interface User {
   gender: string;
   image: string;
   token: string;
+  accessToken: string;
+  refreshToken?: string;
 }

@@ -12,6 +12,10 @@ export const login = createAsyncThunk(
   'auth/login',
   async ({ username, password }: Credentials) => {
     const response = await api.login(username, password);
+
+    if ('message' in response) {
+      throw new Error(response.message);
+    }
     return response;
   }
 );
@@ -47,12 +51,12 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        if ('message' in action.payload) {
-          state.error = action.payload.message;
-          state.user = undefined;
-        } else {
+        if (action.payload && 'accessToken' in action.payload) {
           state.user = action.payload;
           state.error = undefined;
+        } else {
+          state.error = 'Invalid response from server';
+          state.user = undefined;
         }
         // в случае успешного входа уберем ошибку - если она была
       })

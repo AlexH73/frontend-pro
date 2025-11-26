@@ -1,4 +1,4 @@
-import { useEffect, type JSX } from 'react';
+import { useEffect, type ReactNode, type JSX } from 'react';
 import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import { selectTheme } from '../../features/theme/themeSlice';
@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux';
 import Header from '../Header/Header';
 
 interface LayoutProps {
-  children: JSX.Element;
+  children: ReactNode;
 }
 
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({ children }: LayoutProps): JSX.Element {
   const theme = useSelector(selectTheme);
 
   useEffect(() => {

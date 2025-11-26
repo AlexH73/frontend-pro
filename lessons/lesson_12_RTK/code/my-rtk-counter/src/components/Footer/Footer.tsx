@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <footer
-      className={`
+      className={`shadow-lg border-t border-gray-700
       transition-colors duration-300
       ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-800 text-white'}
     `}

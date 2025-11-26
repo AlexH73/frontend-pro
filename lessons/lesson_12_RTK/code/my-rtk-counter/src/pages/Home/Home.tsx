@@ -6,6 +6,7 @@ import {
   AddCircle,
   ArrowForward,
 } from '@mui/icons-material';
+import Links from '@mui/material/Link';
 import { selectTheme } from '../../features/theme/themeSlice';
 import { useSelector } from 'react-redux';
 
@@ -70,8 +71,34 @@ export default function Home() {
             } mb-8 max-w-3xl mx-auto`}
           >
             Discover amazing products, manage users, and explore interactive
-            features in our modern React application built with Redux Toolkit,
-            Material UI, and Tailwind CSS.
+            features in our modern React application built with{' '}
+            <Links
+              href='https://redux-toolkit.js.org/introduction/getting-started'
+              underline='hover'
+              rel='noreferrer'
+              target='_blank'
+            >
+              Redux Toolkit
+            </Links>
+            ,{' '}
+            <Links
+              href='https://mui.com/material-ui/getting-started/'
+              underline='hover'
+              rel='noreferrer'
+              target='_blank'
+            >
+              Material UI
+            </Links>
+            , and{' '}
+            <Links
+              href='https://tailwindcss.com/docs/installation/using-vite'
+              underline='hover'
+              rel='noreferrer'
+              target='_blank'
+            >
+              Tailwind CSS
+            </Links>
+            .
           </p>
           <div className='flex flex-col sm:flex-row gap-4 justify-center'>
             <Link

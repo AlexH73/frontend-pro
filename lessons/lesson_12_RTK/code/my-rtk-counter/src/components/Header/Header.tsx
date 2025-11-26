@@ -92,12 +92,16 @@ export default function Header() {
                       }`}
                     >
                       <img
-                        src={user.image}
-                        alt={user.firstName}
+                        src={user.image || '/default-avatar.png'}
+                        alt={user.firstName || 'User'}
                         className='w-6 h-6 rounded-full'
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = 'https://via.placeholder.com/24?text=U';
+                        }}
                       />
                       <span className='hidden sm:block text-sm font-medium'>
-                        {user.firstName}
+                        {user.firstName || user.username}
                       </span>
                     </Link>
                   </Tooltip>
