@@ -17,6 +17,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import ThemeToggle from '../../features/theme/ThemeToggle';
 import { useAppDispatch } from '../../app/hooks';
+import PlaceholderImage from '../../../../../../../assets/images/placeholder.jpg';
 
 export default function Header() {
   const theme = useSelector(selectTheme);
@@ -25,7 +26,6 @@ export default function Header() {
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  
 
   const handleLogout = () => {
     dispatch(logout());
@@ -92,12 +92,12 @@ export default function Header() {
                       }`}
                     >
                       <img
-                        src={user.image || '/default-avatar.png'}
+                        src={user.image || `${PlaceholderImage}`}
                         alt={user.firstName || 'User'}
                         className='w-6 h-6 rounded-full'
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
-                          target.src = 'https://via.placeholder.com/24?text=U';
+                          target.src = `${PlaceholderImage}`;
                         }}
                       />
                       <span className='hidden sm:block text-sm font-medium'>

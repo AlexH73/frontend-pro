@@ -17,6 +17,7 @@ import {
 } from '@mui/icons-material';
 import { useAppDispatch } from '../../app/hooks';
 import { logout } from './authSlice';
+import PlaceholderImage from '../../../../../../../assets/images/placeholder.jpg';
 
 export default function ProfilePage(): JSX.Element {
   const user = useAppSelector(selectUser);
@@ -78,11 +79,11 @@ export default function ProfilePage(): JSX.Element {
                 <div className='absolute -inset-2 bg-white bg-opacity-20 rounded-full blur'></div>
                 <img
                   className='relative h-32 w-32 rounded-full border-4 border-white shadow-2xl'
-                  src={user.image || '/default-avatar.png'}
+                  src={user.image || `${PlaceholderImage}`}
                   alt={`${user.firstName} ${user.lastName}`}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.src = 'https://via.placeholder.com/128?text=User';
+                    target.src = `${PlaceholderImage}`;
                   }}
                 />
               </div>

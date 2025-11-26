@@ -29,7 +29,7 @@ const ProfilePage = lazy(() => import('./features/auth/ProfilePage'));
 
 function App(): JSX.Element {
   const theme = useSelector(selectTheme);
-  
+
   return (
     <Layout>
       <Suspense fallback={<CircularProgress />} />
