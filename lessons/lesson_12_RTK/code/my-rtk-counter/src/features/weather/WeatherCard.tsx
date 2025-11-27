@@ -1,10 +1,10 @@
-// features/weather/components/WeatherCard.tsx
 import { type JSX } from 'react';
 import { useSelector } from 'react-redux';
 import { selectTheme } from '../theme/themeSlice';
 import { selectWeatherData } from './selectors';
 import { getWeatherIconUrl, formatTime, getWindDirection } from './api';
 import {
+  North as NorthIcon,
   LocationOn as LocationIcon,
   Thermostat as TempIcon,
   Air as WindIcon,
@@ -15,6 +15,7 @@ import {
   Compress as PressureIcon,
   Navigation as WindDirectionIcon,
 } from '@mui/icons-material';
+import { amber, blue, orange, purple, red, yellow } from '@mui/material/colors';
 
 export default function WeatherCard(): JSX.Element {
   const theme = useSelector(selectTheme);
@@ -40,7 +41,7 @@ export default function WeatherCard(): JSX.Element {
   const getCardGradient = (): string => {
     return theme === 'dark'
       ? 'bg-gradient-to-br from-gray-800 via-gray-900 to-blue-900'
-      : 'bg-gradient-to-br from-gray-300 via-gray-400 to-blue-400';
+      : 'bg-gradient-to-br from-gray-100 via-gray-200 to-blue-300';
   };
 
   return (
@@ -71,7 +72,6 @@ export default function WeatherCard(): JSX.Element {
           <span className='text-lg capitalize'>{weatherData.description}</span>
         </div>
       </div>
-
       {/* Main Content */}
       <div className='p-6'>
         {/* Temperature - Main Highlight */}
@@ -98,7 +98,7 @@ export default function WeatherCard(): JSX.Element {
           {/* Wind Speed */}
           <div className='bg-opacity-50 backdrop-blur-sm rounded-xl p-3 border border-white border-opacity-30'>
             <div className='flex items-center gap-2 mb-1'>
-              <WindIcon className='w-5 h-5' />
+              <WindIcon className='w-5 h-5' sx={{ color: yellow[800] }} />
               <span className='font-semibold'>Wind Speed</span>
             </div>
             <div className='text-lg font-bold'>{weatherData.windSpeed} m/s</div>
@@ -107,18 +107,29 @@ export default function WeatherCard(): JSX.Element {
           {/* Wind Direction */}
           <div className='bg-opacity-20 backdrop-blur-sm rounded-xl p-3 border border-white border-opacity-30'>
             <div className='flex items-center gap-2 mb-1'>
-              <WindDirectionIcon className='w-5 h-5' />
+              <WindDirectionIcon className='w-5 h-5' sx={{ color: red[300] }} />
               <span className='font-semibold'>Wind Direction</span>
             </div>
             <div className='text-lg font-bold'>
+              <NorthIcon
+                className='w-5 h-5 mr-2'
+                sx={{ color: red[800] }}
+                style={{
+                  transform: `rotate(${weatherData.windDirection}deg)`,
+                  transition: 'transform 0.5s ease-out',
+                }}
+              />
               {getWindDirection(weatherData.windDirection)}
+              <div className='text-xs text-right'>
+                {weatherData.windDirection}°
+              </div>
             </div>
           </div>
 
           {/* Humidity */}
           <div className='bg-opacity-20 backdrop-blur-sm rounded-xl p-3 border border-white border-opacity-30'>
             <div className='flex items-center gap-2 mb-1'>
-              <HumidityIcon className='w-5 h-5' />
+              <HumidityIcon className='w-5 h-5' sx={{ color: blue[800] }} />
               <span className='font-semibold'>Humidity</span>
             </div>
             <div className='text-lg font-bold'>{weatherData.humidity}%</div>
@@ -127,7 +138,7 @@ export default function WeatherCard(): JSX.Element {
           {/* Pressure */}
           <div className='bg-opacity-20 backdrop-blur-sm rounded-xl p-3 border border-white border-opacity-30'>
             <div className='flex items-center gap-2 mb-1'>
-              <PressureIcon className='w-5 h-5' />
+              <PressureIcon className='w-5 h-5' sx={{ color: purple[800] }} />
               <span className='font-semibold'>Pressure</span>
             </div>
             <div className='text-lg font-bold'>{weatherData.pressure} hPa</div>
@@ -138,7 +149,10 @@ export default function WeatherCard(): JSX.Element {
         <div className='grid grid-cols-2 gap-4'>
           {/* Visibility */}
           <div className='text-center p-3'>
-            <VisibilityIcon className='w-6 h-6 mx-auto mb-2 opacity-80' />
+            <VisibilityIcon
+              className='w-6 h-6 mx-auto mb-2 opacity-80'
+              sx={{ color: blue[400] }}
+            />
             <div className='text-sm opacity-90'>Visibility</div>
             <div className='text-lg font-bold'>{weatherData.visibility} km</div>
           </div>
@@ -146,7 +160,10 @@ export default function WeatherCard(): JSX.Element {
           {/* Wind Gust */}
           {weatherData.windGust > 0 && (
             <div className='text-center p-3'>
-              <GustIcon className='w-6 h-6 mx-auto mb-2 opacity-80' />
+              <GustIcon
+                className='w-6 h-6 mx-auto mb-2 opacity-80'
+                sx={{ color: amber[400] }}
+              />
               <div className='text-sm opacity-90'>Wind Gust</div>
               <div className='text-lg font-bold'>
                 {weatherData.windGust} m/s
@@ -156,7 +173,10 @@ export default function WeatherCard(): JSX.Element {
 
           {/* Sunrise */}
           <div className='text-center p-3'>
-            <SunsetIcon className='w-6 h-6 mx-auto mb-2 opacity-80' />
+            <SunsetIcon
+              className='w-6 h-6 mx-auto mb-2 opacity-80'
+              sx={{ color: orange[200] }}
+            />
             <div className='text-sm opacity-90'>Sunrise</div>
             <div className='text-lg font-bold'>
               {formatTime(weatherData.sunrise)}
@@ -165,7 +185,10 @@ export default function WeatherCard(): JSX.Element {
 
           {/* Sunset */}
           <div className='text-center p-3'>
-            <SunsetIcon className='w-6 h-6 mx-auto mb-2 opacity-80 transform rotate-180' />
+            <SunsetIcon
+              className='w-6 h-6 mx-auto mb-2 opacity-80 transform rotate-180'
+              sx={{ color: orange[800] }}
+            />
             <div className='text-sm opacity-90'>Sunset</div>
             <div className='text-lg font-bold'>
               {formatTime(weatherData.sunset)}
