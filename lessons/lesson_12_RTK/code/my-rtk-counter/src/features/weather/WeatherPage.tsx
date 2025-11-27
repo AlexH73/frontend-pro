@@ -41,7 +41,7 @@ export default function WeatherPage(): JSX.Element {
 
   const getBackgroundClass = (): string => {
     return theme === 'dark'
-      ? 'bg-gray-900  bg-[url(https://alexh73.github.io/frontend_cohort57/assets/weather-app/images/pic2.png)] bg-cover bg-no-repeat bg-center'
+      ? 'bg-gradient-to-br from-black/70 to-cyan-900/30'
       : 'bg-gradient-to-br from-blue-50 to-cyan-100';
   };
 
