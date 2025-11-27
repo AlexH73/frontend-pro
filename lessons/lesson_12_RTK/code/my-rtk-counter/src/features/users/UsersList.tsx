@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CircularProgress } from '@mui/material';
-import {
-  ExpandMore as ExpandMoreIcon,
-} from '@mui/icons-material';
+import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 
 import {
   fetchUsers,
@@ -12,12 +10,14 @@ import {
   selectError,
 } from './usersSlice';
 import type { AppDispatch } from '../../app/store';
+import { selectTheme } from '../../features/theme/themeSlice';
 
 export const UsersList = () => {
   const dispatch = useDispatch<AppDispatch>();
   const users = useSelector(selectUsers);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
+  const theme = useSelector(selectTheme);
 
   // Состояние для ограничения количества карточек
   const [displayLimit, setDisplayLimit] = useState(4);
@@ -53,15 +53,25 @@ export const UsersList = () => {
 
   if (loading) {
     return (
-      <div className='flex justify-center items-center mt-16'>
-        <CircularProgress size='3rem' />
+      <div
+        className={`flex flex-col items-center justify-center min-h-96 transition-colors duration-300 ${
+          theme === 'dark' ? 'bg-gray-900' : 'bg-white'
+        }`}
+      >
+        <CircularProgress size='4rem' />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className='max-w-2xl mx-auto mt-8 p-6'>
+      <div
+        className={`rounded-xl p-6 text-center transition-colors duration-300 ${
+          theme === 'dark'
+            ? 'bg-red-900 border-red-700'
+            : 'bg-red-50 border-red-200'
+        } border`}
+      >
         <div className='bg-red-50 border border-red-200 rounded-xl p-6 text-center'>
           <div className='text-red-600 text-6xl mb-4'>⚠️</div>
           <h3 className='text-xl font-bold text-red-800 mb-2'>
@@ -80,11 +90,31 @@ export const UsersList = () => {
   }
 
   return (
-    <div className='p-6'>
-      <div className='flex justify-between items-center mb-6 bg-radial-[at_25%_25%] from-white to-zinc-200 to-75% p-6'>
+    <div
+      className={`p-6 min-h-screen transition-colors duration-300 ${
+        theme === 'dark' ? 'bg-gray-900' : 'bg-white'
+      }`}
+    >
+      <div
+        className={`flex justify-between items-center mb-6 p-6 rounded-lg transition-colors duration-300 ${
+          theme === 'dark'
+            ? 'bg-gradient-to-br from-gray-800 to-gray-700'
+            : 'bg-gradient-to-br from-white to-zinc-200'
+        }`}
+      >
         <div>
-          <h2 className='text-3xl font-bold text-gray-800'>Users</h2>
-          <p className='text-gray-600 mt-1'>
+          <h2
+            className={`text-3xl font-bold transition-colors duration-300 ${
+              theme === 'dark' ? 'text-white' : 'text-gray-800'
+            }`}
+          >
+            Users
+          </h2>
+          <p
+            className={`mt-1 transition-colors duration-300 ${
+              theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+            }`}
+          >
             Showing {usersToShow.length} of {users.length} users
           </p>
         </div>
@@ -112,42 +142,98 @@ export const UsersList = () => {
       {users.length === 0 ? (
         <div className='text-center py-12'>
           <div className='text-6xl mb-4'>👥</div>
-          <h3 className='text-xl font-bold text-gray-700 mb-2'>
+          <h3
+            className={`text-xl font-bold mb-2 transition-colors duration-300 ${
+              theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+            }`}
+          >
             Нет пользователей
           </h3>
-          <p className='text-gray-500'>Список пользователей пуст</p>
+          <p className={theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}>
+            Список пользователей пуст
+          </p>
         </div>
       ) : (
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
           {usersToShow.map((user) => (
             <div
               key={user.id}
-              className='bg-white border border-gray-200 p-5 rounded-xl shadow-sm hover:shadow-lg transition-all duration-250 hover:-translate-y-1 flex flex-col'
+              className={`rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group border ${
+                theme === 'dark'
+                  ? 'bg-gray-800 border-gray-700 hover:border-gray-600'
+                  : 'bg-white border-gray-200 hover:border-gray-300'
+              }`}
             >
-              <h2 className='text-xl font-bold mb-3 text-gray-800'>
+              <h2
+                className={`font-semibold text-lg mb-2 line-clamp-2 transition-colors duration-300 ${
+                  theme === 'dark' ? 'text-white' : 'text-gray-800'
+                }`}
+              >
                 {user.name.firstname} {user.name.lastname}
               </h2>
               <div className='space-y-2 flex-grow'>
-                <p className='text-gray-600 text-sm'>
-                  <span className='font-semibold text-gray-800'>Email:</span>{' '}
+                <p
+                  className={`text-sm line-clamp-2 transition-colors duration-300 ${
+                    theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                  }`}
+                >
+                  <span
+                    className={`font-semibold transition-colors duration-300 ${
+                      theme === 'dark' ? 'text-gray-200' : 'text-gray-800'
+                    }`}
+                  >
+                    Email:
+                  </span>{' '}
                   {user.email}
                 </p>
 
-                <p className='text-gray-600 text-sm'>
-                  <span className='font-semibold text-gray-800'>Username:</span>{' '}
+                <p
+                  className={`text-sm line-clamp-2 transition-colors duration-300 ${
+                    theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                  }`}
+                >
+                  <span
+                    className={`font-semibold transition-colors duration-300 ${
+                      theme === 'dark' ? 'text-gray-200' : 'text-gray-800'
+                    }`}
+                  >
+                    Username:
+                  </span>{' '}
                   {user.username}
                 </p>
 
-                <p className='text-gray-600 text-sm'>
-                  <span className='font-semibold text-gray-800'>Phone:</span>{' '}
+                <p
+                  className={`text-sm line-clamp-2 transition-colors duration-300 ${
+                    theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                  }`}
+                >
+                  <span
+                    className={`font-semibold transition-colors duration-300 ${
+                      theme === 'dark' ? 'text-gray-200' : 'text-gray-800'
+                    }`}
+                  >
+                    Phone:
+                  </span>{' '}
                   {user.phone}
                 </p>
               </div>
-              <div className='mt-4 pt-3 border-t border-gray-100'>
-                <span className='font-semibold text-gray-800 text-sm'>
+              <div
+                className={`mt-4 pt-3 border-t ${
+                  theme === 'dark' ? 'border-gray-700' : 'border-gray-100'
+                } `}
+              >
+                <span
+                  className={`font-semibold transition-colors duration-300 ${
+                    theme === 'dark' ? 'text-gray-200' : 'text-gray-800'
+                  }`}
+                >
                   Address:
                 </span>
-                <div className='text-gray-600 text-sm mt-1'>
+                <div
+                  className={`text-sm transition-colors duration-300 mt-1 ${
+                    theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                  }`}
+                >
                   <p>
                     {user.address.city}, {user.address.street}{' '}
                     {user.address.number}
