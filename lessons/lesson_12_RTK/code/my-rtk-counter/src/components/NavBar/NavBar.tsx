@@ -22,6 +22,11 @@ export default function NavBar() {
     { name: 'Users', href: '/users', current: location.pathname === '/users' },
     { name: 'Forum', href: '/posts', current: location.pathname === '/posts' },
     {
+      name: 'Weather',
+      href: '/weather',
+      current: location.pathname === '/weather',
+    },
+    {
       name: 'Sandwich',
       href: '/sandwich',
       current: location.pathname === '/sandwich',

@@ -7,6 +7,7 @@ import cartReducer from '../features/cart/cartSlice';
 import themeReducer from '../features/theme/themeSlice';
 import authSlice from '../features/auth/authSlice';
 import postsSlice from '../features/posts/postsSlice';
+import weatherReducer from '../features/weather/weatherSlice';
 
 // -> Импортируем configureStore - простой способ создать store.
 export const store = configureStore({
@@ -19,6 +20,7 @@ export const store = configureStore({
     theme: themeReducer,
     auth: authSlice,
     posts: postsSlice,
+    weather: weatherReducer,
   },
 });
 
