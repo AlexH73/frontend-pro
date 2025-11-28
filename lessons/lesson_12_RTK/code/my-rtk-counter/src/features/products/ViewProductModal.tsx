@@ -5,6 +5,8 @@ import {
 } from '@mui/icons-material';
 import { getProductRating, type Product } from './productsSlice';
 import PlaceholderImage from '../../../../../../../assets/images/placeholder.jpg';
+import { selectTheme } from '../../features/theme/themeSlice';
+import { useSelector } from 'react-redux';
 
 interface ViewProductModalProps {
   product: {
@@ -29,17 +31,32 @@ export default function ViewProductModal({
   onAddToCart,
 }: ViewProductModalProps) {
   const rating = getProductRating(product);
+  const theme = useSelector(selectTheme);
 
   const handleAddToCart = () => {
     onAddToCart(product);
   };
 
   return (
-    <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50'>
-      <div className='bg-white rounded-xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto'>
+    <div
+      className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50`}
+    >
+      <div
+        className={`rounded-xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto transition-colors duration-300 ${
+          theme === 'dark' ? 'bg-gray-900' : 'bg-white'
+        }`}
+      >
         <div className='p-6'>
-          <div className='flex justify-between items-center mb-6 pb-4 border-b border-gray-200'>
-            <h2 className='text-3xl font-bold text-gray-800'>
+          <div
+            className={`flex justify-between items-center mb-6 pb-4 border-b  ${
+              theme === 'dark' ? 'border-gray-700' : 'border-gray-200'
+            }`}
+          >
+            <h2
+              className={`text-3xl font-bold transition-colors duration-300 ${
+                theme === 'dark' ? 'text-white' : 'text-gray-800'
+              }`}
+            >
               Product Details
             </h2>
             <button
@@ -53,7 +70,11 @@ export default function ViewProductModal({
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
             {/* Product Image */}
             <div className='flex flex-col items-center'>
-              <div className='w-full max-w-md bg-white border border-gray-200 rounded-lg p-4'>
+              <div
+                className={`w-full max-w-md border rounded-lg p-4 ${
+                  theme === 'dark' ? 'border-gray-700' : 'border-gray-200'
+                }`}
+              >
                 <img
                   src={product.image}
                   alt={product.title}
@@ -68,21 +89,37 @@ export default function ViewProductModal({
             {/* Product Details */}
             <div className='space-y-6'>
               <div>
-                <h1 className='text-4xl font-bold text-gray-800 mb-2'>
+                <h3
+                  className={`text-4xl font-bold mb-2 transition-colors duration-300 ${
+                    theme === 'dark' ? 'text-white' : 'text-gray-800'
+                  }`}
+                >
                   {product.title}
-                </h1>
+                </h3>
                 <div className='flex items-center gap-4 mb-4'>
                   <span className='text-4xl font-bold text-green-600'>
                     ${product.price}
                   </span>
-                  <span className='bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full capitalize'>
+                  <span
+                    className={`text-sm font-medium px-4 py-2 rounded-full capitalize transition-colors duration-300 ${
+                      theme === 'dark'
+                        ? 'bg-blue-900 text-blue-200'
+                        : 'bg-blue-100 text-blue-800'
+                    }`}
+                  >
                     {product.category}
                   </span>
                 </div>
               </div>
 
               <div className='flex items-center gap-4'>
-                <div className='flex items-center bg-yellow-50 px-4 py-2 rounded-lg border border-yellow-200'>
+                <div
+                  className={`flex items-center px-4 py-2 rounded-lg border transition-colors duration-300 ${
+                    theme === 'dark'
+                      ? 'text-gray-300 bg-gray-400 border-gray-300'
+                      : 'text-gray-500 bg-yellow-50 border-yellow-200'
+                  }`}
+                >
                   <Rating
                     value={rating.rate}
                     precision={0.1}
@@ -102,10 +139,18 @@ export default function ViewProductModal({
               </div>
 
               <div>
-                <h3 className='text-xl font-semibold text-gray-800 mb-3'>
+                <h3
+                  className={`text-xl font-semibold mb-3 transition-colors duration-300 ${
+                    theme === 'dark' ? 'text-white' : 'text-gray-800'
+                  }`}
+                >
                   Description
                 </h3>
-                <p className='text-gray-600 leading-relaxed text-lg'>
+                <p
+                  className={`text-lg mb-3 leading-relaxed transition-colors duration-300 ${
+                    theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                  }`}
+                >
                   {product.description}
                 </p>
               </div>
