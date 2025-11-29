@@ -9,8 +9,8 @@ import {
   Thermostat as TempIcon,
   Air as WindIcon,
   Whatshot as GustIcon,
-  Opacity as HumidityIcon,
-  Visibility as VisibilityIcon,
+  OpacityTwoTone as HumidityIcon,
+  VisibilityTwoTone as VisibilityIcon,
   WbTwilight as SunsetIcon,
   Compress as PressureIcon,
   Navigation as WindDirectionIcon,
@@ -104,7 +104,10 @@ export default function WeatherCard(): JSX.Element {
           {/* Wind Speed */}
           <div className='bg-opacity-50 backdrop-blur-sm rounded-xl p-3 border border-white border-opacity-30'>
             <div className='flex items-center gap-2 mb-1'>
-              <WindIcon className='w-5 h-5' sx={{ color: yellow[800] }} />
+              <WindIcon
+                className='w-5 h-5'
+                sx={{ color: yellow[800] }}
+              />
               <span className='font-semibold'>Wind Speed</span>
             </div>
             <div className='text-lg font-bold'>{weatherData.windSpeed} m/s</div>
@@ -113,7 +116,10 @@ export default function WeatherCard(): JSX.Element {
           {/* Wind Direction */}
           <div className='bg-opacity-20 backdrop-blur-sm rounded-xl p-3 border border-white border-opacity-30'>
             <div className='flex items-center gap-2 mb-1'>
-              <WindDirectionIcon className='w-5 h-5' sx={{ color: red[300] }} />
+              <WindDirectionIcon
+                className='w-5 h-5'
+                sx={{ color: red[300] }}
+              />
               <span className='font-semibold'>Wind Direction</span>
             </div>
             <div className='text-lg font-bold'>

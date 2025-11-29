@@ -118,8 +118,8 @@ export default function ProductsList() {
       >
         <CircularProgress size='4rem' />
         <p
-          className={`mt-4 text-lg ${
-            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+          className={`mt-4 text-lg font-medium ${
+            theme === 'dark' ? 'text-white' : 'text-gray-700'
           }`}
         >
           Loading products...
