@@ -48,10 +48,16 @@ export default function WeatherCard(): JSX.Element {
     <div
       className={`max-w-2xl mx-auto rounded-2xl shadow-2xl overflow-hidden ${getCardGradient()} ${
         theme === 'dark' ? 'text-white' : 'text-gray-700'
-      } backdrop-blur-sm`}
+      }`}
     >
       {/* Header with Location */}
-      <div className='p-6 bg-black/40 bg-opacity-20 backdrop-blur-sm text-white'>
+      <div
+        className={`p-6 drop-shadow-md transition-colors duration-300 ${
+          theme === 'dark'
+            ? 'bg-gradient-to-br from-gray-800 to-gray-700'
+            : 'bg-gradient-to-br from-white to-zinc-500'
+        }`}
+      >
         <div className='flex items-center justify-between mb-2'>
           <div className='flex items-center'>
             <LocationIcon className='w-5 h-5 mr-2' />
@@ -82,7 +88,7 @@ export default function WeatherCard(): JSX.Element {
             )} mb-2 w-10 h-10`}
           />
           <div
-            className={`text-7xl font-bold text-shadow-2xl text-shadow-black ${getTemperatureColor(
+            className={`text-9xl font-bold text-shadow-lg/30 ${getTemperatureColor(
               weatherData.temperature
             )} mb-2`}
           >

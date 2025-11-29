@@ -46,10 +46,12 @@ export default function ViewProductModal({
           theme === 'dark' ? 'bg-gray-900' : 'bg-white'
         }`}
       >
-        <div className='p-6'>
+        <div className='p-0 m-0'>
           <div
-            className={`flex justify-between items-center mb-6 pb-4 border-b  ${
-              theme === 'dark' ? 'border-gray-700' : 'border-gray-200'
+            className={`flex p-6 justify-between items-center mb-6 pb-4 transition-colors duration-300 ${
+              theme === 'dark'
+                ? 'bg-gradient-to-br from-gray-800 to-gray-700'
+                : 'bg-gradient-to-br from-white to-zinc-200'
             }`}
           >
             <h2
@@ -87,7 +89,7 @@ export default function ViewProductModal({
             </div>
 
             {/* Product Details */}
-            <div className='space-y-6'>
+            <div className='space-y-6 px-6'>
               <div>
                 <h3
                   className={`text-4xl font-bold mb-2 transition-colors duration-300 ${
