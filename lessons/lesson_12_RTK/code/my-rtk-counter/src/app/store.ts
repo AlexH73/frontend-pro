@@ -8,6 +8,7 @@ import themeReducer from '../features/theme/themeSlice';
 import authSlice from '../features/auth/authSlice';
 import postsSlice from '../features/posts/postsSlice';
 import weatherReducer from '../features/weather/weatherSlice';
+import apodReducer from '../features/apod/apodSlice';
 
 // -> Импортируем configureStore - простой способ создать store.
 export const store = configureStore({
@@ -21,6 +22,7 @@ export const store = configureStore({
     auth: authSlice,
     posts: postsSlice,
     weather: weatherReducer,
+    apod: apodReducer,
   },
 });
 

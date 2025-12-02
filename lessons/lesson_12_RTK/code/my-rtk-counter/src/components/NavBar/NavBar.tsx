@@ -36,6 +36,11 @@ export default function NavBar() {
       href: '/counter',
       current: location.pathname === '/counter',
     },
+    {
+      name: 'APOD',
+      href: '/apod',
+      current: location.pathname === '/apod',
+    },
   ];
 
   const toggleMobileMenu = () => {
