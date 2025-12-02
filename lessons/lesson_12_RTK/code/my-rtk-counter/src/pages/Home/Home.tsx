@@ -5,6 +5,10 @@ import {
   Restaurant,
   AddCircle,
   ArrowForward,
+  ShoppingCart,
+  Forum,
+  Cloud,
+  PhotoLibraryTwoTone,
 } from '@mui/icons-material';
 import Links from '@mui/material/Link';
 import { selectTheme } from '../../features/theme/themeSlice';
@@ -44,6 +48,37 @@ export default function Home() {
       icon: AddCircle,
       path: '/counter',
       color: 'bg-purple-500',
+    },
+    {
+      name: 'Orders',
+      description: 'Track and manage customer orders in real-time.',
+      icon: ShoppingCart,
+      path: '/cart',
+      color: 'bg-red-500',
+    },
+    {
+      name: 'Forum',
+      description:
+        'Join discussions with other users. Available only after authentication.',
+      icon: Forum,
+      path: '/posts',
+      color: 'bg-indigo-500',
+    },
+    {
+      name: 'Weather',
+      description:
+        'Check current weather based on your browser location or search for any city.',
+      icon: Cloud,
+      path: '/weather',
+      color: 'bg-cyan-500',
+    },
+    {
+      name: 'APOD',
+      description:
+        'Discover Astronomy Picture of the Day with real space photos from NASA.',
+      icon: PhotoLibraryTwoTone,
+      path: '/apod',
+      color: 'bg-purple-800',
     },
   ];
 

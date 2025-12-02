@@ -112,7 +112,11 @@ export default function ApodModal({
           {selectedApod.title}
         </Typography>
         <IconButton onClick={handleClose}>
-          <CloseIcon />
+          <CloseIcon
+            sx={{
+              color: theme === 'dark' ? 'white' : '',
+            }}
+          />
         </IconButton>
       </Box>
 
