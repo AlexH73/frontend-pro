@@ -1,31 +1,21 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { CircularProgress } from '@mui/material';
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 
-import {
-  fetchUsers,
-  selectUsers,
-  selectLoading,
-  selectError,
-} from './usersSlice';
-import type { AppDispatch } from '../../app/store';
-import { selectTheme } from '../../features/theme/themeSlice';
+import { useState } from 'react';
+import { useGetUsersQuery } from './usersApi';
+import { selectTheme } from '../theme/themeSlice';
+import { useSelector } from 'react-redux';
+
 
 export const UsersList = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const users = useSelector(selectUsers);
-  const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
+  const { data: users = [], isLoading, error, refetch } = useGetUsersQuery();
+
+  // Состояние для темы
   const theme = useSelector(selectTheme);
 
   // Состояние для ограничения количества карточек
   const [displayLimit, setDisplayLimit] = useState(4);
   const usersToShow = users.slice(0, displayLimit);
-
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
 
   const loadMore = () => {
     setDisplayLimit((prev) => prev + 4);
@@ -51,7 +41,7 @@ export const UsersList = () => {
   // “Ты используешь переменную в эффекте?
   // Значит, добавь её в массив зависимостей”.
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div
         className={`flex flex-col items-center justify-center min-h-96 transition-colors duration-300 ${
@@ -64,6 +54,8 @@ export const UsersList = () => {
   }
 
   if (error) {
+    const errorMessage =
+      typeof error === 'string' ? error : 'Ошибка загрузки пользователей';
     return (
       <div
         className={`rounded-xl p-6 text-center transition-colors duration-300 ${
@@ -77,9 +69,9 @@ export const UsersList = () => {
           <h3 className='text-xl font-bold text-red-800 mb-2'>
             Ошибка загрузки
           </h3>
-          <p className='text-red-600 mb-4'>{error}</p>
+          <p className='text-red-600 mb-4'>{errorMessage}</p>
           <button
-            onClick={() => dispatch(fetchUsers())}
+            onClick={() => refetch()}
             className='bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors'
           >
             Попробовать снова
