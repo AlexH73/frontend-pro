@@ -1,8 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type {
   NewsApiResponse,
-  NewsArticle,
-  transformNewsArticle,
 } from './types/types';
 
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
