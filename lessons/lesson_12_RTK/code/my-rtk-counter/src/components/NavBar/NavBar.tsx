@@ -41,6 +41,11 @@ export default function NavBar() {
       href: '/apod',
       current: location.pathname === '/apod',
     },
+    {
+      name: 'News',
+      href: '/news',
+      current: location.pathname === '/news',
+    },
   ];
 
   const toggleMobileMenu = () => {

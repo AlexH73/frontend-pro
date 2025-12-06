@@ -13,6 +13,11 @@ const ProductsList = lazy(() => import('./features/products/ProductList'));
 const UsersList = lazy(() =>
   import('./features/users/UsersList').then((m) => ({ default: m.UsersList }))
 );
+const NewsPage = lazy(() =>
+  import('./features/news/components/NewsPage').then((m) => ({
+    default: m.NewsPage,
+  }))
+);
 const Sandwich = lazy(() => import('./features/sandwich/Sandwich'));
 const Counter = lazy(() => import('./features/counter/Counter'));
 const CartPage = lazy(() => import('./features/cart/CartPage'));
@@ -52,6 +57,7 @@ function App(): JSX.Element {
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/weather' element={<WeatherPage />} />
         <Route path='/apod' element={<ApodPage />} />
+        <Route path='/news' element={<NewsPage />} />
         {/* 404 Route */}
         <Route
           path='*'
