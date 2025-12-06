@@ -21,7 +21,7 @@ import {
 
 interface NewsFiltersProps {
   category: string;
-  categories: string[];
+  categories: readonly string[];
   onCategoryChange: (category: string) => void;
   sortBy: 'newest' | 'oldest';
   onSortChange: (event: SelectChangeEvent) => void;
@@ -75,10 +75,7 @@ export const NewsFilters: React.FC<NewsFiltersProps> = ({
               sx={
                 category === cat
                   ? themeStyles.chip.selected
-                  : {
-                      ...themeStyles.chip.unselected,
-                      ...themeStyles.chip.outlined,
-                    }
+                  : themeStyles.chip.unselected
               }
               className={`transition-all duration-200 ${
                 category === cat ? 'shadow-md scale-105' : ''
@@ -112,7 +109,7 @@ export const NewsFilters: React.FC<NewsFiltersProps> = ({
             <Button
               variant={showFavorites ? 'contained' : 'outlined'}
               color='secondary'
-              size='large'
+              size='small'
               startIcon={<Favorite />}
               onClick={() => onShowFavoritesChange(!showFavorites)}
               sx={showFavorites ? themeStyles.button.secondary : {}}

@@ -1,37 +1,56 @@
-export interface NewsArticle {
-  source: {
-    id: string;
-    name: string;
-  };
-  author: string;
+// Интерфейс статьи от NewsData.io
+export interface NewsDataArticle {
+  article_id: string;
   title: string;
+  link: string;
+  keywords: string[] | null;
+  creator: string[] | null;
   description: string;
-  url: string;
-  urlToImage: string;
-  publishedAt: string;
-  content: string;
+  content: string | null;
+  pubDate: string;
+  image_url: string | null;
+  source_id: string;
+  source_name: string;
+  source_url: string | null;
+  source_icon: string | null;
+  language: string;
+  country: string[];
+  category: string[];
+  ai_tag: string | null;
+  sentiment: string | null;
+  sentiment_stats: any;
+  ai_region: string | null;
 }
 
-export interface NewsApiResponse {
+// Ответ от NewsData.io API
+export interface NewsDataApiResponse {
   status: string;
   totalResults: number;
-  articles: NewsArticle[];
+  results: NewsDataArticle[];
+  nextPage: string | null;
 }
 
+// Состояние для Redux slice
 export interface NewsState {
-  articles: NewsArticle[];
-  favorites: string[]; // Сохраняем только ID статей
-  viewed: string[]; // Просмотренные статьи
+  articles: NewsDataArticle[];
+  favorites: string[]; // article_id's
+  viewed: string[]; // article_id's
   category: string;
-  loading: boolean;
-  error: string | null;
+  sortBy: 'newest' | 'oldest';
+  viewMode: 'grid' | 'list';
+  showFavorites: boolean;
 }
 
-// Функция для преобразования данных API
-export const transformNewsArticle = (article: any): NewsArticle => ({
-  ...article,
-  source: {
-    id: article.source?.id || 'unknown',
-    name: article.source?.name || 'Unknown Source'
-  }
-});
+// Категории
+export const NEWS_CATEGORIES = [
+  'technology',
+  'science',
+  'business',
+  'health',
+  'sports',
+  'entertainment',
+  'politics',
+  'environment',
+] as const;
+
+export type NewsCategory = (typeof NEWS_CATEGORIES)[number];

@@ -1,23 +1,14 @@
-// components/NewsCard.tsx
 import { IconButton, Tooltip, Button, Chip } from '@mui/material';
 import { Favorite, FavoriteBorder, OpenInNew } from '@mui/icons-material';
 import PlaceholderImage from '../../../../../../../../assets/images/placeholder.jpg';
+import type { NewsDataArticle } from '../types/types';
 
 interface NewsCardProps {
-  article: {
-    source: { id: string; name: string }; 
-    publishedAt: string;
-    title: string;
-    description: string;
-    url: string;
-    urlToImage: string;
-    author?: string;
-  };
-  articleId: string; 
+  article: NewsDataArticle;
   theme: 'light' | 'dark';
   viewMode: 'grid' | 'list';
   isFavorite: boolean;
-  isRecent: boolean;
+  isViewed: boolean;
   themeStyles: any;
   onToggleFavorite: (articleId: string) => void;
   onViewArticle: (articleId: string, url: string) => void;
@@ -25,15 +16,23 @@ interface NewsCardProps {
 
 export const NewsCard: React.FC<NewsCardProps> = ({
   article,
-  articleId,
   theme,
   viewMode,
   isFavorite,
-  isRecent,
   themeStyles,
   onToggleFavorite,
   onViewArticle,
 }) => {
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  };
+
+  const imageUrl = article.image_url || PlaceholderImage;
+
   return (
     <div
       className={`group overflow-hidden rounded-2xl transition-all duration-500 hover:scale-[1.02] flex flex-col h-full ${
@@ -45,33 +44,34 @@ export const NewsCard: React.FC<NewsCardProps> = ({
       } ${viewMode === 'list' ? 'md:flex-row' : ''}`}
     >
       {/* Изображение */}
-      {article.urlToImage && (
-        <div
-          className={`relative overflow-hidden flex-shrink-0 ${
-            viewMode === 'list' ? 'md:w-2/5' : 'h-56'
-          }`}
-        >
-          <img
-            src={article.urlToImage}
-            alt={article.title}
-            className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110'
-            onError={(e) => {
-              e.currentTarget.src = `${PlaceholderImage}`;
-            }}
-          />
-          {isRecent && (
-            <span className='absolute top-3 left-3 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold shadow-lg'>
-              NEW
-            </span>
-          )}
-          <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent h-12' />
-        </div>
-      )}
+      <div
+        className={`relative overflow-hidden flex-shrink-0 ${
+          viewMode === 'list' ? 'md:w-2/5' : 'h-56'
+        }`}
+      >
+        <img
+          src={imageUrl}
+          alt={article.title}
+          className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110'
+          loading='lazy'
+          onError={(e) => {
+            e.currentTarget.src = `${PlaceholderImage}`;
+          }}
+        />
+        {/* Бейдж для новых статей (менее 24 часов) */}
+        {Date.now() - new Date(article.pubDate).getTime() <
+          24 * 60 * 60 * 1000 && (
+          <span className='absolute top-3 left-3 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold shadow-lg'>
+            NEW
+          </span>
+        )}
+        <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent h-12' />
+      </div>
 
-      {/* Контент с flex-grow для растягивания */}
+      {/* Контент */}
       <div
         className={`p-5 flex flex-col flex-grow ${
-          viewMode === 'list' && article.urlToImage ? 'md:w-3/5' : ''
+          viewMode === 'list' ? 'md:w-3/5' : ''
         }`}
       >
         {/* Заголовок */}
@@ -80,45 +80,77 @@ export const NewsCard: React.FC<NewsCardProps> = ({
         </h3>
 
         {/* Мета информация */}
-        <div className='flex items-center justify-between mb-4'>
-          <Chip
-            label={article.source.name}
-            size='small'
-            variant='outlined'
-            sx={themeStyles.chip.unselected}
-          />
+        <div className='flex items-center justify-between mb-4 flex-wrap gap-2'>
+          <div className='flex items-center gap-2'>
+            <Chip
+              label={article.source_name}
+              size='small'
+              variant='outlined'
+              sx={themeStyles.chip.unselected}
+            />
+            {article.category && article.category.length > 0 && (
+              <Chip
+                label={article.category[0]}
+                size='small'
+                sx={{
+                  ...themeStyles.chip.unselected,
+                  backgroundColor:
+                    theme === 'dark'
+                      ? 'rgba(59, 130, 246, 0.1)'
+                      : 'rgba(59, 130, 246, 0.05)',
+                }}
+              />
+            )}
+          </div>
           <span
             className={`text-sm ${
               theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
             }`}
           >
-            {new Date(article.publishedAt).toLocaleDateString('en-US', {
-              month: 'short',
-              day: 'numeric',
-              year: 'numeric',
-            })}
+            {formatDate(article.pubDate)}
           </span>
         </div>
 
-        {/* Описание с flex-grow для растягивания */}
+        {/* Описание */}
         <div className='flex-grow mb-4'>
           <p
             className={`line-clamp-3 ${
               theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
             }`}
           >
-            {article.description || 'No description available.'}
+            {article.description ||
+              article.content?.substring(0, 200) ||
+              'No description available.'}
           </p>
         </div>
 
-        {/* Автор (если есть) */}
-        {article.author && (
+        {/* Автор */}
+        {article.creator && article.creator.length > 0 && (
           <div
             className={`mb-4 text-sm ${
               theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
             }`}
           >
-            <span className='font-semibold'>By:</span> {article.author}
+            <span className='font-semibold'>By: </span>
+            {article.creator.join(', ')}
+          </div>
+        )}
+
+        {/* Ключевые слова */}
+        {article.keywords && article.keywords.length > 0 && (
+          <div className='mb-4 flex flex-wrap gap-1'>
+            {article.keywords.slice(0, 3).map((keyword, index) => (
+              <span
+                key={index}
+                className={`text-xs px-2 py-1 rounded ${
+                  theme === 'dark'
+                    ? 'bg-gray-700 text-gray-300'
+                    : 'bg-gray-200 text-gray-700'
+                }`}
+              >
+                {keyword}
+              </span>
+            ))}
           </div>
         )}
 
@@ -133,7 +165,7 @@ export const NewsCard: React.FC<NewsCardProps> = ({
               >
                 <IconButton
                   size='small'
-                  onClick={() => onToggleFavorite(articleId)}
+                  onClick={() => onToggleFavorite(article.article_id)}
                   sx={{
                     ...(isFavorite && {
                       animation: 'pulse 2s infinite',
@@ -150,23 +182,35 @@ export const NewsCard: React.FC<NewsCardProps> = ({
                   ) : (
                     <FavoriteBorder
                       className={
-                        theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                        theme === 'dark'
+                          ? 'text-gray-300 hover:text-gray-800'
+                          : ''
                       }
                     />
                   )}
                 </IconButton>
               </Tooltip>
             </div>
-            <Button
-              variant='contained'
-              color='primary'
-              size='small'
-              endIcon={<OpenInNew />}
-              onClick={() => onViewArticle(articleId, article.url)}
-              className='rounded-full px-4'
-            >
-              Read Full
-            </Button>
+            <div className='flex gap-2'>
+              <Button
+                variant='outlined'
+                size='small'
+                onClick={() => onViewArticle(article.article_id, article.link)}
+                className='rounded-full px-4'
+              >
+                Read
+              </Button>
+              <Button
+                variant='contained'
+                color='primary'
+                size='small'
+                endIcon={<OpenInNew />}
+                onClick={() => onViewArticle(article.article_id, article.link)}
+                className='rounded-full px-4'
+              >
+                Full Article
+              </Button>
+            </div>
           </div>
         </div>
       </div>

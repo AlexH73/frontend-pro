@@ -1,4 +1,5 @@
-import { useState } from 'react';
+// features/news/NewsPage.tsx
+import { useState, useMemo } from 'react';
 import { useGetNewsQuery } from '../newsApi';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -21,24 +22,18 @@ import {
   CircularProgress,
   Button,
   type SelectChangeEvent,
+  Alert,
+  Snackbar,
 } from '@mui/material';
-import { NewsCard } from '../components/NewsCard';
-import { NewsFilters } from '../components/NewsFilters';
-import { getThemeStyles } from '../themeStyles';
-
-const categories = [
-  'technology',
-  'science',
-  'business',
-  'health',
-  'sports',
-  'entertainment',
-];
+import { NewsCard } from './NewsCard';
+import { NewsFilters } from './NewsFilters';
+import { getThemeStyles } from './utils/themeStyles';
+import { NEWS_CATEGORIES } from '../types/types';
 
 export const NewsPage = () => {
-  const [page, setPage] = useState(1);
+  const [errorSnackbar, setErrorSnackbar] = useState<string | null>(null);
 
-  // Получаем все состояния из Redux
+  // Получаем состояние из Redux
   const category = useSelector(selectCategory);
   const favorites = useSelector(selectFavorites);
   const sortBy = useSelector(selectSortBy);
@@ -47,18 +42,18 @@ export const NewsPage = () => {
   const theme = useSelector(selectTheme);
   const dispatch = useDispatch();
 
+  // Получаем данные от API
   const { data, isLoading, error, refetch } = useGetNewsQuery(
-    { category, page },
+    { category },
     { refetchOnMountOrArgChange: true }
   );
 
   // Получаем стили для текущей темы
-  const themeStyles = getThemeStyles(theme);
+  const themeStyles = useMemo(() => getThemeStyles(theme), [theme]);
 
   // Обработчики
   const handleCategoryChange = (newCategory: string) => {
     dispatch(setCategory(newCategory));
-    setPage(1);
   };
 
   const handleSortChange = (event: SelectChangeEvent) => {
@@ -75,7 +70,6 @@ export const NewsPage = () => {
 
   const handleResetFilters = () => {
     dispatch(resetFilters());
-    setPage(1);
   };
 
   const handleClearFavorites = () => {
@@ -84,28 +78,53 @@ export const NewsPage = () => {
     }
   };
 
-  // Фильтрация и сортировка
-  let articles = data?.articles || [];
+  const handleToggleFavorite = (articleId: string) => {
+    dispatch(toggleFavorite(articleId));
+  };
 
-  if (showFavorites && favorites.length > 0) {
-    articles = articles.filter((article) => {
-      const articleId = `${article.source.id}-${article.publishedAt}`;
-      return favorites.includes(articleId);
-    });
+  const handleViewArticle = (articleId: string, url: string) => {
+    dispatch(markAsViewed(articleId));
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleRetry = () => {
+    refetch();
+  };
+
+  // Фильтрация и сортировка статей
+  const processedArticles = useMemo(() => {
+    let articles = data?.results || [];
+
+    // Фильтрация по избранным
+    if (showFavorites && favorites.length > 0) {
+      articles = articles.filter((article) =>
+        favorites.includes(article.article_id)
+      );
+    }
+
+    // Сортировка
+    if (sortBy === 'newest') {
+      articles = [...articles].sort(
+        (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
+      );
+    } else if (sortBy === 'oldest') {
+      articles = [...articles].sort(
+        (a, b) => new Date(a.pubDate).getTime() - new Date(b.pubDate).getTime()
+      );
+    }
+
+    return articles;
+  }, [data?.results, showFavorites, favorites, sortBy]);
+
+  // Показываем ошибку, если есть
+  if (error) {
+    console.error('News fetch error:', error);
+    if (!errorSnackbar) {
+      setErrorSnackbar('Failed to load news. Please try again.');
+    }
   }
 
-  if (sortBy === 'newest') {
-    articles = [...articles].sort(
-      (a, b) =>
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-    );
-  } else if (sortBy === 'oldest') {
-    articles = [...articles].sort(
-      (a, b) =>
-        new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime()
-    );
-  }
-
+  // Лоадер
   if (isLoading) {
     return (
       <div
@@ -119,52 +138,42 @@ export const NewsPage = () => {
             theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
           }`}
         >
-          Loading news...
+          Loading news from NewsData.io...
         </p>
       </div>
     );
   }
 
-  if (error) {
+  // Сообщение об отсутствии API ключа
+  const apiKeyMissing = !import.meta.env.VITE_NEWSDATA_API_KEY;
+  if (apiKeyMissing) {
     return (
       <div
         className={`p-6 rounded-lg ${
-          theme === 'dark' ? 'bg-red-900/20' : 'bg-red-50'
+          theme === 'dark' ? 'bg-yellow-900/20' : 'bg-yellow-50'
         }`}
       >
-        <div className='text-red-600 text-6xl mb-4 text-center'>⚠️</div>
-        <h3
-          className={`text-xl font-bold text-center mb-4 ${
-            theme === 'dark' ? 'text-red-300' : 'text-red-800'
-          }`}
-        >
-          Error Loading News
+        <div className='text-yellow-600 text-6xl mb-4 text-center'>🔑</div>
+        <h3 className='text-xl font-bold text-center mb-4 text-yellow-800'>
+          API Key Required
         </h3>
-        <p
-          className={`text-center mb-4 ${
-            theme === 'dark' ? 'text-red-200' : 'text-red-600'
-          }`}
-        >
-          {error.toString()}
+        <p className='text-center mb-4 text-yellow-600'>
+          Please add your NewsData.io API key to environment variables:
         </p>
-        <div className='text-center'>
-          <Button
-            onClick={() => refetch()}
-            variant='contained'
-            color='error'
-            className='mr-2'
-          >
-            Retry
-          </Button>
-          <Button
-            onClick={handleResetFilters}
-            variant='outlined'
-            sx={themeStyles.button.secondary}
-            className='ml-2'
-          >
-            Reset Filters
-          </Button>
+        <div className='bg-gray-800 text-green-400 p-4 rounded mb-4 font-mono text-sm'>
+          VITE_NEWSDATA_API_KEY=your_api_key_here
         </div>
+        <p className='text-center text-sm text-gray-600 dark:text-gray-400'>
+          Get your free API key from{' '}
+          <a
+            href='https://newsdata.io'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='text-blue-600 hover:underline'
+          >
+            newsdata.io
+          </a>
+        </p>
       </div>
     );
   }
@@ -185,14 +194,14 @@ export const NewsPage = () => {
         <p
           className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}
         >
-          Stay updated with the latest {category} news
+          Real-time news from NewsData.io - {category} category
         </p>
       </div>
 
       {/* Компонент фильтров */}
       <NewsFilters
         category={category}
-        categories={categories}
+        categories={NEWS_CATEGORIES}
         onCategoryChange={handleCategoryChange}
         sortBy={sortBy}
         onSortChange={handleSortChange}
@@ -247,7 +256,7 @@ export const NewsPage = () => {
             >
               <span className='font-semibold'>Showing: </span>
               <span className='text-yellow-600 dark:text-yellow-400 font-bold'>
-                {articles.length} filtered
+                {processedArticles.length} filtered
               </span>
             </div>
           )}
@@ -255,7 +264,7 @@ export const NewsPage = () => {
       </div>
 
       {/* Сообщение если нет статей */}
-      {articles.length === 0 ? (
+      {processedArticles.length === 0 ? (
         <div
           className={`text-center py-16 rounded-2xl shadow-lg transition-all duration-300 ${
             theme === 'dark'
@@ -285,18 +294,14 @@ export const NewsPage = () => {
               Show All Articles
             </Button>
           ) : (
-            <Button
-              variant='contained'
-              color='primary'
-              onClick={handleResetFilters}
-            >
-              Reset Filters
+            <Button variant='contained' color='primary' onClick={handleRetry}>
+              Retry Loading
             </Button>
           )}
         </div>
       ) : (
         <>
-          {/* Список новостей с использованием компонента NewsCard */}
+          {/* Список новостей */}
           <div
             className={`grid gap-6 mb-8 ${
               viewMode === 'grid'
@@ -304,68 +309,90 @@ export const NewsPage = () => {
                 : 'grid-cols-1'
             }`}
           >
-            {articles.map((article) => {
-              const articleId = `${article.source.id || 'unknown'}-${
-                article.publishedAt
-              }`;
-              const isFavorite = favorites.includes(articleId);
-              const isRecent =
-                new Date(article.publishedAt) >
-                new Date(Date.now() - 24 * 60 * 60 * 1000);
+            {processedArticles.map((article) => {
+              const isFavorite = favorites.includes(article.article_id);
+              const isViewed = false; // Можно добавить логику для просмотренных
 
               return (
                 <NewsCard
-                  key={articleId}
+                  key={article.article_id}
                   article={article}
-                  articleId={articleId}
                   theme={theme}
                   viewMode={viewMode}
                   isFavorite={isFavorite}
-                  isRecent={isRecent}
+                  isViewed={isViewed}
                   themeStyles={themeStyles}
-                  onToggleFavorite={() => dispatch(toggleFavorite(articleId))}
-                  onViewArticle={(id, url) => {
-                    dispatch(markAsViewed(id));
-                    window.open(url, '_blank');
-                  }}
+                  onToggleFavorite={handleToggleFavorite}
+                  onViewArticle={handleViewArticle}
                 />
               );
             })}
           </div>
 
           {/* Пагинация */}
-          {!showFavorites && articles.length > 0 && (
-            <div className='flex flex-col md:flex-row items-center justify-between gap-4'>
-              <div
-                className={`text-sm ${
-                  theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                Page {page} • {page * 10 - 9}-
-                {Math.min(page * 10, data?.totalResults || 0)} of{' '}
-                {data?.totalResults || 0} articles
-              </div>
-              <div className='flex gap-3'>
-                <Button
-                  variant='outlined'
-                  disabled={page === 1}
-                  onClick={() => setPage((prev) => prev - 1)}
-                  startIcon={<span>←</span>}
-                  sx={themeStyles.button.secondary}
-                  className='rounded-full px-6'
-                >
-                  Previous
-                </Button>
-                <Button
-                  variant='contained'
-                  color='primary'
-                  disabled={!data?.articles || data.articles.length < 10}
-                  onClick={() => setPage((prev) => prev + 1)}
-                  endIcon={<span>→</span>}
-                  className='rounded-full px-6'
-                >
-                  Next Page
-                </Button>
+          {!showFavorites && processedArticles.length > 0 && (
+            <div
+              className={`mt-8 p-6 rounded-2xl ${
+                theme === 'dark'
+                  ? 'bg-gradient-to-r from-gray-800 to-gray-900 border border-gray-700'
+                  : 'bg-gradient-to-r from-blue-50 to-gray-100 border border-gray-200'
+              }`}
+            >
+              <div className='flex flex-col md:flex-row items-center justify-between gap-4'>
+                <div className='flex-1'>
+                  <h4
+                    className={`font-bold text-lg mb-2 ${
+                      theme === 'dark' ? 'text-gray-200' : 'text-gray-800'
+                    }`}
+                  >
+                    Free Tier Information
+                  </h4>
+                  <p
+                    className={`text-sm ${
+                      theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                    }`}
+                  >
+                    NewsData.io free tier provides{' '}
+                    <span className='font-semibold'>10 latest articles</span>{' '}
+                    per request. Upgrade to a paid plan for more articles,
+                    pagination, and advanced features.
+                  </p>
+                </div>
+                <div className='flex flex-col items-end'>
+                  <div
+                    className={`text-sm mb-2 ${
+                      theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                    }`}
+                  >
+                    Showing {processedArticles.length} of{' '}
+                    {Math.min(data?.totalResults || 0, 10)} articles
+                  </div>
+                  <a
+                    href='https://newsdata.io/pricing'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                      theme === 'dark'
+                        ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                        : 'bg-blue-500 hover:bg-blue-600 text-white'
+                    }`}
+                  >
+                    View Pricing Plans
+                    <svg
+                      className='w-4 h-4'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
+                      />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
           )}
@@ -383,10 +410,50 @@ export const NewsPage = () => {
             theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
           }`}
         >
-          💾 Your favorites, filters, and settings are automatically saved and
-          will persist between sessions.
+          💾 Your favorites and settings are automatically saved via Redux
+          Persist.
+        </p>
+        <p
+          className={`text-xs mt-1 ${
+            theme === 'dark' ? 'text-gray-500' : 'text-gray-500'
+          }`}
+        >
+          Powered by{' '}
+          <a
+            href='https://newsdata.io'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='text-blue-600 hover:underline'
+          >
+            NewsData.io
+          </a>{' '}
+          • Free tier: 200 requests/day
         </p>
       </div>
+
+      {/* Снекбар для ошибок */}
+      <Snackbar
+        open={!!errorSnackbar}
+        autoHideDuration={6000}
+        onClose={() => setErrorSnackbar(null)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert
+          onClose={() => setErrorSnackbar(null)}
+          severity='error'
+          className='w-full'
+        >
+          {errorSnackbar}
+          <Button
+            color='inherit'
+            size='small'
+            onClick={handleRetry}
+            className='ml-2'
+          >
+            Retry
+          </Button>
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

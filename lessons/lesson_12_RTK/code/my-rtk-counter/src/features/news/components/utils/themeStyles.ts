@@ -52,12 +52,6 @@ export const getThemeStyles = (theme: 'light' | 'dark') => {
             borderColor: '#9ca3af',
           },
         },
-        outlined: {
-          borderColor: '#d1d5db',
-          '&:hover': {
-            borderColor: '#9ca3af',
-          },
-        },
       },
       button: {
         secondary: {
@@ -120,12 +114,6 @@ export const getThemeStyles = (theme: 'light' | 'dark') => {
           borderColor: '#4b5563',
           '&:hover': {
             backgroundColor: '#374151',
-            borderColor: '#6b7280',
-          },
-        },
-        outlined: {
-          borderColor: '#4b5563',
-          '&:hover': {
             borderColor: '#6b7280',
           },
         },
