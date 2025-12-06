@@ -9,6 +9,7 @@ import {
   Forum,
   Cloud,
   PhotoLibraryTwoTone,
+  Newspaper
 } from '@mui/icons-material';
 import Links from '@mui/material/Link';
 import { selectTheme } from '../../features/theme/themeSlice';
@@ -79,6 +80,14 @@ export default function Home() {
       icon: PhotoLibraryTwoTone,
       path: '/apod',
       color: 'bg-purple-800',
+    },
+    {
+      name: 'News',
+      description:
+        'Best News API To Search, Collect And Track Worldwide News.',
+      icon: Newspaper,
+      path: '/news',
+      color: 'bg-pink-500',
     },
   ];
 
