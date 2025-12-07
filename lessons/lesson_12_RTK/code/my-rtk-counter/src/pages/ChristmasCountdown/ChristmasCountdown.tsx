@@ -61,7 +61,7 @@ const ChristmasCountdown: React.FC = () => {
                   : '0 2px 4px rgba(0,0,0,0.1)',
             }}
           >
-            🎄 Christmas Countdown 2024 🎅
+            🎄 Christmas Countdown 2025 🎅
           </Typography>
           <Typography
             variant='h6'
