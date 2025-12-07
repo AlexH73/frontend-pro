@@ -19,15 +19,31 @@ import authSlice from '../features/auth/authSlice';
 import postsSlice from '../features/posts/postsSlice';
 import weatherReducer from '../features/weather/weatherSlice';
 import apodReducer from '../features/apod/apodSlice';
+import countdownReducer from '../features/countdown/countdownSlice';
 import { usersApi } from '../features/users/usersApi';
 import newsReducer from '../features/news/newsSlice';
 import { newsApi } from '../features/news/newsApi';
+import { christmasApi } from '../features/countdown/christmasApi';
 
 const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  whitelist: [usersApi.reducerPath, 'cart', 'theme', 'counter', 'news'],
+  whitelist: [
+    usersApi.reducerPath,
+    'cart',
+    'theme',
+    'counter',
+    'news',
+    'countdown',
+  ],
+  // Добавляем миграцию для сериализации
+  migrate: (state: any) => {
+    if (!state) {
+      return Promise.resolve(undefined);
+    }
+    return Promise.resolve(state);
+  },
   // ИЛИ blacklist для исключения определенных редьюсеров
   // blacklist: ['products', 'users'] // Например, не сохраняем эти
 };
@@ -42,12 +58,14 @@ const rootReducer = combineReducers({
   posts: postsSlice,
   weather: weatherReducer,
   apod: apodReducer,
+  countdown: countdownReducer,
   news: newsReducer,
 
   // RTK Query API
   // [productsApi.reducerPath]: productsApi.reducer,
   [usersApi.reducerPath]: usersApi.reducer,
   [newsApi.reducerPath]: newsApi.reducer,
+  [christmasApi.reducerPath]: christmasApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -62,7 +80,8 @@ export const store = configureStore({
       },
     })
       .concat(usersApi.middleware)
-      .concat(newsApi.middleware),
+      .concat(newsApi.middleware)
+      .concat(christmasApi.middleware),
 });
 
 // Типы для useSelector и useDispatch

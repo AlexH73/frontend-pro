@@ -25,6 +25,9 @@ const LoginPage = lazy(() => import('./features/auth/LoginPage'));
 const ProfilePage = lazy(() => import('./features/auth/ProfilePage'));
 const WeatherPage = lazy(() => import('./features/weather/WeatherPage'));
 const ApodPage = lazy(() => import('./features/apod/components/ApodPage'));
+const ChristmasCountdown = lazy(
+  () => import('./pages/ChristmasCountdown/ChristmasCountdown')
+);
 
 // import Home from './pages/Home/Home';
 // import ProductsList from './features/products/ProductList';
@@ -58,6 +61,7 @@ function App(): JSX.Element {
         <Route path='/weather' element={<WeatherPage />} />
         <Route path='/apod' element={<ApodPage />} />
         <Route path='/news' element={<NewsPage />} />
+        <Route path='/christmas-countdown' element={<ChristmasCountdown />} />
         {/* 404 Route */}
         <Route
           path='*'

@@ -9,11 +9,13 @@ import {
   Forum,
   Cloud,
   PhotoLibraryTwoTone,
-  Newspaper
+  Newspaper,
+  Celebration,
 } from '@mui/icons-material';
 import Links from '@mui/material/Link';
 import { selectTheme } from '../../features/theme/themeSlice';
 import { useSelector } from 'react-redux';
+import CountdownCompact from '../../features/countdown/CountdownCompact';
 
 export default function Home() {
   const theme = useSelector(selectTheme);
@@ -83,11 +85,18 @@ export default function Home() {
     },
     {
       name: 'News',
-      description:
-        'Best News API To Search, Collect And Track Worldwide News.',
+      description: 'Best News API To Search, Collect And Track Worldwide News.',
       icon: Newspaper,
       path: '/news',
       color: 'bg-pink-500',
+    },
+    {
+      name: 'Christmas Countdown',
+      description:
+        'Real-time countdown to Christmas with beautiful animations and festive design.',
+      icon: Celebration,
+      path: '/christmas-countdown',
+      color: 'bg-gradient-to-r from-red-500 to-green-500',
     },
   ];
 
@@ -163,6 +172,30 @@ export default function Home() {
               View Users
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* 🎄 Christmas Countdown Section 🎄 */}
+      <section className='px-4 sm:px-6 lg:px-8 mb-16'>
+        <div className='max-w-7xl mx-auto'>
+          <div className='text-center mb-8'>
+            <h2
+              className={`text-3xl md:text-4xl font-bold ${
+                theme === 'dark' ? 'text-gray-200' : 'text-gray-800'
+              } mb-4`}
+            >
+              🎅 Christmas Countdown 🎄
+            </h2>
+            <p
+              className={`text-lg ${
+                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+              } max-w-2xl mx-auto`}
+            >
+              Watch the real-time countdown to Christmas! Data updates every 10
+              minutes with live local countdown.
+            </p>
+          </div>
+          <CountdownCompact />
         </div>
       </section>
 
