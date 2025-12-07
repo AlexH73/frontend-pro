@@ -29,12 +29,18 @@ const ChristmasCountdown: React.FC = () => {
           <MuiLink
             component={Link}
             to='/'
-            className='flex items-center gap-3 hover:underline mb-5'
+            className={`flex items-center gap-3 hover:underline mb-5 ${
+              theme === 'dark' ? 'text-gray-300' : 'text-gray-800'
+            }`}
           >
             <Home fontSize='small' />
             Home
           </MuiLink>
-          <Typography className='flex items-center gap-1' color='text.white'>
+          <Typography
+            className={`flex items-center gap-1 ${
+              theme === 'dark' ? 'text-gray-300' : 'text-gray-800'
+            }`}
+          >
             <Celebration fontSize='small' />
             Christmas Countdown
           </Typography>
