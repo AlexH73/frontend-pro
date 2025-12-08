@@ -104,8 +104,8 @@ export default function Home() {
     <div
       className={`min-h-screen transition-colors duration-300 ${
         theme === 'dark'
-          ? 'bg-gradient-to-br from-gray-900 to-gray-800 text-white'
-          : 'bg-gradient-to-br from-blue-50 to-indigo-100 text-gray-900'
+          ? 'bg-linear-to-br from-gray-900 to-gray-800 text-white'
+          : 'bg-linear-to-br from-blue-50 to-indigo-100 text-gray-900'
       }`}
     >
       {/* Hero Section */}

@@ -19,8 +19,8 @@ const ChristmasCountdown: React.FC = () => {
     <div
       className={`min-h-screen transition-colors duration-300 ${
         theme === 'dark'
-          ? 'bg-gradient-to-br from-gray-900 to-gray-800'
-          : 'bg-gradient-to-br from-red-50 via-white to-green-50'
+          ? 'bg-linear-to-br from-gray-900 to-gray-800'
+          : 'bg-linear-to-br from-red-50 via-white to-green-50'
       }`}
     >
       <Container maxWidth='lg' className='py-8'>

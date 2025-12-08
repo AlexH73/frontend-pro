@@ -206,7 +206,7 @@ const TimeUnitsDisplay = memo(
 );
 
 const StatusDisplay = memo(({ hasApiError }: { hasApiError: boolean }) => (
-  <div className='mt-4 pt-4 border-t border-gray-200'>
+  <div className={`mt-4 pt-4 border-t border-gray-200 dark:border-gray-700`}>
     <div className='flex flex-wrap items-center justify-between gap-2 text-sm text-gray-600'>
       <div className='flex items-center gap-2'>
         <div
