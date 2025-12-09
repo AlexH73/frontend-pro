@@ -1,4 +1,5 @@
 import { User } from '@/types';
+import Link from 'next/link';
 
 // by default - server component
 const UsersServerVersion = async () => {
@@ -33,7 +34,16 @@ const UsersServerVersion = async () => {
   return (
     <ul className='px-28 py-20'>
       {users.map((user: User) => (
-        <li key={user.id}>{user.name}</li>
+        <li key={user.id}>
+          {user.name}
+
+          <Link
+            className='border rounded px-4 py-2 cursor-pointer'
+            href={`/users/server-version/${user.id}`}
+          >
+            To user
+          </Link>
+        </li>
       ))}
     </ul>
   );

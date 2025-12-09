@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { type JSX } from 'react'
+import ThemeToggler from '../ThemeToggler/ThemeToggler';
 
 export default function NavBar(): JSX.Element {
   return (
-    <nav className='flex justify-center items-center gap-6 min-h-12 sticky top-0 '>
+    <nav className='flex justify-center items-center gap-6 min-h-12 sticky top-0 flex-wrap'>
       <Link href={'/'} className='hover:text-amber-300'>
         Home
       </Link>
@@ -28,6 +29,7 @@ export default function NavBar(): JSX.Element {
       <Link href={'/products/server-version'} className='hover:text-amber-300'>
         Products server
       </Link>
+      <ThemeToggler />
     </nav>
   );
 }
